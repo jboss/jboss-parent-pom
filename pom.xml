@@ -14,8 +14,8 @@
   </issueManagement>
   
   <scm>
-    <connection>scm:svn:http://anonsvn.jboss.org/repos/labs/labs/jbossbuild/jboss-parent/trunk</connection>    
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/labs/labs/jbossbuild/jboss-parent/trunk</developerConnection>   
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</connection>    
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</developerConnection>   
   </scm>
   
   <licenses>
