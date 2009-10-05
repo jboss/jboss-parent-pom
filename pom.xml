@@ -15,7 +15,8 @@
   
   <scm>
     <connection>scm:svn:http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</connection>    
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</developerConnection>   
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</developerConnection> 
+    <url>http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</url>  
   </scm>
   
   <licenses>
