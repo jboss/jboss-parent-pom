@@ -82,6 +82,7 @@
     <!-- maven-enforcer-plugin -->
     <!-- Version 2.0.9 started specifying default versions for all core plugins in the super pom. -->
     <maven.min.version>2.0.9</maven.min.version>
+    <jdk.min.version>${maven.compiler.source}</jdk.min.version>
     
     <!-- maven-idea-plugin & maven-eclipse-plugin -->
     <downloadSources>true</downloadSources>
@@ -297,7 +298,32 @@
                        <banRelease>true</banRelease>
                        <phases>deploy,site</phases>
                     </requirePluginVersions>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>enforce-java-version</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireJavaVersion>
+                      <message>To build this project JDK ${jdk.min.version} (or upper) is required. Please install it.</message>
+                      <version>${jdk.min.version}</version>
+                    </requireJavaVersion>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>enforce-maven-version</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
                     <requireMavenVersion>
+                      <message>To build this project Maven ${maven.min.version} (or upper) is required. Please install it.</message>
                       <version>${maven.min.version}</version>
                     </requireMavenVersion>
                   </rules>
