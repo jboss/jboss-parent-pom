@@ -34,34 +34,34 @@
   <properties>
     <!-- Plugins versions -->
     <version.antrun.plugin>1.3</version.antrun.plugin>
-    <version.assembly.plugin>2.2-beta-2</version.assembly.plugin>
-    <version.clean.plugin>2.2</version.clean.plugin>
+    <version.assembly.plugin>2.2-beta-4</version.assembly.plugin>
+    <version.clean.plugin>2.3</version.clean.plugin>
     <version.checkstyle.plugin>2.3</version.checkstyle.plugin>
-    <version.cobertura.plugin>2.1</version.cobertura.plugin>
+    <version.cobertura.plugin>2.3</version.cobertura.plugin>
     <version.compiler.plugin>2.0.2</version.compiler.plugin>
-    <version.dependency.plugin>2.0</version.dependency.plugin>
+    <version.dependency.plugin>2.1</version.dependency.plugin>
     <version.deploy.plugin>2.4</version.deploy.plugin>
-    <version.ear.plugin>2.3.1</version.ear.plugin>
-    <version.ejb.plugin>2.1</version.ejb.plugin>
+    <version.ear.plugin>2.3.2</version.ear.plugin>
+    <version.ejb.plugin>2.2</version.ejb.plugin>
     <version.enforcer.plugin>1.0-beta-1</version.enforcer.plugin>
-    <version.findbugs.plugin>2.0.1</version.findbugs.plugin>
-    <version.install.plugin>2.2</version.install.plugin>
+    <version.findbugs.plugin>2.1</version.findbugs.plugin>
+    <version.install.plugin>2.3</version.install.plugin>
     <version.jar.plugin>2.2</version.jar.plugin>
-    <version.javadoc.plugin>2.5</version.javadoc.plugin>
+    <version.javadoc.plugin>2.6</version.javadoc.plugin>
     <version.javancss.plugin>2.0</version.javancss.plugin>
     <version.jdepend.plugin>2.0-beta-2</version.jdepend.plugin>
     <version.jxr.plugin>2.1</version.jxr.plugin>
-    <version.pir.plugin>2.0.1</version.pir.plugin>
-    <version.plugin.plugin>2.4.3</version.plugin.plugin>
+    <version.pir.plugin>2.1.2</version.pir.plugin><!-- maven-project-info-reports-plugins -->
+    <version.plugin.plugin>2.5</version.plugin.plugin>
     <version.pmd.plugin>2.4</version.pmd.plugin>
     <version.rar.plugin>2.2</version.rar.plugin>
     <version.release.plugin>2.0-beta-9</version.release.plugin>
-    <version.resources.plugin>2.3</version.resources.plugin>
-    <version.site.plugin>2.0-beta-7</version.site.plugin>
+    <version.resources.plugin>2.4</version.resources.plugin>
+    <version.site.plugin>2.0.1</version.site.plugin>
     <version.source.plugin>2.1</version.source.plugin>
     <version.surefire.plugin>2.4.3</version.surefire.plugin>
-    <version.taglist.plugin>2.0</version.taglist.plugin>
-    <version.war.plugin>2.1-alpha-2</version.war.plugin>
+    <version.taglist.plugin>2.4</version.taglist.plugin>
+    <version.war.plugin>2.1-beta-1</version.war.plugin>
   </properties>
   
   <build>
