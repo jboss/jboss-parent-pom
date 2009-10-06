@@ -37,16 +37,19 @@
     <!-- **************** -->
     <version.antrun.plugin>1.3</version.antrun.plugin>
     <version.assembly.plugin>2.2-beta-4</version.assembly.plugin>
+    <version.buildnumber.plugin>1.0-beta-3</version.buildnumber.plugin>
     <version.clean.plugin>2.3</version.clean.plugin>
     <version.checkstyle.plugin>2.3</version.checkstyle.plugin>
     <version.cobertura.plugin>2.3</version.cobertura.plugin>
     <version.compiler.plugin>2.0.2</version.compiler.plugin>
     <version.dependency.plugin>2.1</version.dependency.plugin>
     <version.deploy.plugin>2.4</version.deploy.plugin>
+    <version.eclipse.plugin>2.7</version.eclipse.plugin>
     <version.ear.plugin>2.3.2</version.ear.plugin>
     <version.ejb.plugin>2.2</version.ejb.plugin>
     <version.enforcer.plugin>1.0-beta-1</version.enforcer.plugin>
     <version.findbugs.plugin>2.1</version.findbugs.plugin>
+    <version.idea.plugin>2.2</version.idea.plugin>
     <version.install.plugin>2.3</version.install.plugin>
     <version.jar.plugin>2.2</version.jar.plugin>
     <version.javadoc.plugin>2.6</version.javadoc.plugin>
@@ -76,6 +79,13 @@
     <maven.compiler.target>1.5</maven.compiler.target>
     <maven.compiler.source>1.5</maven.compiler.source>
     
+    <!-- maven-enforcer-plugin -->
+    <!-- Version 2.0.9 started specifying default versions for all core plugins in the super pom. -->
+    <maven.min.version>2.0.9</maven.min.version>
+    
+    <!-- maven-idea-plugin & maven-eclipse-plugin -->
+    <downloadSources>true</downloadSources>
+    
     <!-- maven-pmd-plugin -->
     <targetJdk>${maven.compiler.target}</targetJdk>
     
@@ -99,6 +109,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${version.assembly.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>buildnumber-maven-plugin</artifactId>
+          <version>${version.buildnumber.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -137,6 +152,11 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-eclipse-plugin</artifactId>
+          <version>${version.eclipse.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-ejb-plugin</artifactId>
           <version>${version.ejb.plugin}</version>
         </plugin>
@@ -149,6 +169,11 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>${version.findbugs.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-idea-plugin</artifactId>
+          <version>${version.idea.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -225,6 +250,10 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
           <version>${version.source.plugin}</version>
+          <configuration>
+            <!-- This is a workaroud for MSOURCES-44 -->
+            <includePom>true</includePom>
+          </configuration>
         </plugin>         
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -269,11 +298,9 @@
                        <phases>deploy,site</phases>
                     </requirePluginVersions>
                     <requireMavenVersion>
-                      <!-- Version 2.0.9 started specifying default versions for all core plugins in the super pom. -->
-                      <version>2.0.9</version>
+                      <version>${maven.min.version}</version>
                     </requireMavenVersion>
                   </rules>
-                  <fail>false</fail>  
                 </configuration>
               </execution>
             </executions>
