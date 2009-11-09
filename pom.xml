@@ -211,7 +211,7 @@
                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               </manifest>
               <manifestEntries>
-                <Implementation-URL>${pom.url}</Implementation-URL>
+                <Implementation-URL>${project.url}</Implementation-URL>
               </manifestEntries>
             </archive>
           </configuration>
