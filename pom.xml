@@ -48,7 +48,7 @@
     <version.ear.plugin>2.4</version.ear.plugin>
     <version.ejb.plugin>2.2</version.ejb.plugin>
     <version.enforcer.plugin>1.0-beta-1</version.enforcer.plugin>
-    <version.findbugs.plugin>2.1</version.findbugs.plugin>
+    <version.findbugs.plugin>2.2</version.findbugs.plugin>
     <version.idea.plugin>2.2</version.idea.plugin>
     <version.install.plugin>2.3</version.install.plugin>
     <version.jar.plugin>2.2</version.jar.plugin>
