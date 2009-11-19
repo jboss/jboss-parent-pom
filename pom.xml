@@ -507,7 +507,7 @@
     <snapshotRepository>
       <id>jboss-snapshots</id>
       <name>JBoss Snapshot Repository</name>
-      <url>jboss.snapshots.repo.url</url>
+      <url>${jboss.snapshots.repo.url}</url>
     </snapshotRepository>
   </distributionManagement>
   
