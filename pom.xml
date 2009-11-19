@@ -69,6 +69,12 @@
     <version.taglist.plugin>2.4</version.taglist.plugin>
     <version.war.plugin>2.1-beta-1</version.war.plugin>
     
+    <!-- ***************** -->
+    <!-- Repositories URLs -->
+    <!-- ***************** -->
+    <jboss.releases.repo.url>scm:svn:https://svn.jboss.org/repos/repository.jboss.org/maven2</jboss.releases.repo.url>
+    <jboss.snapshots.repo.url>dav:https://snapshots.jboss.org/maven2</jboss.snapshots.repo.url>
+    
     <!-- ************** -->
     <!-- Build settings -->
     <!-- ************** -->
@@ -500,12 +506,12 @@
     <repository>
       <id>jboss-releases</id>
       <name>JBoss Release Repository</name>
-      <url>scm:svn:https://svn.jboss.org/repos/repository.jboss.org/maven2</url>
+      <url>${jboss.releases.repo.url}</url>
     </repository>
     <snapshotRepository>
       <id>jboss-snapshots</id>
       <name>JBoss Snapshot Repository</name>
-      <url>dav:https://snapshots.jboss.org/maven2</url>
+      <url>jboss.snapshots.repo.url</url>
     </snapshotRepository>
   </distributionManagement>
   
