@@ -39,7 +39,7 @@
     <version.assembly.plugin>2.2-beta-4</version.assembly.plugin>
     <version.buildnumber.plugin>1.0-beta-3</version.buildnumber.plugin>
     <version.clean.plugin>2.3</version.clean.plugin>
-    <version.checkstyle.plugin>2.3</version.checkstyle.plugin>
+    <version.checkstyle.plugin>2.4</version.checkstyle.plugin>
     <version.cobertura.plugin>2.3</version.cobertura.plugin>
     <version.compiler.plugin>2.0.2</version.compiler.plugin>
     <version.dependency.plugin>2.1</version.dependency.plugin>
