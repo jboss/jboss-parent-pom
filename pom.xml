@@ -71,10 +71,10 @@
     <version.war.plugin>2.1-beta-1</version.war.plugin>
     
     <!-- ***************** -->
-    <!-- Repositories URLs -->
+    <!-- Repositories Deployment URLs -->
     <!-- ***************** -->
-    <jboss.releases.repo.url>scm:svn:https://svn.jboss.org/repos/repository.jboss.org/maven2</jboss.releases.repo.url>
-    <jboss.snapshots.repo.url>dav:https://snapshots.jboss.org/maven2</jboss.snapshots.repo.url>
+    <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
+    <jboss.snapshots.repo.url>https://repository.jboss.org/nexus/content/repositories/snapshots/</jboss.snapshots.repo.url>
     
     <!-- ************** -->
     <!-- Build settings -->
@@ -106,30 +106,6 @@
   
   <build>
 
-    <!-- To allow to deploy releases in SVN -->
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-scm</artifactId>
-        <version>1.0-beta-6</version>
-      </extension>
-      <extension>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-manager-plexus</artifactId>
-        <version>1.0</version>
-      </extension>
-      <extension>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-provider-svnexe</artifactId>
-        <version>1.0</version>
-      </extension>
-      <extension>
-         <groupId>org.apache.maven.wagon</groupId>
-         <artifactId>wagon-webdav</artifactId>
-         <version>1.0-beta-2</version>
-      </extension>
-   </extensions>
-    
     <pluginManagement>
       <!-- All plugins ordered by shortname (antrun, assembly ...) -->
       <plugins>
@@ -347,7 +323,7 @@
                 <configuration>
                   <rules>
                     <requireJavaVersion>
-                      <message>To build this project JDK ${jdk.min.version} (or upper) is required. Please install it.</message>
+                      <message>To build this project JDK ${jdk.min.version} (or greater) is required. Please install it.</message>
                       <version>${jdk.min.version}</version>
                     </requireJavaVersion>
                   </rules>
@@ -361,7 +337,7 @@
                 <configuration>
                   <rules>
                     <requireMavenVersion>
-                      <message>To build this project Maven ${maven.min.version} (or upper) is required. Please install it.</message>
+                      <message>To build this project Maven ${maven.min.version} (or greater) is required. Please install it.</message>
                       <version>${maven.min.version}</version>
                     </requireMavenVersion>
                   </rules>
@@ -507,12 +483,12 @@
   <distributionManagement>
     <repository>
       <id>jboss-releases</id>
-      <name>JBoss Release Repository</name>
+      <name>JBoss Releases Repository</name>
       <url>${jboss.releases.repo.url}</url>
     </repository>
     <snapshotRepository>
       <id>jboss-snapshots</id>
-      <name>JBoss Snapshot Repository</name>
+      <name>JBoss Snapshots Repository</name>
       <url>${jboss.snapshots.repo.url}</url>
     </snapshotRepository>
   </distributionManagement>
