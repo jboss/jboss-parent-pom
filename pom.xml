@@ -19,6 +19,15 @@
     <url>http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</url>  
   </scm>
   
+  <developers>
+    <developer>
+      <id>jboss.org</id>
+      <name>JBoss.org Developers</name>
+      <organization>JBoss.org</organization>
+      <organizationUrl>http://www.jboss.org</organizationUrl>
+    </developer>
+  </developers>
+  
   <licenses>
     <license>
       <name>lgpl</name>
