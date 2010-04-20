@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss</groupId>
-  <version>5</version>
+  <version>6-SNAPSHOT</version>
   <artifactId>jboss-parent</artifactId>
   <packaging>pom</packaging>
   <name>JBoss Parent POM</name>
@@ -14,9 +14,9 @@
   </issueManagement>
   
   <scm>
-    <connection>scm:svn:http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/tags/jboss-parent-5</connection>    
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/maven/poms/jboss-parent-pom/tags/jboss-parent-5</developerConnection> 
-    <url>http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/tags/jboss-parent-5</url>  
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</connection>    
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</developerConnection> 
+    <url>http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</url>  
   </scm>
   
   <developers>
