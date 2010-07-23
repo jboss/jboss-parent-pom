@@ -155,6 +155,35 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${version.assembly.plugin}</version>
+          <configuration>
+            <archive>
+              <index>true</index>
+              <manifest>
+                <addDefaultSpecificationEntries>
+                  true
+                </addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>
+                  true
+                </addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Implementation-URL>${project.url}</Implementation-URL>
+              </manifestEntries>
+              <manifestSections>
+                <manifestSection>
+                  <name>Build-Information</name>
+                  <manifestEntries>
+                    <Java-Version>${java.version}</Java-Version>
+                    <Java-Vendor>${java.vendor}</Java-Vendor>
+                    <Os-Name>${os.name}</Os-Name>
+                    <Os-Arch>${os.arch}</Os-Arch>
+                    <Os-Version>${os.version}</Os-Version>
+                    <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                  </manifestEntries>
+                </manifestSection>
+              </manifestSections>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -237,13 +266,31 @@
           <version>${version.jar.plugin}</version>
           <configuration>
             <archive>
+              <index>true</index>
               <manifest>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addDefaultSpecificationEntries>
+                  true
+                </addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>
+                  true
+                </addDefaultImplementationEntries>
               </manifest>
               <manifestEntries>
                 <Implementation-URL>${project.url}</Implementation-URL>
               </manifestEntries>
+              <manifestSections>
+                <manifestSection>
+                  <name>Build-Information</name>
+                  <manifestEntries>
+                    <Java-Version>${java.version}</Java-Version>
+                    <Java-Vendor>${java.vendor}</Java-Vendor>
+                    <Os-Name>${os.name}</Os-Name>
+                    <Os-Arch>${os.arch}</Os-Arch>
+                    <Os-Version>${os.version}</Os-Version>
+                    <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                  </manifestEntries>
+                </manifestSection>
+              </manifestSections>
             </archive>
           </configuration>
         </plugin>
