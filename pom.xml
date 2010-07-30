@@ -88,6 +88,7 @@
     <version.enforcer.plugin>1.0-beta-1</version.enforcer.plugin>
     <version.findbugs.plugin>2.2</version.findbugs.plugin>
     <version.idea.plugin>2.2</version.idea.plugin>
+    <version.injection.plugin>1.0.2</version.injection.plugin>
     <version.install.plugin>2.3.1</version.install.plugin>
     <version.jar.plugin>2.3.1</version.jar.plugin>
     <version.javadoc.plugin>2.7</version.javadoc.plugin>
@@ -254,6 +255,19 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-idea-plugin</artifactId>
           <version>${version.idea.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jboss.maven.plugins</groupId>
+          <artifactId>maven-injection-plugin</artifactId>
+          <version>${version.injection.plugin}</version>
+          <executions>
+            <execution>
+              <phase>compile</phase>
+              <goals>
+                <goal>bytecode</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
