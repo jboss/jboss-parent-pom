@@ -122,8 +122,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     
     <!-- maven-compiler-plugin -->
-    <maven.compiler.target>1.5</maven.compiler.target>
-    <maven.compiler.source>1.5</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.6</maven.compiler.source>
     
     <!-- maven-enforcer-plugin -->
     <!-- Version 3.0-beta-1 includes strong POM validation and correct "import" scope dependency resolution. -->
