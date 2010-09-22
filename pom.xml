@@ -40,13 +40,13 @@
     <system>jira</system>
     <url>http://jira.jboss.org/</url>
   </issueManagement>
-  
+
   <scm>
-    <connection>scm:svn:http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</connection>    
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</developerConnection> 
-    <url>http://anonsvn.jboss.org/repos/maven/poms/jboss-parent-pom/trunk</url>  
+    <connection>scm:git:git@github.com:jboss/jboss-parent-pom.git</connection>
+    <developerConnection>scm:git:git@github.com:jboss/jboss-parent-pom.git</developerConnection>
+    <url>http://github.com/jboss/jboss-parent-pom</url>
   </scm>
-  
+
   <developers>
     <developer>
       <id>jboss.org</id>
