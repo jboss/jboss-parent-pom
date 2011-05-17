@@ -110,6 +110,7 @@
     <version.javancss.plugin>2.0</version.javancss.plugin>
     <version.jdepend.plugin>2.0-beta-2</version.jdepend.plugin>
     <version.jxr.plugin>2.2</version.jxr.plugin>
+    <version.license.plugin>1.0-beta-2</version.license.plugin>
     <version.pir.plugin>2.2</version.pir.plugin><!-- maven-project-info-reports-plugins -->
     <version.plugin.plugin>2.6</version.plugin.plugin>
     <version.pmd.plugin>2.5</version.pmd.plugin>
@@ -350,6 +351,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jxr-plugin</artifactId>
           <version>${version.jxr.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${version.license.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
