@@ -87,7 +87,7 @@
     <!-- **************** -->
     <!-- Plugins versions -->
     <!-- **************** -->
-    <version.antrun.plugin>1.4</version.antrun.plugin>
+    <version.antrun.plugin>1.6</version.antrun.plugin>
     <version.assembly.plugin>2.2.1</version.assembly.plugin>
     <version.buildnumber.plugin>1.0-beta-4</version.buildnumber.plugin>
     <version.clean.plugin>2.4.1</version.clean.plugin>
