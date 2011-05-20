@@ -460,6 +460,7 @@
       </build>
     </profile>
 
+    <!-- By default source jar is generated and deployed -->
     <profile>
       <id>sources</id>
       <activation>
