@@ -89,7 +89,7 @@
     <!-- **************** -->
     <version.antrun.plugin>1.6</version.antrun.plugin>
     <version.assembly.plugin>2.2.1</version.assembly.plugin>
-    <version.buildnumber.plugin>1.0-beta-4</version.buildnumber.plugin>
+    <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
     <version.clean.plugin>2.4.1</version.clean.plugin>
     <version.checkstyle.plugin>2.5</version.checkstyle.plugin>
     <version.cobertura.plugin>2.4</version.cobertura.plugin>
