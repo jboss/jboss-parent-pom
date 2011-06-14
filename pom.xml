@@ -89,6 +89,7 @@
     <!-- **************** -->
     <version.antrun.plugin>1.6</version.antrun.plugin>
     <version.assembly.plugin>2.2.1</version.assembly.plugin>
+    <version.buildhelper.plugin>1.5</version.buildhelper.plugin>
     <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
     <version.clean.plugin>2.4.1</version.clean.plugin>
     <version.checkstyle.plugin>2.5</version.checkstyle.plugin>
@@ -201,6 +202,11 @@
               </manifestSections>
             </archive>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${version.buildhelper.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
