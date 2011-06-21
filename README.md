@@ -1,7 +1,48 @@
 JBoss Parent POM
-----------------
+================
+The parent POM for JBoss community projects.
 
-This is a Maven POM file which provides default configuration for JBoss.org projects.  It is meant to be used by JBoss.org projects which use the Maven build system.  The default configuration includes license, repository settings, plugin configuration, and other settings common to Maven builds.
+What is it?
+-----------
+The JBoss parent POM provides default configuration for JBoss Maven builds.
+ 
+* Default versions for the most commonly used Maven plugins
+* Manifest configuration for the jar and assembly plugins
+* Profiles for generating source jars, and enforcing a minimum Maven version
+* Distribution Management and other required configuration for deploying to the JBoss.org Maven repositories
 
-This is part of the JBoss community build project which can be found on the JBoss.org website: [http://community.jboss.org/en/build](http://community.jboss.org/en/build)
+How to use it?
+--------------
+Start out by adding the parent configuration to your pom.
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>6-beta-2</version>
+    </parent>
+
+Depending on the needs of your build, you can customize the plugins and other settings using properties.
+For example, to use a specific version of the maven-compiler-plugin, just set a property.
+
+    <properties>
+        <version.compiler.plugin>2.3</version.compiler.plugin>
+    </properties>
+
+Or set the JDK source and target level used in the build.
+
+    <properties>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+    </properties>
+
+For the full list of properties, refer to the POM itself.
+
+Where can I get more information?
+---------------------------------
+The [https://github.com/jboss/jboss-parent-pom/wiki](github wiki) provides some additional examples.
+For questions/suggestions about the jboss-parent-pom, head to the [http://community.jboss.org/en/build](JBoss Community Build space) on the jboss.org site.
+
+License
+-------
+* [GNU Lesser General Public License Version 2.1](http://www.gnu.org/licenses/lgpl-2.1-standalone.html)
 
