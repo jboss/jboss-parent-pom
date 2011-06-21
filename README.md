@@ -22,17 +22,17 @@ Start out by adding the parent configuration to your pom.
     </parent>
 
 Depending on the needs of your build, you can customize the plugins and other settings using properties.
-For example, to use a specific version of the maven-compiler-plugin, just set a property.
+For example, to override the default version of the maven-compiler-plugin, just set a property.
 
     <properties>
         <version.compiler.plugin>2.3</version.compiler.plugin>
     </properties>
 
-Or set the JDK source and target level used in the build.
+Or override the default Java compiler source and target level used in the build.  Note the default level is 1.6.
 
     <properties>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.5</maven.compiler.target>
+        <maven.compiler.source>1.5</maven.compiler.source>
     </properties>
 
 For the full list of properties, refer to the POM itself.
@@ -41,6 +41,7 @@ Where can I get more information?
 ---------------------------------
 The [https://github.com/jboss/jboss-parent-pom/wiki](github wiki) provides some additional examples.
 For questions/suggestions about the jboss-parent-pom, head to the [http://community.jboss.org/en/build](JBoss Community Build space) on the jboss.org site.
+Issues related to the jboss-parent-pom can be submitted to the [https://issues.jboss.org/browse/JBBUILD](JBoss build jira project)
 
 License
 -------
