@@ -123,7 +123,7 @@
     <version.source.plugin>2.1.2</version.source.plugin>
     <version.surefire.plugin>2.5</version.surefire.plugin>
     <version.taglist.plugin>2.4</version.taglist.plugin>
-    <version.war.plugin>2.1-beta-1</version.war.plugin>
+    <version.war.plugin>2.1.1</version.war.plugin>
 
     <!-- ***************** -->
     <!-- Repository Deployment URLs -->
