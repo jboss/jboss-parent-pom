@@ -18,7 +18,7 @@ Start out by adding the parent configuration to your pom.
     <parent>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-parent</artifactId>
-      <version>6-beta-2</version>
+      <version>6</version>
     </parent>
 
 Depending on the needs of your build, you can customize the plugins and other settings using properties.
