@@ -88,6 +88,7 @@
     <!-- Plugins versions -->
     <!-- **************** -->
     <version.antrun.plugin>1.6</version.antrun.plugin>
+    <version.apt.plugin>1.0-alpha-4</version.apt.plugin>
     <version.assembly.plugin>2.2.1</version.assembly.plugin>
     <version.buildhelper.plugin>1.5</version.buildhelper.plugin>
     <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
@@ -168,6 +169,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${version.antrun.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>apt-maven-plugin</artifactId>
+          <version>${version.apt.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
