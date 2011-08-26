@@ -70,6 +70,7 @@
     <version.assembly.plugin>2.2.1</version.assembly.plugin>
     <version.buildhelper.plugin>1.5</version.buildhelper.plugin>
     <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
+    <version.bundle.plugin>2.3.5</version.bundle.plugin>
     <version.clean.plugin>2.4.1</version.clean.plugin>
     <version.checkstyle.plugin>2.5</version.checkstyle.plugin>
     <version.cobertura.plugin>2.4</version.cobertura.plugin>
@@ -196,6 +197,11 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>buildnumber-maven-plugin</artifactId>
           <version>${version.buildnumber.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${version.bundle.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
