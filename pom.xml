@@ -101,7 +101,7 @@
     <version.site.plugin>3.0-beta-3</version.site.plugin>
     <version.sonar.plugin>1.0-beta-1</version.sonar.plugin>
     <version.source.plugin>2.1.2</version.source.plugin>
-    <version.surefire.plugin>2.5</version.surefire.plugin>
+    <version.surefire.plugin>2.10</version.surefire.plugin>
     <version.taglist.plugin>2.4</version.taglist.plugin>
     <version.war.plugin>2.1.1</version.war.plugin>
 
