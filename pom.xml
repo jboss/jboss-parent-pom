@@ -135,7 +135,7 @@
 
     <!-- maven-release-plugin -->
     <useReleaseProfile>false</useReleaseProfile>
-    <arguments>-Prelease</arguments>
+    <arguments>-Pjboss-release</arguments>
 
   </properties>
 
@@ -515,9 +515,14 @@
 
   <profiles>
 
-    <!-- This profile is activated when a project is released. -->
+    <!-- 
+         The profile jboss-release must be active when a project is released.  The configuration
+         in this POM will automatically call this profile if using the maven-release-plugin.
+         If the maven-release-plugin is not used during the release, this profile must
+         be manually activated.
+      -->
     <profile>
-      <id>release</id>
+      <id>jboss-release</id>
       <build>
         <plugins>
           <plugin>
