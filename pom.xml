@@ -331,6 +331,33 @@
           <configuration>
             <header><![CDATA[<b>${project.name} ${project.version}</b>]]></header>
             <footer><![CDATA[<b>${project.name} ${project.version}</b>]]></footer>
+            <archive>
+              <index>true</index>
+              <manifest>
+                <addDefaultSpecificationEntries>
+                  true
+                </addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>
+                  true
+                </addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Implementation-URL>${project.url}</Implementation-URL>
+              </manifestEntries>
+              <manifestSections>
+                <manifestSection>
+                  <name>Build-Information</name>
+                  <manifestEntries>
+                    <Java-Version>${java.version}</Java-Version>
+                    <Java-Vendor>${java.vendor}</Java-Vendor>
+                    <Os-Name>${os.name}</Os-Name>
+                    <Os-Arch>${os.arch}</Os-Arch>
+                    <Os-Version>${os.version}</Os-Version>
+                    <Scm-Url>${project.scm.url}</Scm-Url>
+                  </manifestEntries>
+                </manifestSection>
+              </manifestSections>
+            </archive>
           </configuration>
         </plugin>
         <plugin>
@@ -473,7 +500,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <inherited>true</inherited>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -495,13 +521,24 @@
       <build>
         <plugins>
           <plugin>
-            <inherited>true</inherited>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-deploy-plugin</artifactId>
             <configuration>
               <updateReleaseInfo>true</updateReleaseInfo>
             </configuration>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>          
         </plugins>
       </build>
     </profile>
