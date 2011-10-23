@@ -181,7 +181,7 @@
                     <Os-Name>${os.name}</Os-Name>
                     <Os-Arch>${os.arch}</Os-Arch>
                     <Os-Version>${os.version}</Os-Version>
-                    <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                    <Scm-Url>${project.scm.url}</Scm-Url>
                   </manifestEntries>
                 </manifestSection>
               </manifestSections>
@@ -317,7 +317,7 @@
                     <Os-Name>${os.name}</Os-Name>
                     <Os-Arch>${os.arch}</Os-Arch>
                     <Os-Version>${os.version}</Os-Version>
-                    <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                    <Scm-Url>${project.scm.url}</Scm-Url>
                   </manifestEntries>
                 </manifestSection>
               </manifestSections>
@@ -415,7 +415,7 @@
                     <Os-Name>${os.name}</Os-Name>
                     <Os-Arch>${os.arch}</Os-Arch>
                     <Os-Version>${os.version}</Os-Version>
-                    <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                    <Scm-Url>${project.scm.url}</Scm-Url>
                   </manifestEntries>
                 </manifestSection>
               </manifestSections>
