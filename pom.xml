@@ -124,6 +124,13 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <maven.compiler.source>1.6</maven.compiler.source>
 
+    <!--
+        Options to override the compiler arguments directly on the compiler arument line to separate between what
+        the IDE understands as the source level and what the Maven compiler actually use.
+    -->
+    <maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
+    <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
+
     <!-- maven-enforcer-plugin -->
     <!-- Version 3.0-beta-1 includes strong POM validation and correct "import" scope dependency resolution. -->
     <maven.min.version>3.0</maven.min.version>
@@ -225,6 +232,10 @@
           <configuration>
             <showDeprecation>true</showDeprecation>
             <showWarnings>true</showWarnings>
+            <compilerArguments>
+              <source>${maven.compiler.argument.source}</source>
+              <target>${maven.compiler.argument.target}</target>
+            </compilerArguments>
           </configuration>
         </plugin>
         <plugin>
