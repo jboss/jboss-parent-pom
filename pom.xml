@@ -95,7 +95,7 @@
     <version.jxr.plugin>2.2</version.jxr.plugin>
     <version.license.plugin>1.0</version.license.plugin>
     <version.pir.plugin>2.2</version.pir.plugin><!-- maven-project-info-reports-plugins -->
-    <version.plugin.plugin>2.6</version.plugin.plugin>
+    <version.plugin.plugin>2.9</version.plugin.plugin>
     <version.pmd.plugin>2.5</version.pmd.plugin>
     <version.rar.plugin>2.2</version.rar.plugin>
     <version.release.plugin>2.1</version.release.plugin>
