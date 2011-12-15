@@ -71,15 +71,15 @@
     <version.buildhelper.plugin>1.5</version.buildhelper.plugin>
     <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
     <version.bundle.plugin>2.3.5</version.bundle.plugin>
-    <version.clean.plugin>2.4.1</version.clean.plugin>
     <version.checkstyle.plugin>2.5</version.checkstyle.plugin>
-    <version.cobertura.plugin>2.5</version.cobertura.plugin>
+    <version.clean.plugin>2.4.1</version.clean.plugin>
     <version.clover2.plugin>3.0.2</version.clover2.plugin>
+    <version.cobertura.plugin>2.5</version.cobertura.plugin>
     <version.compiler.plugin>2.3.2</version.compiler.plugin>
     <version.dependency.plugin>2.3</version.dependency.plugin>
     <version.deploy.plugin>2.5</version.deploy.plugin>
-    <version.eclipse.plugin>2.8</version.eclipse.plugin>
     <version.ear.plugin>2.4.2</version.ear.plugin>
+    <version.eclipse.plugin>2.8</version.eclipse.plugin>
     <version.ejb.plugin>2.2.1</version.ejb.plugin>
     <version.enforcer.plugin>1.0</version.enforcer.plugin>
     <version.findbugs.plugin>2.2</version.findbugs.plugin>
