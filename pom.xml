@@ -148,6 +148,10 @@
 
   </properties>
 
+  <prerequisites>
+    <maven>${maven.min.version}</maven>
+  </prerequisites>
+
   <build>
 
     <pluginManagement>
