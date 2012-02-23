@@ -52,6 +52,7 @@
   <licenses>
     <license>
       <name>Public Domain</name>
+      <url>http://repository.jboss.org/licenses/cc0_1.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
