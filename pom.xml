@@ -439,20 +439,13 @@
               </manifest>
               <manifestEntries>
                 <Implementation-URL>${project.url}</Implementation-URL>
+                <Java-Version>${java.version}</Java-Version>
+                <Java-Vendor>${java.vendor}</Java-Vendor>
+                <Os-Name>${os.name}</Os-Name>
+                <Os-Arch>${os.arch}</Os-Arch>
+                <Os-Version>${os.version}</Os-Version>
+                <Scm-Url>${project.scm.url}</Scm-Url>
               </manifestEntries>
-              <manifestSections>
-                <manifestSection>
-                  <name>Build-Information</name>
-                  <manifestEntries>
-                    <Java-Version>${java.version}</Java-Version>
-                    <Java-Vendor>${java.vendor}</Java-Vendor>
-                    <Os-Name>${os.name}</Os-Name>
-                    <Os-Arch>${os.arch}</Os-Arch>
-                    <Os-Version>${os.version}</Os-Version>
-                    <Scm-Url>${project.scm.url}</Scm-Url>
-                  </manifestEntries>
-                </manifestSection>
-              </manifestSections>
             </archive>
           </configuration>
         </plugin>
