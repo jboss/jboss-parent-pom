@@ -527,6 +527,8 @@
     </pluginManagement>
 
     <plugins>
+
+      <!-- Check for the minimum version of Java and Maven.  Runs during the validate phase. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -561,6 +563,8 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Attach source jar to all builds.  Runs during the package phase.-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -573,6 +577,7 @@
           </execution>
         </executions>
       </plugin>
+
     </plugins>
 
   </build>
