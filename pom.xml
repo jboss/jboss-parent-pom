@@ -580,11 +580,11 @@
   <profiles>
 
     <!-- 
-         The profile jboss-release must be active when a project is released.  The configuration
-         in this POM will automatically call this profile if using the maven-release-plugin.
-         If the maven-release-plugin is not used during the release, this profile must
-         be manually activated.
-      -->
+        The profile jboss-release must be active when a project is released.  The configuration
+        in this POM will automatically call this profile if using the maven-release-plugin.
+        If the maven-release-plugin is not used during the release, this profile must
+        be manually activated.
+     -->
     <profile>
       <id>jboss-release</id>
       <build>
@@ -608,6 +608,34 @@
               </execution>
             </executions>
           </plugin>          
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- 
+        This profile can be activated to generate gpg signatures for all build 
+        artifacts.  This profile requires that the properties "gpg.keyname" 
+        and "gpg.passphrase" are available to the current build.
+    -->
+    <profile>
+      <id>gpg-sign</id>
+      <build>
+        <plugins>
+          <!-- This will sign the artifact, the POM, and all attached artifacts -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
