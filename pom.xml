@@ -191,6 +191,9 @@
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
                 <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
+                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Build-Timestamp>${build.datetime}</Build-Timestamp>
               </manifestEntries>
             </archive>
           </configuration>
@@ -228,8 +231,13 @@
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
                 <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
               </manifestEntries>
             </archive>
+            <instructions>
+              <Scm-Revision>${buildNumber}</Scm-Revision>
+              <Build-Timestamp>${build.datetime}</Build-Timestamp>
+            </instructions>
           </configuration>
         </plugin>
         <plugin>
@@ -351,6 +359,9 @@
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
                 <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
+                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Build-Timestamp>${build.datetime}</Build-Timestamp>
               </manifestEntries>
             </archive>
           </configuration>
@@ -385,6 +396,9 @@
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
                 <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
+                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Build-Timestamp>${build.datetime}</Build-Timestamp>
               </manifestEntries>
             </archive>
           </configuration>
@@ -467,6 +481,9 @@
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
                 <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
+                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Build-Timestamp>${build.datetime}</Build-Timestamp>
               </manifestEntries>
             </archive>
           </configuration>
@@ -490,7 +507,7 @@
           <configuration>
             <lifecycleMappingMetadata>
               <pluginExecutions>
-                <!-- Tell m2e to execute the manifest goal of the bundle plugin, if present. -->
+                <!-- Configure m2e to execute the manifest goal of the bundle plugin, if present. -->
                 <pluginExecution>
                   <pluginExecutionFilter>
                     <groupId>org.apache.felix</groupId>
@@ -504,7 +521,7 @@
                     <execute></execute>
                   </action>
                 </pluginExecution>
-                <!-- Tell m2e to ignore the Maven enforcer plugin -->
+                <!-- Configure m2e to ignore the Maven enforcer plugin -->
                 <pluginExecution>
                   <pluginExecutionFilter>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -518,12 +535,28 @@
                     <ignore></ignore>
                   </action>
                 </pluginExecution>
+                <!-- Configure m2e to ignore the buildnumber-maven-plugin. -->
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <versionRange>[1.0.0,)</versionRange>
+                    <goals>
+                      <goal>create</goal>
+                      <goal>create-timestamp</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
               </pluginExecutions>
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
 
       </plugins>
+
     </pluginManagement>
 
     <plugins>
@@ -559,6 +592,39 @@
                   <version>${maven.min.version}</version>
                 </requireMavenVersion>
               </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Set properties containing the scm revision and build timestamp -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>get-build-timestamp</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>create-timestamp</goal>
+            </goals>
+            <configuration>
+              <!-- Example date: Wed, 4 Jul 2001 12:08:56 -0700 -->
+              <timestampFormat>EEE, d MMM yyyy HH:mm:ss Z</timestampFormat>
+              <timestampPropertyName>build.datetime</timestampPropertyName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-scm-revision</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+            <configuration>
+              <doCheck>false</doCheck>
+              <doUpdate>false</doUpdate>
+              <revisionOnScmFailure>UNKNOWN</revisionOnScmFailure>
+              <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
             </configuration>
           </execution>
         </executions>
