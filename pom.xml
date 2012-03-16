@@ -101,6 +101,7 @@
     <version.rar.plugin>2.2</version.rar.plugin>
     <version.release.plugin>2.1</version.release.plugin>
     <version.resources.plugin>2.5</version.resources.plugin>
+    <version.shade.plugin>1.5</version.shade.plugin>
     <version.site.plugin>3.0-beta-3</version.site.plugin>
     <version.sonar.plugin>1.0-beta-1</version.sonar.plugin>
     <version.source.plugin>2.1.2</version.source.plugin>
@@ -447,6 +448,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${version.resources.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${version.shade.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
