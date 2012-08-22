@@ -82,7 +82,7 @@
     <version.ear.plugin>2.4.2</version.ear.plugin>
     <version.eclipse.plugin>2.8</version.eclipse.plugin>
     <version.ejb.plugin>2.2.1</version.ejb.plugin>
-    <version.enforcer.plugin>1.0</version.enforcer.plugin>
+    <version.enforcer.plugin>1.1</version.enforcer.plugin>
     <version.failsafe.plugin>2.12</version.failsafe.plugin>
     <version.findbugs.plugin>2.2</version.findbugs.plugin>
     <version.gpg.plugin>1.4</version.gpg.plugin>
