@@ -76,7 +76,7 @@
     <version.clean.plugin>2.5</version.clean.plugin>
     <version.clover2.plugin>3.1.8</version.clover2.plugin>
     <version.cobertura.plugin>2.5.2</version.cobertura.plugin>
-    <version.compiler.plugin>2.5.1-jboss-2</version.compiler.plugin>
+    <version.compiler.plugin>3.0</version.compiler.plugin>
     <version.dependency.plugin>2.6</version.dependency.plugin>
     <version.deploy.plugin>2.7</version.deploy.plugin>
     <version.ear.plugin>2.8</version.ear.plugin>
