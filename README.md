@@ -1,14 +1,15 @@
 JBoss Parent POM
-================
-The parent POM for JBoss community projects.
+=================
+The parent Maven POM for JBoss community projects.
 
 What is it?
 -----------
-The JBoss parent POM provides default configuration for JBoss Maven builds.
+The JBoss parent POM provides default configuration for Maven builds.
  
-* Default versions for the most commonly used Maven plugins
+* Recommended/Default versions for the most commonly used Maven plugins
 * Manifest configuration for the jar and assembly plugins
-* Profiles for generating source jars, and enforcing a minimum Maven version
+* Profiles for generating source jars, and enforcing a minimum versions of 
+  Java and Maven
 * Distribution Management and other configuration for deploying to the 
   JBoss.org Maven repositories
 
@@ -19,11 +20,11 @@ Start out by adding the parent configuration to your pom.
     <parent>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-parent</artifactId>
-      <version>7</version>
+      <version>10</version>
     </parent>
 
-Depending on the needs of your build, you can customize the plugins and other 
-settings using properties.  For example, to override the default version of the
+The pom includes properties which allow various build configuration to be 
+customized.  For example, to override the default version of the
 maven-compiler-plugin, just set a property.
 
     <properties>
@@ -38,21 +39,39 @@ Note the default level is 1.6.
       <maven.compiler.source>1.5</maven.compiler.source>
     </properties>
 
+The minimum version of Java or Maven required to run a build can also be set via
+properties.
+
+    <properties>
+      <maven.min.version>3.0.3</maven.min.version>
+      <jdk.min.version>1.7</jdk.min.version>
+    </properties>
+
 For the full list of properties, refer to the POM itself.
 
-The Release Profile
+
+The JBoss Release Profile
 --------------------
-This POM includes a Maven profile called "jboss-release".  This profile includes 
-settings for release deployment metadata and generating javadoc jar files.  The 
-maven release plugin will automatically activate this profile during a release.  
-Projects that do not use the maven release plugin must manually activate this 
-profile during a release using "-Pjboss-release", or something similar.
+The parent POM includes a Maven profile called "jboss-release".  This profile contains 
+settings for generating a full project source archive, javadoc jar files, and
+release deployment metadata.  If using the Maven release plugin, this profile
+will automatically be activate during the release:perform step.
+
+If the Maven release plugin is not used during the release process, the profile
+can be manually activated from the command line during a release build.
+
+    mvn -Pjboss-release deploy
+
 
 The GPG Sign Profile
 --------------------
 This POM includes a Maven profile called "gpg-sign" which provides default 
-configuration to generate GPG signatures for the build artifacts.  This plugin 
-requires that the properties "gpg.keyname" and "gpg.passphrase" are available to 
+configuration to generate GPG signatures for the build artifacts.  
+
+    mvn -Pgpg-sign deploy
+
+In order for the gpg plugin to properly create a signature for each artifact,
+the properties "gpg.keyname" and "gpg.passphrase" must be available to 
 the current build.  These properties can either be set in a
 build profile, or on the command line.
 
@@ -65,7 +84,8 @@ build profile, or on the command line.
       </properties>
     </profile>
 
-Where can I get more information?
+
+Where to get more information?
 ---------------------------------
 The [https://github.com/jboss/jboss-parent-pom/wiki](github wiki) provides some 
 additional examples.  For questions/suggestions about the jboss-parent-pom, 
