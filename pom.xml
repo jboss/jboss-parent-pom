@@ -77,7 +77,7 @@
     <version.clover2.plugin>3.1.11</version.clover2.plugin>
     <version.cobertura.plugin>2.5.2</version.cobertura.plugin>
     <version.compiler.plugin>3.1</version.compiler.plugin>
-    <version.dependency.plugin>2.7</version.dependency.plugin>
+    <version.dependency.plugin>2.8</version.dependency.plugin>
     <version.deploy.plugin>2.7</version.deploy.plugin>
     <version.ear.plugin>2.8</version.ear.plugin>
     <version.eclipse.plugin>2.9</version.eclipse.plugin>
