@@ -86,6 +86,7 @@
     <version.failsafe.plugin>2.14.1</version.failsafe.plugin>
     <version.findbugs.plugin>2.5.2</version.findbugs.plugin>
     <version.gpg.plugin>1.4</version.gpg.plugin>
+    <version.help.plugin>2.2</version.help.plugin>
     <version.idea.plugin>2.2</version.idea.plugin>
     <version.idlj.plugin>1.2.1</version.idlj.plugin>
     <version.injection.plugin>1.0.2</version.injection.plugin>
@@ -336,6 +337,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${version.gpg.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-help-plugin</artifactId>
+          <version>${version.help.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
