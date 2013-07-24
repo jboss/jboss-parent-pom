@@ -102,7 +102,7 @@
     <version.plugin.plugin>3.1</version.plugin.plugin>
     <version.pmd.plugin>2.7.1</version.pmd.plugin>
     <version.rar.plugin>2.2</version.rar.plugin>
-    <version.release.plugin>2.3.2</version.release.plugin>
+    <version.release.plugin>2.4.1</version.release.plugin>
     <version.resources.plugin>2.6</version.resources.plugin>
     <version.shade.plugin>2.1</version.shade.plugin>
     <version.site.plugin>3.3</version.site.plugin>
