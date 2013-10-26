@@ -81,9 +81,9 @@
     <version.deploy.plugin>2.7</version.deploy.plugin>
     <version.ear.plugin>2.8</version.ear.plugin>
     <version.eclipse.plugin>2.9</version.eclipse.plugin>
+    <version.org.eclipse.m2e.lifecycle-mapping>1.0.0</version.org.eclipse.m2e.lifecycle-mapping>
     <version.ejb.plugin>2.3</version.ejb.plugin>
     <version.enforcer.plugin>1.3.1</version.enforcer.plugin>
-    <version.failsafe.plugin>2.14.1</version.failsafe.plugin>
     <version.findbugs.plugin>2.5.2</version.findbugs.plugin>
     <version.gpg.plugin>1.4</version.gpg.plugin>
     <version.help.plugin>2.2</version.help.plugin>
@@ -93,14 +93,14 @@
     <version.install.plugin>2.4</version.install.plugin>
     <version.jar.plugin>2.4</version.jar.plugin>
     <version.javacc.plugin>2.6</version.javacc.plugin>
-    <version.javadoc.plugin>2.9</version.javadoc.plugin>
+    <version.javadoc.plugin>2.9.1</version.javadoc.plugin>
     <version.javancss.plugin>2.0</version.javancss.plugin>
     <version.jdepend.plugin>2.0-beta-2</version.jdepend.plugin>
     <version.jxr.plugin>2.3</version.jxr.plugin>
     <version.license.plugin>1.3</version.license.plugin>
     <version.pir.plugin>2.7</version.pir.plugin><!-- maven-project-info-reports-plugins -->
     <version.plugin.plugin>3.1</version.plugin.plugin>
-    <version.pmd.plugin>2.7.1</version.pmd.plugin>
+    <version.pmd.plugin>3.0.1</version.pmd.plugin>
     <version.rar.plugin>2.2</version.rar.plugin>
     <version.release.plugin>2.4.1</version.release.plugin>
     <version.resources.plugin>2.6</version.resources.plugin>
@@ -109,8 +109,10 @@
     <version.sonar.plugin>2.0</version.sonar.plugin>
     <version.source.plugin>2.2.1</version.source.plugin>
     <version.surefire.plugin>2.16</version.surefire.plugin>
+    <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
     <version.taglist.plugin>2.4</version.taglist.plugin>
     <version.war.plugin>2.3</version.war.plugin>
+
 
     <!-- ***************** -->
     <!-- Repository Deployment URLs -->
@@ -154,24 +156,12 @@
     <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
 
     <!-- tools.jar location, this needs to be overriden on OSX -->
-    <com.sun.tools.path>${java.home}/../lib/tools.jar</com.sun.tools.path>
   </properties>
 
   <prerequisites>
     <maven>${maven.min.version}</maven>
   </prerequisites>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.sun</groupId>
-        <artifactId>tools</artifactId>
-        <scope>system</scope>
-        <version>1.6</version>
-        <systemPath>${com.sun.tools.path}</systemPath>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <build>
 
@@ -532,6 +522,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${version.surefire.plugin}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.surefire</groupId>
+              <artifactId>surefire-junit48</artifactId>
+                <version>${version.surefire.plugin}</version>
+            </dependency>
+          </dependencies>
           <configuration>
             <systemProperties>
               <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
@@ -548,7 +545,7 @@
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
+          <version>${version.org.eclipse.m2e.lifecycle-mapping}</version>
           <configuration>
             <lifecycleMappingMetadata>
               <pluginExecutions>
@@ -709,6 +706,7 @@
                project directory source structure.  This should be released to 
                the Maven repository for each JBoss project release. -->
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <dependencies>
               <dependency>
@@ -783,18 +781,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-
-    <profile>
-      <id>os-x.tools.jar.override</id>
-      <activation>
-        <file>
-          <exists>${java.home}/bundle/Classes/classes.jar</exists>
-        </file>
-      </activation>
-      <properties>
-        <com.sun.tools.path>${java.home}/bundle/Classes/classes.jar</com.sun.tools.path>
-      </properties>
     </profile>
 
   </profiles>
