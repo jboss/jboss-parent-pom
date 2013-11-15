@@ -525,7 +525,7 @@
           <dependencies>
             <dependency>
               <groupId>org.apache.maven.surefire</groupId>
-              <artifactId>surefire-junit48</artifactId>
+              <artifactId>surefire-junit47</artifactId>
                 <version>${version.surefire.plugin}</version>
             </dependency>
           </dependencies>
