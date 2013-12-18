@@ -529,13 +529,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${version.surefire.plugin}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.maven.surefire</groupId>
-              <artifactId>surefire-junit47</artifactId>
-                <version>${version.surefire.plugin}</version>
-            </dependency>
-          </dependencies>
           <configuration>
             <systemProperties>
               <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
