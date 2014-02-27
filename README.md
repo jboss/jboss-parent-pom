@@ -87,11 +87,11 @@ build profile, or on the command line.
 
 Where to get more information?
 ---------------------------------
-The [https://github.com/jboss/jboss-parent-pom/wiki](github wiki) provides some 
+The [github wiki](https://github.com/jboss/jboss-parent-pom/wiki) provides some 
 additional examples.  For questions/suggestions about the jboss-parent-pom, 
-head to the [http://community.jboss.org/en/build](JBoss Community Build space) 
+head to the [JBoss Community Build space](http://community.jboss.org/en/build) 
 on the jboss.org site.  Issues related to the jboss-parent-pom can be submitted 
-to the [https://issues.jboss.org/browse/JBBUILD](JBoss build jira project)
+to the [JBoss build jira project](https://issues.jboss.org/browse/JBBUILD)
 
 License
 -------
