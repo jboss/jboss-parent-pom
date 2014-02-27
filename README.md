@@ -20,7 +20,7 @@ Start out by adding the parent configuration to your pom.
     <parent>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-parent</artifactId>
-      <version>10</version>
+      <version>14</version>
     </parent>
 
 The pom includes properties which allow various build configuration to be 
@@ -32,7 +32,7 @@ maven-compiler-plugin, just set a property.
     </properties>
 
 Or override the default Java compiler source and target level used in the build.  
-Note the default level is 1.6.
+Note the default level is 1.7.
 
     <properties>
       <maven.compiler.target>1.5</maven.compiler.target>
