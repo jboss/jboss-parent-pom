@@ -28,15 +28,15 @@ customized.  For example, to override the default version of the
 maven-compiler-plugin, just set a property.
 
     <properties>
-      <version.compiler.plugin>2.3</version.compiler.plugin>
+      <version.compiler.plugin>3.1</version.compiler.plugin>
     </properties>
 
 Or override the default Java compiler source and target level used in the build.  
 Note the default level is 1.7.
 
     <properties>
-      <maven.compiler.target>1.5</maven.compiler.target>
-      <maven.compiler.source>1.5</maven.compiler.source>
+      <maven.compiler.target>1.6</maven.compiler.target>
+      <maven.compiler.source>1.6</maven.compiler.source>
     </properties>
 
 The minimum version of Java or Maven required to run a build can also be set via
@@ -46,6 +46,8 @@ properties.
       <maven.min.version>3.0.3</maven.min.version>
       <jdk.min.version>1.7</jdk.min.version>
     </properties>
+
+If jdk.min.version is not set, it default to version defined by maven.compiler.source
 
 For the full list of properties, refer to the POM itself.
 
