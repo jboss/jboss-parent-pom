@@ -140,13 +140,13 @@
 
     <!-- maven-enforcer-plugin -->
     <maven.min.version>3.0.3</maven.min.version>
-    <jdk.min.version>${maven.compiler.source}</jdk.min.version>
+    <jdk.min.version>${maven.compiler.argument.source}</jdk.min.version>
 
     <!-- maven-idea-plugin & maven-eclipse-plugin -->
     <downloadSources>true</downloadSources>
 
     <!-- maven-pmd-plugin -->
-    <targetJdk>${maven.compiler.target}</targetJdk>
+    <targetJdk>${maven.compiler.argument.target}</targetJdk>
 
     <!-- maven-release-plugin -->
     <useReleaseProfile>false</useReleaseProfile>
