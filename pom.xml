@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jboss</groupId>
-  <version>15-SNAPSHOT</version>
+  <version>15</version>
   <artifactId>jboss-parent</artifactId>
 
   <packaging>pom</packaging>
@@ -23,6 +23,7 @@
     <connection>scm:git:git@github.com:jboss/jboss-parent-pom.git</connection>
     <developerConnection>scm:git:git@github.com:jboss/jboss-parent-pom.git</developerConnection>
     <url>http://github.com/jboss/jboss-parent-pom</url>
+    <tag>15</tag>
   </scm>
 
   <developers>
@@ -546,7 +547,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute></execute>
+                    <execute />
                   </action>
                 </pluginExecution>
                 <!-- Configure m2e to ignore the Maven enforcer plugin -->
@@ -560,7 +561,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <!-- Configure m2e to ignore the buildnumber-maven-plugin. -->
@@ -575,7 +576,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
