@@ -279,12 +279,11 @@
           <configuration>
             <showDeprecation>true</showDeprecation>
             <showWarnings>true</showWarnings>
-            <compilerArguments>
-              <source>${maven.compiler.argument.source}</source>
-              <target>${maven.compiler.argument.target}</target>
-              <target>${maven.compiler.argument.target}</target>
-              <Xlint:unchecked/>
-            </compilerArguments>
+            <source>${maven.compiler.argument.source}</source>
+            <target>${maven.compiler.argument.target}</target>
+            <compilerArgs>
+              <arg>-Xlint:unchecked</arg>
+            </compilerArgs>
           </configuration>
         </plugin>
         <plugin>
