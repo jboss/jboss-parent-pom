@@ -76,7 +76,7 @@
     <version.clean.plugin>2.5</version.clean.plugin>
     <version.clover2.plugin>4.0.0</version.clover2.plugin>
     <version.cobertura.plugin>2.6</version.cobertura.plugin>
-    <version.compiler.plugin>3.1</version.compiler.plugin>
+    <version.compiler.plugin>3.2</version.compiler.plugin>
     <version.dependency.plugin>2.8</version.dependency.plugin>
     <version.deploy.plugin>2.8.1</version.deploy.plugin>
     <version.ear.plugin>2.9.1</version.ear.plugin>
@@ -274,6 +274,8 @@
             <compilerArguments>
               <source>${maven.compiler.argument.source}</source>
               <target>${maven.compiler.argument.target}</target>
+              <target>${maven.compiler.argument.target}</target>
+              <Xlint:unchecked/>
             </compilerArguments>
           </configuration>
         </plugin>
