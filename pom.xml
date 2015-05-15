@@ -125,6 +125,7 @@
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.7</maven.compiler.target>
