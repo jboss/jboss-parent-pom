@@ -155,7 +155,8 @@
     <!-- maven-assembly-plugin -->
     <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
     <version.checkstyle>6.6</version.checkstyle>
-
+    <!-- exposed additional params for javadoc, such as Xlint -->
+    <javadoc.additional.params />
   </properties>
 
   <prerequisites>
@@ -425,6 +426,7 @@
                 <Scm-Revision>${buildNumber}</Scm-Revision>
               </manifestEntries>
             </archive>
+            <additionalparam>${javadoc.additional.params}</additionalparam>
           </configuration>
         </plugin>
         <plugin>
@@ -732,7 +734,15 @@
         </plugins>
       </build>
     </profile>
-
+    <profile>
+       <id>doclint-java8-disable</id>
+       <activation>
+         <jdk>[1.8,)</jdk>
+       </activation>
+       <properties>
+         <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
+       </properties>
+     </profile>
     <!-- 
         This profile can be activated to generate gpg signatures for all build 
         artifacts.  This profile requires that the properties "gpg.keyname" 
