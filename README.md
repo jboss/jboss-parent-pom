@@ -20,7 +20,7 @@ Start out by adding the parent configuration to your pom.
     <parent>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-parent</artifactId>
-      <version>14</version>
+      <version>19</version>
     </parent>
 
 The pom includes properties which allow various build configuration to be 
