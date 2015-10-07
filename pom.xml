@@ -137,6 +137,8 @@
     -->
     <maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
     <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
+    <maven.compiler.argument.testTarget>${maven.compiler.target}</maven.compiler.argument.testTarget>
+    <maven.compiler.argument.testSource>${maven.compiler.source}</maven.compiler.argument.testSource>
 
     <!-- maven-enforcer-plugin -->
     <maven.min.version>3.0.4</maven.min.version>
@@ -286,6 +288,8 @@
             <showWarnings>true</showWarnings>
             <source>${maven.compiler.argument.source}</source>
             <target>${maven.compiler.argument.target}</target>
+            <testSource>${maven.compiler.argument.testSource}</testSource>
+            <testTarget>${maven.compiler.argument.testTarget}</testTarget>
             <compilerArgs>
               <arg>-Xlint:unchecked</arg>
             </compilerArgs>
