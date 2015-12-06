@@ -111,6 +111,7 @@
     <version.surefire.plugin>2.18.1</version.surefire.plugin>
     <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
     <version.war.plugin>2.6</version.war.plugin>
+    <version.zanata.plugin>3.8.1</version.zanata.plugin>
 
 
     <!-- ***************** -->
@@ -544,6 +545,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>${version.war.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.zanata</groupId>
+          <artifactId>zanata-maven-plugin</artifactId>
+          <version>${version.zanata.plugin}</version>
         </plugin>
 
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
