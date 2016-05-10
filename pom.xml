@@ -113,8 +113,8 @@
     <version.war.plugin>2.6</version.war.plugin>
     <version.zanata.plugin>3.8.1</version.zanata.plugin>
 
-      <!-- we override plexus Archiver with version 3.0.3 as older don't work on JDK9 -->
-      <version.plexus.archiver>3.0.3</version.plexus.archiver>
+    <!-- we override plexus Archiver with version 3.0.3 as older don't work on JDK9 -->
+    <version.plexus.archiver>3.0.3</version.plexus.archiver>
 
 
     <!-- ***************** -->
@@ -187,11 +187,11 @@
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${version.assembly.plugin}</version>
           <dependencies>
-              <dependency>
-                  <groupId>org.codehaus.plexus</groupId>
-                  <artifactId>plexus-archiver</artifactId>
-                  <version>${version.plexus.archiver}</version>
-              </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-archiver</artifactId>
+              <version>${version.plexus.archiver}</version>
+            </dependency>
           </dependencies>
           <configuration>
             <archive>
@@ -322,6 +322,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-ear-plugin</artifactId>
           <version>${version.ear.plugin}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-archiver</artifactId>
+              <version>${version.plexus.archiver}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -391,11 +398,11 @@
           <artifactId>maven-jar-plugin</artifactId>
           <version>${version.jar.plugin}</version>
           <dependencies>
-              <dependency>
-                  <groupId>org.codehaus.plexus</groupId>
-                  <artifactId>plexus-archiver</artifactId>
-                  <version>${version.plexus.archiver}</version>
-              </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-archiver</artifactId>
+              <version>${version.plexus.archiver}</version>
+            </dependency>
           </dependencies>
           <configuration>
             <archive>
@@ -524,11 +531,11 @@
           <artifactId>maven-source-plugin</artifactId>
           <version>${version.source.plugin}</version>
           <dependencies>
-                <dependency>
-                    <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-archiver</artifactId>
-                    <version>${version.plexus.archiver}</version>
-                </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-archiver</artifactId>
+              <version>${version.plexus.archiver}</version>
+            </dependency>
           </dependencies>
           <configuration>
             <archive>
@@ -569,6 +576,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>${version.war.plugin}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-archiver</artifactId>
+              <version>${version.plexus.archiver}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.zanata</groupId>
@@ -732,16 +746,16 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <version>${version.assembly.plugin}</version>
             <dependencies>
-                <dependency>
-                    <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-archiver</artifactId>
-                    <version>${version.plexus.archiver}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.apache.resources</groupId>
-                    <artifactId>apache-source-release-assembly-descriptor</artifactId>
-                    <version>1.0.5</version>
-                </dependency>
+              <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-archiver</artifactId>
+                <version>${version.plexus.archiver}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.apache.resources</groupId>
+                <artifactId>apache-source-release-assembly-descriptor</artifactId>
+                <version>1.0.5</version>
+              </dependency>
             </dependencies>
             <executions>
               <execution>
