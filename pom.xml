@@ -107,7 +107,7 @@
     <version.shade.plugin>2.4.3</version.shade.plugin>
     <version.site.plugin>3.4</version.site.plugin>
     <version.sonar.plugin>5.1</version.sonar.plugin>
-    <version.source.plugin>2.4</version.source.plugin>
+    <version.source.plugin>3.0.0</version.source.plugin>
     <version.surefire.plugin>2.19.1</version.surefire.plugin>
     <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
     <version.war.plugin>2.6</version.war.plugin>
@@ -523,13 +523,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
           <version>${version.source.plugin}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.codehaus.plexus</groupId>
-              <artifactId>plexus-archiver</artifactId>
-              <version>${version.plexus.archiver}</version>
-            </dependency>
-          </dependencies>
           <configuration>
             <archive>
               <index>true</index>
