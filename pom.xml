@@ -91,7 +91,7 @@
     <version.idlj.plugin>1.2.1</version.idlj.plugin> <!-- also probable candidate for removal -->
     <version.injection.plugin>1.0.2</version.injection.plugin>
     <version.install.plugin>2.5.2</version.install.plugin>
-    <version.jar.plugin>2.6</version.jar.plugin>
+    <version.jar.plugin>3.0.0</version.jar.plugin>
     <version.javacc.plugin>2.6</version.javacc.plugin>
     <version.javadoc.plugin>2.10.3</version.javadoc.plugin>
     <version.javancss.plugin>2.1</version.javancss.plugin>
@@ -397,13 +397,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>${version.jar.plugin}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.codehaus.plexus</groupId>
-              <artifactId>plexus-archiver</artifactId>
-              <version>${version.plexus.archiver}</version>
-            </dependency>
-          </dependencies>
           <configuration>
             <archive>
               <index>true</index>
