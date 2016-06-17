@@ -114,6 +114,7 @@
 
     <!-- we override plexus Archiver with version newer tan 3.0.3 as older don't work on JDK9 -->
     <version.plexus.archiver>3.3</version.plexus.archiver>
+    <version.plexus.io>2.7.1</version.plexus.io>
 
 
     <!-- ***************** -->
@@ -190,6 +191,11 @@
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-archiver</artifactId>
               <version>${version.plexus.archiver}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-io</artifactId>
+              <version>${version.plexus.io}</version>
             </dependency>
           </dependencies>
           <configuration>
@@ -326,6 +332,11 @@
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-archiver</artifactId>
               <version>${version.plexus.archiver}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-io</artifactId>
+              <version>${version.plexus.io}</version>
             </dependency>
           </dependencies>
           <configuration>
@@ -586,6 +597,11 @@
               <artifactId>plexus-archiver</artifactId>
               <version>${version.plexus.archiver}</version>
             </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-io</artifactId>
+              <version>${version.plexus.io}</version>
+            </dependency>
           </dependencies>
           <configuration>
             <archive>
@@ -778,6 +794,11 @@
                 <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-archiver</artifactId>
                 <version>${version.plexus.archiver}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-io</artifactId>
+                <version>${version.plexus.io}</version>
               </dependency>
               <dependency>
                 <groupId>org.apache.apache.resources</groupId>
