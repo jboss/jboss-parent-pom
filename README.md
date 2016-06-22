@@ -2,7 +2,6 @@ JBoss Parent POM
 =================
 The parent Maven POM for JBoss community projects.
 
-[![License](https://img.shields.io/:license-Apache2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jboss/jboss-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.jboss/jboss-parent)
 
 What is it?
