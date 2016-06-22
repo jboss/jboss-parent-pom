@@ -2,6 +2,9 @@ JBoss Parent POM
 =================
 The parent Maven POM for JBoss community projects.
 
+[![License](https://img.shields.io/:license-Apache2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jboss/jboss-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.jboss/jboss-parent)
+
 What is it?
 -----------
 The JBoss parent POM provides default configuration for Maven builds.
@@ -20,7 +23,7 @@ Start out by adding the parent configuration to your pom.
     <parent>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-parent</artifactId>
-      <version>20</version>
+      <version>21</version>
     </parent>
 
 The pom includes properties which allow various build configuration to be 
