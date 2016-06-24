@@ -68,6 +68,7 @@
     <!-- Plugins versions -->
     <!-- **************** -->
     <version.antrun.plugin>1.8</version.antrun.plugin>
+    <version.archetype.plugin>2.4</version.archetype.plugin>
     <version.assembly.plugin>2.6</version.assembly.plugin>
     <version.buildhelper.plugin>1.10</version.buildhelper.plugin>
     <version.buildnumber.plugin>1.4</version.buildnumber.plugin>
@@ -181,6 +182,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${version.antrun.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>${version.archetype.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
