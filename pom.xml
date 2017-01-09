@@ -114,7 +114,7 @@
     <version.zanata.plugin>3.9.1</version.zanata.plugin>
 
     <!-- we override plexus Archiver with version newer tan 3.0.3 as older don't work on JDK9 -->
-    <version.plexus.archiver>3.3</version.plexus.archiver>
+    <version.plexus.archiver>3.4</version.plexus.archiver>
     <version.plexus.io>2.7.1</version.plexus.io>
 
 
@@ -163,7 +163,7 @@
 
     <!-- maven-assembly-plugin -->
     <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
-    <version.checkstyle>6.19</version.checkstyle>
+    <version.checkstyle>7.4</version.checkstyle>
     <!-- exposed additional params for javadoc, such as Xlint -->
     <javadoc.additional.params />
   </properties>
