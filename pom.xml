@@ -108,7 +108,7 @@
     <version.site.plugin>3.5.1</version.site.plugin>
     <version.sonar.plugin>5.1</version.sonar.plugin>
     <version.source.plugin>3.0.1</version.source.plugin>
-    <version.surefire.plugin>2.19.1</version.surefire.plugin>
+    <version.surefire.plugin>2.20</version.surefire.plugin>
     <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
     <version.war.plugin>3.0.0</version.war.plugin>
     <version.zanata.plugin>3.9.1</version.zanata.plugin>
