@@ -109,7 +109,7 @@
     <version.source.plugin>3.0.1</version.source.plugin>
     <version.surefire.plugin>2.20</version.surefire.plugin>
     <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
-    <version.war.plugin>3.0.0</version.war.plugin>
+    <version.war.plugin>3.1.0</version.war.plugin>
     <version.zanata.plugin>3.9.1</version.zanata.plugin>
 
     <!-- we override plexus Archiver with version newer tan 3.0.3 as older don't work on JDK9 -->
