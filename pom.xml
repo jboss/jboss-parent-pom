@@ -105,7 +105,7 @@
     <version.resources.plugin>3.0.2</version.resources.plugin>
     <version.shade.plugin>3.0.0</version.shade.plugin>
     <version.site.plugin>3.6</version.site.plugin>
-    <version.sonar.plugin>5.1</version.sonar.plugin>
+    <version.sonar.plugin>3.3.0.603</version.sonar.plugin>
     <version.source.plugin>3.0.1</version.source.plugin>
     <version.surefire.plugin>2.20</version.surefire.plugin>
     <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
