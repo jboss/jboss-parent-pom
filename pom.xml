@@ -557,6 +557,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${version.surefire.plugin}</version>
           <configuration>
+            <trimStackTrace>false</trimStackTrace>
             <systemProperties>
               <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
             </systemProperties>
