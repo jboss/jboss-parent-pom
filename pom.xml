@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jboss</groupId>
-  <version>27</version>
+  <version>28-SNAPSHOT</version>
   <artifactId>jboss-parent</artifactId>
 
   <packaging>pom</packaging>
@@ -23,7 +23,7 @@
     <connection>scm:git:git@github.com:jboss/jboss-parent-pom.git</connection>
     <developerConnection>scm:git:git@github.com:jboss/jboss-parent-pom.git</developerConnection>
     <url>http://github.com/jboss/jboss-parent-pom</url>
-    <tag>jboss-parent-27</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
