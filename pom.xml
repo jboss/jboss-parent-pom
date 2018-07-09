@@ -80,7 +80,7 @@
     <version.compiler.plugin>3.7.0</version.compiler.plugin>
     <version.dependency.plugin>3.1.1</version.dependency.plugin>
     <version.deploy.plugin>2.8.2</version.deploy.plugin>
-    <version.download.plugin>1.4.0</version.download.plugin>
+    <version.download.plugin>1.4.1</version.download.plugin>
     <version.ear.plugin>3.0.1</version.ear.plugin>
     <version.org.eclipse.m2e.lifecycle-mapping>1.0.0</version.org.eclipse.m2e.lifecycle-mapping>
     <version.ejb.plugin>3.0.1</version.ejb.plugin>
