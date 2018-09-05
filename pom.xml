@@ -464,6 +464,7 @@
               </manifestEntries>
             </archive>
             <additionalparam>${javadoc.additional.params}</additionalparam>
+            <additionalOptions>${javadoc.additional.params}</additionalOptions>
           </configuration>
         </plugin>
         <plugin>
