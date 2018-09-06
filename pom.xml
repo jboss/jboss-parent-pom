@@ -463,6 +463,11 @@
                 <Scm-Revision>${buildNumber}</Scm-Revision>
               </manifestEntries>
             </archive>
+            <!-- 
+               Since maven-javadoc-plugin 3.0.0 additionalparam is not not working anymore. 
+               Therefore additionalOptions has been introduced, but old configuration is kept for backward compatibility
+               in case you are using this parent pom with overwritten version of maven-javadoc-plugin
+            -->
             <additionalparam>${javadoc.additional.params}</additionalparam>
             <additionalOptions>${javadoc.additional.params}</additionalOptions>
           </configuration>
