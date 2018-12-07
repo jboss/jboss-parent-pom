@@ -101,6 +101,9 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java8.home}/bin/java</jvm>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>${java8.home}/lib/tools.jar</additionalClasspathElement>
+                                    </additionalClasspathElements>
                                 </configuration>
                             </execution>
                         </executions>
