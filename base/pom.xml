@@ -77,7 +77,7 @@
     <version.clean.plugin>3.1.0</version.clean.plugin>
     <version.clover.plugin>4.1.2</version.clover.plugin>
     <version.cobertura.plugin>2.7</version.cobertura.plugin>
-    <version.compiler.plugin>3.8.0-jboss-1</version.compiler.plugin>
+    <version.compiler.plugin>3.8.0-jboss-2</version.compiler.plugin>
     <version.dependency.plugin>3.1.1</version.dependency.plugin>
     <version.deploy.plugin>2.8.2</version.deploy.plugin>
     <version.download.plugin>1.4.1</version.download.plugin>
