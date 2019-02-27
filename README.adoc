@@ -237,7 +237,17 @@ Since these APIs are not included in the class database that `javac` uses to com
 though they are present at run time), stubs of the extra classes must be included but only during
 compilation.
 
-Set the `java8.jdk-misc` property in your POM in order to automatically perform this step.
+To automatically perform this step, create a file in your project root named `build-include-jdk-misc`.
+The contents of this file do not matter; it can be empty or it can contain text referring to this document.
+
+[id='build-control-files']
+== Build control files reference
+
+[cols="1m,2,1",options="header"]
+|===
+|File name|Purpose|Reference
+|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds.|<<Missing JDK APIs>>
+|===
 
 [id='where-to-get-more-information']
 == Where to get more information?

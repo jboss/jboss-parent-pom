@@ -29,9 +29,9 @@
         <profile>
             <id>include-jdk-misc</id>
             <activation>
-                <property>
-                    <name>java8.jdk-misc</name>
-                </property>
+                <file>
+                    <exists>${basedir}/build-include-jdk-misc</exists>
+                </file>
             </activation>
             <build>
                 <plugins>
