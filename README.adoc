@@ -28,7 +28,7 @@ Start out by adding the parent configuration to your pom.
 <parent>
   <groupId>org.jboss</groupId>
   <artifactId>jboss-parent</artifactId>
-  <version>21</version>
+  <version>32</version>
 </parent>
 ----
 
