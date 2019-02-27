@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jboss</groupId>
-  <version>32-SNAPSHOT</version>
+  <version>33-SNAPSHOT</version>
   <artifactId>jboss-parent</artifactId>
 
   <packaging>pom</packaging>
