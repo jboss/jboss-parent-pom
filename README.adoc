@@ -65,7 +65,7 @@ set via properties.
 </properties>
 ----
 
-If jdk.min.version is not set, it default to version defined by
+If jdk.min.version is not set, it defaults to version defined by
 maven.compiler.source
 
 For the full list of properties, refer to the POM itself.
@@ -145,6 +145,9 @@ being compiled.  However there is a limitation to this strategy: Java 9 and late
 for non-standard Java 8 classes such as `sun.misc.Unsafe`.  If your project needs to compile against these classes,
 you must use the dependency plugin as described <<mr-jar-sun-misc,below>>.
 
+Note that by default, building Java 8 sources does not use the `<release>` property.  To enable this feature,
+create a file (which may be empty) in your project root named `build-release-8`.
+
 [id='mr-jar-testing']
 ==== Testing
 
@@ -156,12 +159,13 @@ property or properties are set as needed:
 * `java9.home`: this property must be set to the location of a Java 9 JDK installation
 * `java10.home`: this property must be set to the location of a Java 10 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
+* `java12.home`: this property must be set to the location of a Java 12 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
 
 Extra unit tests are run for a given platform whenever a newer version than that platform
-was used to build the project.
+was used to build the project and the appropriate control file is found (see <<build-control-files>>).
 
 === Configuration
 
@@ -191,9 +195,10 @@ Choose your base layer version.  This can be Java 8 or anything later.  Configur
 </plugin>
 ----
 
+If the `build-release-8` property is present in the root of your project, then this step is automatically done for you.
+
 Note that a single-layer Java 8 build does not support the `release` element because the
-corresponding `javac` option is only present in JDK 9 and later.  Single-layer Java 8 builds
-should not use this multi-release JAR framework.
+corresponding `javac` option is only present in JDK 9 and later.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -246,7 +251,13 @@ The contents of this file do not matter; it can be empty or it can contain text 
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
-|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds.|<<Missing JDK APIs>>
+|build-release-8|Use the `<release>` option to set Java 8 for the base layer.|<<mr-jar-base-layer>>
+|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds.|<<mr-jar-sun-misc>>
+|build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
+|build-test-java9|Run tests for Java 9 when `java9.home` is set and JDK 10 or later is used.|<<mr-jar-testing>>
+|build-test-java10|Run tests for Java 10 when `java10.home` is set and JDK 11 or later is used.|<<mr-jar-testing>>
+|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
+|build-test-java12|Run tests for Java 12 when `java12.home` is set and JDK 13 or later is used.|<<mr-jar-testing>>
 |===
 
 [id='where-to-get-more-information']
