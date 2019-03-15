@@ -109,6 +109,9 @@
                 <property>
                     <name>java8.home</name>
                 </property>
+                <file>
+                    <exists>${basedir}/build-test-java8</exists>
+                </file>
             </activation>
             <build>
                 <plugins>
@@ -192,6 +195,9 @@
                 <property>
                     <name>java9.home</name>
                 </property>
+                <file>
+                    <exists>${basedir}/build-test-java9</exists>
+                </file>
             </activation>
             <build>
                 <plugins>
@@ -281,6 +287,9 @@
                 <property>
                     <name>java10.home</name>
                 </property>
+                <file>
+                    <exists>${basedir}/build-test-java10</exists>
+                </file>
             </activation>
             <build>
                 <plugins>
@@ -376,6 +385,9 @@
                 <property>
                     <name>java11.home</name>
                 </property>
+                <file>
+                    <exists>${basedir}/build-test-java11</exists>
+                </file>
             </activation>
             <build>
                 <plugins>
