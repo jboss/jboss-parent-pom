@@ -183,7 +183,7 @@
       <javadoc.additional.params />
 
       <!-- Special version for MR JAR jdk-misc artifact -->
-      <version.jdk-misc>2.Final</version.jdk-misc>
+      <version.jdk-misc>3.Final</version.jdk-misc>
     </properties>
 
     <build>
