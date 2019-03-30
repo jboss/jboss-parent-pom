@@ -897,6 +897,7 @@
                 <file>
                     <exists>${basedir}/build-include-jdk-misc</exists>
                 </file>
+                <jdk>[9,</jdk>
             </activation>
             <build>
                 <plugins>
