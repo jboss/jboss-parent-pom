@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss</groupId>
-    <version>35</version>
+    <version>36-SNAPSHOT</version>
     <artifactId>jboss-parent</artifactId>
 
     <packaging>pom</packaging>
