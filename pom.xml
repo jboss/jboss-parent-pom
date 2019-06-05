@@ -698,8 +698,12 @@
                 <rules>
                   <bannedRepositories>
                       <level>${insecure.repositories}</level>
-                      <bannedRepositories>http://*</bannedRepositories>
-                      <bannedPluginRepositories>http://*</bannedPluginRepositories>
+                      <bannedRepositories>
+                          <bannedRepository>http://*</bannedRepository>
+                      </bannedRepositories>
+                      <bannedPluginRepositories>
+                          <bannedPluginRepository>http://*</bannedPluginRepository>
+                      </bannedPluginRepositories>
                   </bannedRepositories>
                   <requireJavaVersion>
                     <message>To build this project JDK ${jdk.min.version} (or greater) is required. Please install it.</message>
