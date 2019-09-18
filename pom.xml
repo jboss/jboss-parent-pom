@@ -872,7 +872,7 @@
             <file>
               <exists>${basedir}/build-release-8</exists>
             </file>
-            <jdk>[9,</jdk>
+            <jdk>[9,)</jdk>
           </activation>
           <build>
             <plugins>
@@ -903,7 +903,7 @@
                 <file>
                     <exists>${basedir}/build-include-jdk-misc</exists>
                 </file>
-                <jdk>[9,</jdk>
+                <jdk>[9,)</jdk>
             </activation>
             <build>
                 <plugins>
@@ -954,7 +954,7 @@
         <profile>
             <id>java8-test</id>
             <activation>
-                <jdk>[9,</jdk>
+                <jdk>[9,)</jdk>
                 <property>
                     <name>java8.home</name>
                 </property>
@@ -991,7 +991,7 @@
         <profile>
             <id>java9-mr-build</id>
             <activation>
-                <jdk>[9,</jdk>
+                <jdk>[9,)</jdk>
                 <file>
                     <exists>${basedir}/src/main/java9</exists>
                 </file>
@@ -1040,7 +1040,7 @@
         <profile>
             <id>java9-test</id>
             <activation>
-                <jdk>[10,</jdk>
+                <jdk>[10,)</jdk>
                 <property>
                     <name>java9.home</name>
                 </property>
@@ -1080,7 +1080,7 @@
         <profile>
             <id>java10-mr-build</id>
             <activation>
-                <jdk>[10,</jdk>
+                <jdk>[10,)</jdk>
                 <file>
                     <exists>${basedir}/src/main/java10</exists>
                 </file>
@@ -1132,7 +1132,7 @@
         <profile>
             <id>java10-test</id>
             <activation>
-                <jdk>[11,</jdk>
+                <jdk>[11,)</jdk>
                 <property>
                     <name>java10.home</name>
                 </property>
@@ -1175,7 +1175,7 @@
         <profile>
             <id>java11-mr-build</id>
             <activation>
-                <jdk>[11,</jdk>
+                <jdk>[11,)</jdk>
                 <file>
                     <exists>${basedir}/src/main/java11</exists>
                 </file>
@@ -1230,7 +1230,7 @@
         <profile>
             <id>java11-test</id>
             <activation>
-                <jdk>[12,</jdk>
+                <jdk>[12,)</jdk>
                 <property>
                     <name>java11.home</name>
                 </property>
@@ -1276,7 +1276,7 @@
         <profile>
             <id>java12-mr-build</id>
             <activation>
-                <jdk>[12,</jdk>
+                <jdk>[12,)</jdk>
                 <file>
                     <exists>${basedir}/src/main/java12</exists>
                 </file>
@@ -1334,7 +1334,7 @@
         <profile>
             <id>java12-test</id>
             <activation>
-                <jdk>[13,</jdk>
+                <jdk>[13,)</jdk>
                 <property>
                     <name>java12.home</name>
                 </property>
@@ -1383,7 +1383,7 @@
         <profile>
             <id>java13-mr-build</id>
             <activation>
-                <jdk>[13,</jdk>
+                <jdk>[13,)</jdk>
                 <file>
                     <exists>${basedir}/src/main/java13</exists>
                 </file>
