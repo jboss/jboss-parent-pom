@@ -111,7 +111,7 @@
       <version.javadoc.plugin>3.0.1</version.javadoc.plugin>
       <version.javancss.plugin>2.1</version.javancss.plugin>
       <version.jxr.plugin>2.5</version.jxr.plugin>
-      <version.license.plugin>1.16</version.license.plugin>
+      <version.license.plugin>1.20.jbossorg-3</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
       <version.plugin.plugin>3.5.2</version.plugin.plugin>
       <version.pmd.plugin>3.10.0</version.pmd.plugin>
