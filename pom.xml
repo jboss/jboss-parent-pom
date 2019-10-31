@@ -113,7 +113,7 @@
       <version.jxr.plugin>3.0.0</version.jxr.plugin>
       <version.license.plugin>1.16</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
-      <version.plugin.plugin>3.5.2</version.plugin.plugin>
+      <version.plugin.plugin>3.6.0</version.plugin.plugin>
       <version.pmd.plugin>3.10.0</version.pmd.plugin>
       <version.rar.plugin>2.4</version.rar.plugin>
       <version.release.plugin>2.5.3</version.release.plugin>
