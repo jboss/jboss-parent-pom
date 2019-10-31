@@ -86,7 +86,7 @@
       <version.antrun.plugin>1.8</version.antrun.plugin>
       <version.archetype.plugin>3.0.1</version.archetype.plugin>
       <version.assembly.plugin>3.1.0</version.assembly.plugin>
-      <version.buildhelper.plugin>3.0.0</version.buildhelper.plugin>
+      <version.buildhelper.plugin>3.1.0</version.buildhelper.plugin>
       <version.buildnumber.plugin>1.4</version.buildnumber.plugin>
       <version.bundle.plugin>3.5.0</version.bundle.plugin>
       <version.checkstyle.plugin>3.0.0</version.checkstyle.plugin>
@@ -104,7 +104,7 @@
       <version.enforcer.plugin>3.0.0-M2</version.enforcer.plugin>
       <version.findbugs.plugin>3.0.5</version.findbugs.plugin>
       <version.gpg.plugin>1.6</version.gpg.plugin>
-      <version.help.plugin>3.1.0</version.help.plugin>
+      <version.help.plugin>3.2.0</version.help.plugin>
       <version.injection.plugin>1.0.2</version.injection.plugin>
       <version.install.plugin>2.5.2</version.install.plugin>
       <version.jar.plugin>3.1.0</version.jar.plugin>
