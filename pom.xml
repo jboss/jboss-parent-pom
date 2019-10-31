@@ -84,7 +84,7 @@
       <!-- Plugins versions -->
       <!-- **************** -->
       <version.antrun.plugin>1.8</version.antrun.plugin>
-      <version.archetype.plugin>3.0.1</version.archetype.plugin>
+      <version.archetype.plugin>3.1.2</version.archetype.plugin>
       <version.assembly.plugin>3.1.0</version.assembly.plugin>
       <version.buildhelper.plugin>3.0.0</version.buildhelper.plugin>
       <version.buildnumber.plugin>1.4</version.buildnumber.plugin>
