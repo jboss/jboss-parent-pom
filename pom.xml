@@ -179,7 +179,7 @@
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
-      <version.checkstyle>8.19</version.checkstyle>
+      <version.checkstyle>8.29</version.checkstyle>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params />
 
