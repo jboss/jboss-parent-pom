@@ -116,7 +116,7 @@
       <version.plugin.plugin>3.5.2</version.plugin.plugin>
       <version.pmd.plugin>3.10.0</version.pmd.plugin>
       <version.rar.plugin>2.4</version.rar.plugin>
-      <version.release.plugin>2.5.3</version.release.plugin>
+      <version.release.plugin>3.0.0-M1</version.release.plugin>
       <version.resources.plugin>3.1.0</version.resources.plugin>
       <version.shade.plugin>3.1.1</version.shade.plugin>
       <version.site.plugin>3.7.1</version.site.plugin>
