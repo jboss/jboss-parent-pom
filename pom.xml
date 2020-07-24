@@ -84,19 +84,19 @@
       <!-- Plugins versions -->
       <!-- **************** -->
       <version.antrun.plugin>1.8</version.antrun.plugin>
-      <version.archetype.plugin>3.0.1</version.archetype.plugin>
-      <version.assembly.plugin>3.1.0</version.assembly.plugin>
+      <version.archetype.plugin>3.1.2</version.archetype.plugin>
+      <version.assembly.plugin>3.1.1</version.assembly.plugin>
       <version.buildhelper.plugin>3.0.0</version.buildhelper.plugin>
       <version.buildnumber.plugin>1.4</version.buildnumber.plugin>
-      <version.bundle.plugin>3.5.0</version.bundle.plugin>
-      <version.checkstyle.plugin>3.0.0</version.checkstyle.plugin>
+      <version.bundle.plugin>4.0.0</version.bundle.plugin>
+      <version.checkstyle.plugin>3.1.0</version.checkstyle.plugin>
       <version.clean.plugin>3.1.0</version.clean.plugin>
       <version.clover.plugin>4.1.2</version.clover.plugin>
       <version.cobertura.plugin>2.7</version.cobertura.plugin>
-      <version.compiler.plugin>3.8.0-jboss-2</version.compiler.plugin>
+      <version.compiler.plugin>3.8.1-jboss-1</version.compiler.plugin>
       <version.dependency.plugin>3.1.1</version.dependency.plugin>
       <version.deploy.plugin>2.8.2</version.deploy.plugin>
-      <version.download.plugin>1.4.1</version.download.plugin>
+      <version.download.plugin>1.4.2</version.download.plugin>
       <version.ear.plugin>3.0.1</version.ear.plugin>
       <version.org.eclipse.m2e.lifecycle-mapping>1.0.0</version.org.eclipse.m2e.lifecycle-mapping>
       <version.ejb.plugin>3.0.1</version.ejb.plugin>
@@ -104,28 +104,28 @@
       <version.enforcer.plugin>3.0.0-M2</version.enforcer.plugin>
       <version.findbugs.plugin>3.0.5</version.findbugs.plugin>
       <version.gpg.plugin>1.6</version.gpg.plugin>
-      <version.help.plugin>3.1.0</version.help.plugin>
+      <version.help.plugin>3.2.0</version.help.plugin>
       <version.injection.plugin>1.0.2</version.injection.plugin>
       <version.install.plugin>2.5.2</version.install.plugin>
-      <version.jar.plugin>3.1.0</version.jar.plugin>
-      <version.javadoc.plugin>3.0.1</version.javadoc.plugin>
+      <version.jar.plugin>3.1.2</version.jar.plugin>
+      <version.javadoc.plugin>3.1.1</version.javadoc.plugin>
       <version.javancss.plugin>2.1</version.javancss.plugin>
-      <version.jxr.plugin>2.5</version.jxr.plugin>
-      <version.license.plugin>1.16</version.license.plugin>
+      <version.jxr.plugin>3.0.0</version.jxr.plugin>
+      <version.license.plugin>1.20</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
-      <version.plugin.plugin>3.5.2</version.plugin.plugin>
-      <version.pmd.plugin>3.10.0</version.pmd.plugin>
+      <version.plugin.plugin>3.6.0</version.plugin.plugin>
+      <version.pmd.plugin>3.12.0</version.pmd.plugin>
       <version.rar.plugin>2.4</version.rar.plugin>
       <version.release.plugin>2.5.3</version.release.plugin>
       <version.resources.plugin>3.1.0</version.resources.plugin>
-      <version.shade.plugin>3.1.1</version.shade.plugin>
-      <version.site.plugin>3.7.1</version.site.plugin>
-      <version.sonar.plugin>3.6.0.1398</version.sonar.plugin>
-      <version.source.plugin>3.0.1</version.source.plugin>
-      <version.surefire.plugin>2.22.0</version.surefire.plugin>
+      <version.shade.plugin>3.2.1</version.shade.plugin>
+      <version.site.plugin>3.8.2</version.site.plugin>
+      <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
+      <version.source.plugin>3.1.0</version.source.plugin>
+      <version.surefire.plugin>2.22.2</version.surefire.plugin>
       <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
-      <version.war.plugin>3.2.2</version.war.plugin>
-      <version.zanata.plugin>4.4.3</version.zanata.plugin>
+      <version.war.plugin>3.2.3</version.war.plugin>
+      <version.zanata.plugin>4.6.2</version.zanata.plugin>
 
       <!-- we override plexus Archiver with version newer than 3.0.3 as older don't work on JDK9 -->
       <version.plexus.archiver>3.6.0</version.plexus.archiver>
