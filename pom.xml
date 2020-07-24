@@ -697,6 +697,7 @@
               <configuration>
                 <rules>
                   <bannedRepositories>
+                      <message>To build this project, don't use maven repositories over HTTP. Please use HTTPS in your settings.xml or run the build with property insecure.repositories=WARN</message>
                       <level>${insecure.repositories}</level>
                       <bannedRepositories>
                           <bannedRepository>http://*</bannedRepository>
