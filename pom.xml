@@ -89,7 +89,7 @@
       <version.buildhelper.plugin>3.0.0</version.buildhelper.plugin>
       <version.buildnumber.plugin>1.4</version.buildnumber.plugin>
       <version.bundle.plugin>4.0.0</version.bundle.plugin>
-      <version.checkstyle.plugin>3.1.0</version.checkstyle.plugin>
+      <version.checkstyle.plugin>3.1.1</version.checkstyle.plugin>
       <version.clean.plugin>3.1.0</version.clean.plugin>
       <version.clover.plugin>4.1.2</version.clover.plugin>
       <version.cobertura.plugin>2.7</version.cobertura.plugin>
@@ -179,7 +179,7 @@
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
-      <version.checkstyle>8.19</version.checkstyle>
+      <version.checkstyle>8.34</version.checkstyle>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params />
 
