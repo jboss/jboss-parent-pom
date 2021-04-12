@@ -124,6 +124,7 @@
       <version.source.plugin>3.1.0</version.source.plugin>
       <version.surefire.plugin>2.22.2</version.surefire.plugin>
       <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
+      <version.versions.plugin>2.8.1</version.versions.plugin>
       <version.war.plugin>3.2.3</version.war.plugin>
       <version.zanata.plugin>4.6.2</version.zanata.plugin>
 
@@ -585,6 +586,14 @@
               <systemPropertyVariables>
                 <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
               </systemPropertyVariables>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>${version.versions.plugin}</version>
+            <configuration>
+              <generateBackupPoms>false</generateBackupPoms>
             </configuration>
           </plugin>
           <plugin>
