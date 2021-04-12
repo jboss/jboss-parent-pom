@@ -582,9 +582,9 @@
             <version>${version.surefire.plugin}</version>
             <configuration>
               <trimStackTrace>false</trimStackTrace>
-              <systemProperties>
+              <systemPropertyVariables>
                 <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
-              </systemProperties>
+              </systemPropertyVariables>
             </configuration>
           </plugin>
           <plugin>
