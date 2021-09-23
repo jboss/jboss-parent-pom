@@ -1415,7 +1415,7 @@
                                     <goal>compile</goal>
                                 </goals>
                                 <configuration>
-                                    <release>12</release>
+                                    <release>13</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
                                     <compileSourceRoots>${project.basedir}/src/main/java13</compileSourceRoots>
                                     <outputDirectory>${project.build.directory}/classes/META-INF/versions/13
