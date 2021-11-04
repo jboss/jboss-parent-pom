@@ -93,7 +93,7 @@
       <version.clean.plugin>3.1.0</version.clean.plugin>
       <version.clover.plugin>4.1.2</version.clover.plugin>
       <version.cobertura.plugin>2.7</version.cobertura.plugin>
-      <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+      <version.compiler.plugin>3.8.1</version.compiler.plugin>
       <version.dependency.plugin>3.1.1</version.dependency.plugin>
       <version.deploy.plugin>2.8.2</version.deploy.plugin>
       <version.download.plugin>1.4.2</version.download.plugin>
@@ -919,6 +919,9 @@
                 </file>
                 <jdk>[9,)</jdk>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -976,6 +979,9 @@
                     <exists>${basedir}/build-test-java8</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1010,6 +1016,9 @@
                     <exists>${basedir}/src/main/java9</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1062,6 +1071,9 @@
                     <exists>${basedir}/build-test-java9</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1099,6 +1111,9 @@
                     <exists>${basedir}/src/main/java10</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1154,6 +1169,9 @@
                     <exists>${basedir}/build-test-java10</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1194,6 +1212,9 @@
                     <exists>${basedir}/src/main/java11</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1252,6 +1273,9 @@
                     <exists>${basedir}/build-test-java11</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1295,6 +1319,9 @@
                     <exists>${basedir}/src/main/java12</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1356,6 +1383,9 @@
                     <exists>${basedir}/build-test-java12</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1402,6 +1432,9 @@
                     <exists>${basedir}/src/main/java13</exists>
                 </file>
             </activation>
+            <properties>
+              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
