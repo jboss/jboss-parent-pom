@@ -143,7 +143,7 @@ In order to select the correct class files for the given Java version, the `<rel
 This prevents accidental usage of APIs which are only present in later versions than the one
 being compiled.  However there is a limitation to this strategy: Java 9 and later do not provide runtime information
 for non-standard Java 8 classes such as `sun.misc.Unsafe`.  If your project needs to compile against these classes,
-you must use the dependency plugin as described <<mr-jar-sun-misc,below>>.
+you must include one more dependency as described <<mr-jar-sun-misc,below>>.
 
 Note that by default, building Java 8 sources does not use the `<release>` property.  To enable this feature,
 create a file (which may be empty) in your project root named `build-release-8`.
@@ -239,8 +239,21 @@ Since these APIs are not included in the class database that `javac` uses to com
 though they are present at run time), stubs of the extra classes must be included but only during
 compilation.
 
-To automatically perform this step, create a file in your project root named `build-include-jdk-misc`.
-The contents of this file do not matter; it can be empty or it can contain text referring to this document.
+This should be done by including the following dependency in your `pom.xml` file:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.jboss</groupId>
+    <artifactId>jdk-misc</artifactId>
+</dependency>
+----
+
+The added dependency will have the `provided` scope by default.
+
+Previously, this parent POM would add these classes automatically when a file in your project root named `build-include-jdk-misc` was detected.
+This mechanism is deprecated but still functions; adding this file simply adds the above dependency automatically.
+Specifying the dependency in your POM is now recommended instead.
 
 [id='build-control-files']
 == Build control files reference
@@ -249,7 +262,7 @@ The contents of this file do not matter; it can be empty or it can contain text 
 |===
 |File name|Purpose|Reference
 |build-release-8|Use the `<release>` option to set Java 8 for the base layer.|<<mr-jar-base-layer>>
-|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds.|<<mr-jar-sun-misc>>
+|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds (_deprecated_).|<<mr-jar-sun-misc>>
 |build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
 |build-test-java9|Run tests for Java 9 when `java9.home` is set and JDK 10 or later is used.|<<mr-jar-testing>>
 |build-test-java10|Run tests for Java 10 when `java10.home` is set and JDK 11 or later is used.|<<mr-jar-testing>>
