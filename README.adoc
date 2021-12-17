@@ -156,10 +156,7 @@ every supported Java version.  In order to do so, it is expected that the follow
 property or properties are set as needed:
 
 * `java8.home`: this property must be set to the location of a Java 8 JDK installation
-* `java9.home`: this property must be set to the location of a Java 9 JDK installation
-* `java10.home`: this property must be set to the location of a Java 10 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
-* `java12.home`: this property must be set to the location of a Java 12 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.

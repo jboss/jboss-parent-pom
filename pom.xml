@@ -1059,49 +1059,6 @@
             </build>
         </profile>
 
-        <!-- This profile is activated when Java 10 or later is used to test a project that supports Java 9 -->
-        <profile>
-            <id>java9-test</id>
-            <activation>
-                <jdk>[10,)</jdk>
-                <property>
-                    <name>java9.home</name>
-                </property>
-                <file>
-                    <exists>${basedir}/build-test-java9</exists>
-                </file>
-            </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>java9-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <jvm>${java9.home}/bin/java</jvm>
-                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/9
-                                    </classesDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <!-- This profile is activated when Java 10 or later is used to build -->
         <profile>
             <id>java10-mr-build</id>
@@ -1152,52 +1109,6 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- This profile is activated when Java 11 or later is used to test a project that supports Java 10 -->
-        <profile>
-            <id>java10-test</id>
-            <activation>
-                <jdk>[11,)</jdk>
-                <property>
-                    <name>java10.home</name>
-                </property>
-                <file>
-                    <exists>${basedir}/build-test-java10</exists>
-                </file>
-            </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>java10-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <jvm>${java10.home}/bin/java</jvm>
-                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/10
-                                    </classesDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
-                                </configuration>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -1366,58 +1277,6 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- This profile is activated when Java 13 or later is used to test a project that supports Java 12 -->
-        <profile>
-            <id>java12-test</id>
-            <activation>
-                <jdk>[13,)</jdk>
-                <property>
-                    <name>java12.home</name>
-                </property>
-                <file>
-                    <exists>${basedir}/build-test-java12</exists>
-                </file>
-            </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>java12-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <jvm>${java12.home}/bin/java</jvm>
-                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/12
-                                    </classesDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
-                                </configuration>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
