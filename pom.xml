@@ -26,7 +26,7 @@
 
     <packaging>pom</packaging>
 
-    <name>JBoss Parent Parent POM</name>
+    <name>JBoss Parent POM</name>
     <description>Provides, via submodules, a base configuration for JBoss project builds, as well as a derived configuration supporting multi-release JARs</description>
     <url>http://www.jboss.org</url>
 
