@@ -988,9 +988,6 @@
                     <exists>${basedir}/build-test-java8</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1025,9 +1022,6 @@
                     <exists>${basedir}/src/main/java9</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1044,12 +1038,7 @@
                                     <release>9</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
                                     <compileSourceRoots>${project.basedir}/src/main/java9</compileSourceRoots>
-                                    <outputDirectory>${project.build.directory}/classes/META-INF/versions/9
-                                    </outputDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
+                                    <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1077,9 +1066,6 @@
                     <exists>${basedir}/src/main/java10</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1096,15 +1082,7 @@
                                     <release>10</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
                                     <compileSourceRoots>${project.basedir}/src/main/java10</compileSourceRoots>
-                                    <outputDirectory>${project.build.directory}/classes/META-INF/versions/10
-                                    </outputDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
+                                    <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1132,9 +1110,6 @@
                     <exists>${basedir}/src/main/java11</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1151,18 +1126,7 @@
                                     <release>11</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
                                     <compileSourceRoots>${project.basedir}/src/main/java11</compileSourceRoots>
-                                    <outputDirectory>${project.build.directory}/classes/META-INF/versions/11
-                                    </outputDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
+                                    <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1193,9 +1157,6 @@
                     <exists>${basedir}/build-test-java11</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1239,9 +1200,6 @@
                     <exists>${basedir}/src/main/java12</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1258,21 +1216,7 @@
                                     <release>12</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
                                     <compileSourceRoots>${project.basedir}/src/main/java12</compileSourceRoots>
-                                    <outputDirectory>${project.build.directory}/classes/META-INF/versions/12
-                                    </outputDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
+                                    <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1300,9 +1244,6 @@
                     <exists>${basedir}/src/main/java13</exists>
                 </file>
             </activation>
-            <properties>
-              <version.compiler.plugin>3.8.1-jboss-2</version.compiler.plugin>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1319,24 +1260,7 @@
                                     <release>13</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
                                     <compileSourceRoots>${project.basedir}/src/main/java13</compileSourceRoots>
-                                    <outputDirectory>${project.build.directory}/classes/META-INF/versions/13
-                                    </outputDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/12
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
+                                    <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
                         </executions>
