@@ -143,7 +143,7 @@ In order to select the correct class files for the given Java version, the `<rel
 This prevents accidental usage of APIs which are only present in later versions than the one
 being compiled.  However there is a limitation to this strategy: Java 9 and later do not provide runtime information
 for non-standard Java 8 classes such as `sun.misc.Unsafe`.  If your project needs to compile against these classes,
-you must use the dependency plugin as described <<mr-jar-sun-misc,below>>.
+you must include one more dependency as described <<mr-jar-sun-misc,below>>.
 
 Note that by default, building Java 8 sources does not use the `<release>` property.  To enable this feature,
 create a file (which may be empty) in your project root named `build-release-8`.
@@ -156,10 +156,8 @@ every supported Java version.  In order to do so, it is expected that the follow
 property or properties are set as needed:
 
 * `java8.home`: this property must be set to the location of a Java 8 JDK installation
-* `java9.home`: this property must be set to the location of a Java 9 JDK installation
-* `java10.home`: this property must be set to the location of a Java 10 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
-* `java12.home`: this property must be set to the location of a Java 12 JDK installation
+* `java17.home`: this property must be set to the location of a Java 17 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -242,8 +240,21 @@ Since these APIs are not included in the class database that `javac` uses to com
 though they are present at run time), stubs of the extra classes must be included but only during
 compilation.
 
-To automatically perform this step, create a file in your project root named `build-include-jdk-misc`.
-The contents of this file do not matter; it can be empty or it can contain text referring to this document.
+This should be done by including the following dependency in your `pom.xml` file:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.jboss</groupId>
+    <artifactId>jdk-misc</artifactId>
+</dependency>
+----
+
+The added dependency will have the `provided` scope by default.
+
+Previously, this parent POM would add these classes automatically when a file in your project root named `build-include-jdk-misc` was detected.
+This mechanism is deprecated but still functions; adding this file simply adds the above dependency automatically.
+Specifying the dependency in your POM is now recommended instead.
 
 [id='build-control-files']
 == Build control files reference
@@ -252,12 +263,17 @@ The contents of this file do not matter; it can be empty or it can contain text 
 |===
 |File name|Purpose|Reference
 |build-release-8|Use the `<release>` option to set Java 8 for the base layer.|<<mr-jar-base-layer>>
-|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds.|<<mr-jar-sun-misc>>
+|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds (_deprecated_).|<<mr-jar-sun-misc>>
 |build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
 |build-test-java9|Run tests for Java 9 when `java9.home` is set and JDK 10 or later is used.|<<mr-jar-testing>>
 |build-test-java10|Run tests for Java 10 when `java10.home` is set and JDK 11 or later is used.|<<mr-jar-testing>>
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
 |build-test-java12|Run tests for Java 12 when `java12.home` is set and JDK 13 or later is used.|<<mr-jar-testing>>
+|build-test-java13|Run tests for Java 13 when `java13.home` is set and JDK 14 or later is used.|<<mr-jar-testing>>
+|build-test-java14|Run tests for Java 14 when `java14.home` is set and JDK 15 or later is used.|<<mr-jar-testing>>
+|build-test-java15|Run tests for Java 15 when `java15.home` is set and JDK 16 or later is used.|<<mr-jar-testing>>
+|build-test-java16|Run tests for Java 16 when `java16.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
+|build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |===
 
 [id='where-to-get-more-information']
