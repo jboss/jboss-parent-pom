@@ -28,7 +28,9 @@ Start out by adding the parent configuration to your pom.
 <parent>
   <groupId>org.jboss</groupId>
   <artifactId>jboss-parent</artifactId>
-  <version>33</version>
+  <version>39</version>
+  <!-- The empty relativePath makes Maven look it up in the repository. Missing tag default is ../pom.xml. -->
+  <relativePath/>
 </parent>
 ----
 
