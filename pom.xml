@@ -97,7 +97,7 @@
       <version.dependency.plugin>3.1.1</version.dependency.plugin>
       <version.deploy.plugin>2.8.2</version.deploy.plugin>
       <version.download.plugin>1.6.8</version.download.plugin>
-      <version.ear.plugin>3.0.1</version.ear.plugin>
+      <version.ear.plugin>3.2.0</version.ear.plugin>
       <version.org.eclipse.m2e.lifecycle-mapping>1.0.0</version.org.eclipse.m2e.lifecycle-mapping>
       <version.ejb.plugin>3.1.0</version.ejb.plugin>
       <version.exec.plugin>3.0.0</version.exec.plugin>
