@@ -186,6 +186,20 @@
 
       <!-- Special version for MR JAR jdk-misc artifact -->
       <version.jdk-misc>3.Final</version.jdk-misc>
+
+      <!-- These properties are initialized when particular Java version is detected -->
+      <java9.sources></java9.sources>
+      <java10.sources></java10.sources>
+      <java11.sources></java11.sources>
+      <java12.sources></java12.sources>
+      <java13.sources></java13.sources>
+      <java14.sources></java14.sources>
+      <java15.sources></java15.sources>
+      <java16.sources></java16.sources>
+      <java17.sources></java17.sources>
+      <java18.sources></java18.sources>
+      <!-- Special property for maven-javadoc-plugin to include multirelease java files in generated Javadoc -->
+      <javadoc.multirelease.sourcepath>${java18.sources};${java17.sources};${java16.sources};${java15.sources};${java14.sources};${java13.sources};${java12.sources};${java11.sources};${java10.sources};${java9.sources};${project.build.sourceDirectory}</javadoc.multirelease.sourcepath>
     </properties>
 
     <build>
@@ -491,6 +505,7 @@
               -->
               <additionalparam>${javadoc.additional.params}</additionalparam>
               <additionalOptions>${javadoc.additional.params}</additionalOptions>
+              <sourcepath>${javadoc.multirelease.sourcepath}</sourcepath>
             </configuration>
           </plugin>
           <plugin>
@@ -1022,6 +1037,9 @@
                     <exists>${basedir}/src/main/java9</exists>
                 </file>
             </activation>
+            <properties>
+                <java9.sources>${project.basedir}/src/main/java9</java9.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1037,7 +1055,7 @@
                                 <configuration>
                                     <release>9</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java9</compileSourceRoots>
+                                    <compileSourceRoots>${java9.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1066,6 +1084,9 @@
                     <exists>${basedir}/src/main/java10</exists>
                 </file>
             </activation>
+            <properties>
+                <java10.sources>${project.basedir}/src/main/java10</java10.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1081,7 +1102,7 @@
                                 <configuration>
                                     <release>10</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java10</compileSourceRoots>
+                                    <compileSourceRoots>${java10.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1110,6 +1131,9 @@
                     <exists>${basedir}/src/main/java11</exists>
                 </file>
             </activation>
+            <properties>
+                <java11.sources>${project.basedir}/src/main/java11</java11.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1125,7 +1149,7 @@
                                 <configuration>
                                     <release>11</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java11</compileSourceRoots>
+                                    <compileSourceRoots>${java11.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1200,6 +1224,9 @@
                     <exists>${basedir}/src/main/java12</exists>
                 </file>
             </activation>
+            <properties>
+                <java12.sources>${project.basedir}/src/main/java12</java12.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1215,7 +1242,7 @@
                                 <configuration>
                                     <release>12</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java12</compileSourceRoots>
+                                    <compileSourceRoots>${java12.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1244,6 +1271,9 @@
                     <exists>${basedir}/src/main/java13</exists>
                 </file>
             </activation>
+            <properties>
+                <java13.sources>${project.basedir}/src/main/java13</java13.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1259,7 +1289,7 @@
                                 <configuration>
                                     <release>13</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java13</compileSourceRoots>
+                                    <compileSourceRoots>${java13.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1288,6 +1318,9 @@
                     <exists>${basedir}/src/main/java14</exists>
                 </file>
             </activation>
+            <properties>
+                <java14.sources>${project.basedir}/src/main/java14</java14.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1303,7 +1336,7 @@
                                 <configuration>
                                     <release>14</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java14</compileSourceRoots>
+                                    <compileSourceRoots>${java14.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1332,6 +1365,9 @@
                     <exists>${basedir}/src/main/java15</exists>
                 </file>
             </activation>
+            <properties>
+                <java15.sources>${project.basedir}/src/main/java15</java15.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1347,7 +1383,7 @@
                                 <configuration>
                                     <release>15</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java15</compileSourceRoots>
+                                    <compileSourceRoots>${java15.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1376,6 +1412,9 @@
                     <exists>${basedir}/src/main/java16</exists>
                 </file>
             </activation>
+            <properties>
+                <java16.sources>${project.basedir}/src/main/java16</java16.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1391,7 +1430,7 @@
                                 <configuration>
                                     <release>16</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java16</compileSourceRoots>
+                                    <compileSourceRoots>${java16.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1420,6 +1459,9 @@
                     <exists>${basedir}/src/main/java17</exists>
                 </file>
             </activation>
+            <properties>
+                <java17.sources>${project.basedir}/src/main/java17</java17.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1435,7 +1477,7 @@
                                 <configuration>
                                     <release>17</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java17</compileSourceRoots>
+                                    <compileSourceRoots>${java17.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1528,6 +1570,9 @@
                     <exists>${basedir}/src/main/java18</exists>
                 </file>
             </activation>
+            <properties>
+                <java18.sources>${project.basedir}/src/main/java18</java18.sources>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1543,7 +1588,7 @@
                                 <configuration>
                                     <release>18</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java18</compileSourceRoots>
+                                    <compileSourceRoots>${java18.sources}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
