@@ -485,6 +485,12 @@
                 </manifestEntries>
               </archive>
               <!--
+                There is a naming convention in our projects to put JBoss Logging helper classes in special '_private' package name.
+                This package is not reexported and thus not visible to other modules when running in JBoss Modules based environment.
+                Not only because of that these special logging packages shouldn't be part of generated Javadoc API.
+              -->
+              <excludePackageNames>*._private</excludePackageNames>
+              <!--
                  Since maven-javadoc-plugin 3.0.0 additionalparam is not not working anymore.
                  Therefore additionalOptions has been introduced, but old configuration is kept for backward compatibility
                  in case you are using this parent pom with overwritten version of maven-javadoc-plugin
