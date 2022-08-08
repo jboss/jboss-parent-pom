@@ -1022,6 +1022,10 @@
                     <exists>${basedir}/src/main/java9</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java9>${project.basedir}/src/main/java9</project.sources.location.java9>
+                <srcjar.sources.location.java9>${project.build.directory}/sources-for-manifest-java9</srcjar.sources.location.java9>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1037,7 +1041,7 @@
                                 <configuration>
                                     <release>9</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java9</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java9}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1053,6 +1057,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java9</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java9}/META-INF/versions/9</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java9}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java9</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java9}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1066,6 +1109,10 @@
                     <exists>${basedir}/src/main/java10</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java10>${project.basedir}/src/main/java10</project.sources.location.java10>
+                <srcjar.sources.location.java10>${project.build.directory}/sources-for-manifest-java10</srcjar.sources.location.java10>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1081,7 +1128,7 @@
                                 <configuration>
                                     <release>10</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java10</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java10}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1097,6 +1144,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java10</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java10}/META-INF/versions/10</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java10}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java10</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java10}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1110,6 +1196,10 @@
                     <exists>${basedir}/src/main/java11</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java11>${project.basedir}/src/main/java11</project.sources.location.java11>
+                <srcjar.sources.location.java11>${project.build.directory}/sources-for-manifest-java11</srcjar.sources.location.java11>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1125,7 +1215,7 @@
                                 <configuration>
                                     <release>11</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java11</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java11}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1140,6 +1230,45 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java11</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java11}/META-INF/versions/11</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java11}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java11</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java11}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -1200,6 +1329,10 @@
                     <exists>${basedir}/src/main/java12</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java12>${project.basedir}/src/main/java12</project.sources.location.java12>
+                <srcjar.sources.location.java12>${project.build.directory}/sources-for-manifest-java12</srcjar.sources.location.java12>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1215,7 +1348,7 @@
                                 <configuration>
                                     <release>12</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java12</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java12}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1231,6 +1364,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java12</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java12}/META-INF/versions/12</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java12}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java12</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java12}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1244,6 +1416,10 @@
                     <exists>${basedir}/src/main/java13</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java13>${project.basedir}/src/main/java13</project.sources.location.java13>
+                <srcjar.sources.location.java13>${project.build.directory}/sources-for-manifest-java13</srcjar.sources.location.java13>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1259,7 +1435,7 @@
                                 <configuration>
                                     <release>13</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java13</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java13}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1275,6 +1451,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java13</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java13}/META-INF/versions/13</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java13}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java13</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java13}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1288,6 +1503,10 @@
                     <exists>${basedir}/src/main/java14</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java14>${project.basedir}/src/main/java14</project.sources.location.java14>
+                <srcjar.sources.location.java14>${project.build.directory}/sources-for-manifest-java14</srcjar.sources.location.java14>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1303,7 +1522,7 @@
                                 <configuration>
                                     <release>14</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java14</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java14}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1319,6 +1538,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java14</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java14}/META-INF/versions/14</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java14}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java14</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java14}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1332,6 +1590,10 @@
                     <exists>${basedir}/src/main/java15</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java15>${project.basedir}/src/main/java15</project.sources.location.java15>
+                <srcjar.sources.location.java15>${project.build.directory}/sources-for-manifest-java15</srcjar.sources.location.java15>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1347,7 +1609,7 @@
                                 <configuration>
                                     <release>15</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java15</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java15}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1363,6 +1625,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java15</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java15}/META-INF/versions/15</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java15}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java15</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java15}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1376,6 +1677,10 @@
                     <exists>${basedir}/src/main/java16</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java16>${project.basedir}/src/main/java16</project.sources.location.java16>
+                <srcjar.sources.location.java16>${project.build.directory}/sources-for-manifest-java16</srcjar.sources.location.java16>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1391,7 +1696,7 @@
                                 <configuration>
                                     <release>16</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java16</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java16}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1407,6 +1712,45 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java16</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java16}/META-INF/versions/16</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java16}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java16</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java16}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1420,6 +1764,10 @@
                     <exists>${basedir}/src/main/java17</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java17>${project.basedir}/src/main/java17</project.sources.location.java17>
+                <srcjar.sources.location.java17>${project.build.directory}/sources-for-manifest-java17</srcjar.sources.location.java17>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1435,7 +1783,7 @@
                                 <configuration>
                                     <release>17</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java17</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java17}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1450,6 +1798,45 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java17</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java17}/META-INF/versions/17</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java17}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java17</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java17}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -1528,6 +1915,10 @@
                     <exists>${basedir}/src/main/java18</exists>
                 </file>
             </activation>
+            <properties>
+                <project.sources.location.java18>${project.basedir}/src/main/java18</project.sources.location.java18>
+                <srcjar.sources.location.java18>${project.build.directory}/sources-for-manifest-java18</srcjar.sources.location.java18>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1543,7 +1934,7 @@
                                 <configuration>
                                     <release>18</release>
                                     <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java18</compileSourceRoots>
+                                    <compileSourceRoots>${project.sources.location.java18}</compileSourceRoots>
                                     <multiReleaseOutput>true</multiReleaseOutput>
                                 </configuration>
                             </execution>
@@ -1558,6 +1949,45 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                            <id>copy-multirelease-sources-java18</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                            <outputDirectory>${srcjar.sources.location.java18}/META-INF/versions/18</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.sources.location.java18}</directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>include-multirelease-sources-java18</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${srcjar.sources.location.java18}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
