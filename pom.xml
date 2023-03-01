@@ -129,7 +129,7 @@
       <version.zanata.plugin>4.6.2</version.zanata.plugin>
 
       <!-- we override plexus Archiver with version newer than 3.0.3 as older don't work on JDK9 -->
-      <version.plexus.archiver>3.6.0</version.plexus.archiver>
+      <version.plexus.archiver>4.6.2</version.plexus.archiver>
 
 
       <!-- ***************** -->
