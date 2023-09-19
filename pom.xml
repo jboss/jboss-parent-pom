@@ -113,6 +113,7 @@
       <version.jxr.plugin>3.0.0</version.jxr.plugin>
       <version.license.plugin>1.20</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
+      <version.plexus.archiver>4.8.0</version.plexus.archiver>
       <version.plugin.plugin>3.6.0</version.plugin.plugin>
       <version.pmd.plugin>3.12.0</version.pmd.plugin>
       <version.rar.plugin>2.4</version.rar.plugin>
@@ -127,10 +128,6 @@
       <version.versions.plugin>2.9.0</version.versions.plugin>
       <version.war.plugin>3.2.3</version.war.plugin>
       <version.zanata.plugin>4.6.2</version.zanata.plugin>
-
-      <!-- we override plexus Archiver with version newer than 3.0.3 as older don't work on JDK9 -->
-      <version.plexus.archiver>4.8.0</version.plexus.archiver>
-
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
