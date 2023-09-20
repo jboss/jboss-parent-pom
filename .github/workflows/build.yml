@@ -62,3 +62,16 @@ jobs:
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out WildFly Maven Plugin
+        uses: actions/checkout@v2
+        with:
+          repository: wildfly/wildfly-maven-plugin
+          path: wildfly-maven-plugin
+
+      - name: Test WildFly Maven Plugin with updated parent
+        run: |
+          cd wildfly-maven-plugin
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
