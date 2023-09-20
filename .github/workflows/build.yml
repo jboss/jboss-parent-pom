@@ -28,6 +28,7 @@ jobs:
           distribution: temurin
           architecture: x64
           java-version: |
+            8
             11
             17
 
@@ -47,4 +48,17 @@ jobs:
           cd wildfly-common
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss Threads
+        uses: actions/checkout@v2
+        with:
+          repository: jbossas/jboss-threads
+          path: jboss-threads
+
+      - name: Test JBoss Threads with updated parent
+        run: |
+          cd jboss-threads
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
