@@ -160,6 +160,7 @@ property or properties are set as needed:
 * `java8.home`: this property must be set to the location of a Java 8 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
+* `java21.home`: this property must be set to the location of a Java 21 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -195,7 +196,7 @@ Choose your base layer version.  This can be Java 8 or anything later.  Configur
 </plugin>
 ----
 
-If the `build-release-8` property is present in the root of your project, then this step is automatically done for you.
+If the `build-release-8`, `build-release-11`, `build-release-17`, or `build-release-21` file is present in the root of your project, then this step is automatically done for you. Only one such file should be present.
 
 Note that a single-layer Java 8 build does not support the `release` element because the
 corresponding `javac` option is only present in JDK 9 and later.
@@ -258,24 +259,59 @@ Previously, this parent POM would add these classes automatically when a file in
 This mechanism is deprecated but still functions; adding this file simply adds the above dependency automatically.
 Specifying the dependency in your POM is now recommended instead.
 
+[id='mr-jar-gh-actions']
+=== Using MR JAR functions with GitHub Actions
+
+Using this functionality with GitHub Actions is relatively simple.  It entails adding the additional JDK
+version(s) by way of a setup action, and then passing the location of each additional JDK to the build.
+
+As an example, for a project that is built on Java 17 but must also be tested against JDK 11 your `build.yml`
+might look something like this:
+
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build using Maven
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+
+      - uses: actions/setup-java@v3
+        name: Set up JDKs
+        with:
+          distribution: temurin
+          java-version: |
+            11
+            17
+
+      - name: Build
+        run: mvn -B verify --file pom.xml -Djava11.home=${{env.JAVA_HOME_11_X64}}
+----
+
+See also link:https://github.com/actions/setup-java#readme[the README for `actions/setup-java`].
+
+Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 17.
+
 [id='build-control-files']
 == Build control files reference
+
+These build control files are tested only for their presence.
+They do not need to have any content (i.e. they can be zero-sized).
 
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
 |build-release-8|Use the `<release>` option to set Java 8 for the base layer.|<<mr-jar-base-layer>>
+|build-release-11|Use the `<release>` option to set Java 11 for the base layer.|<<mr-jar-base-layer>>
+|build-release-17|Use the `<release>` option to set Java 17 for the base layer.|<<mr-jar-base-layer>>
+|build-release-21|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
 |build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds (_deprecated_).|<<mr-jar-sun-misc>>
 |build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
-|build-test-java9|Run tests for Java 9 when `java9.home` is set and JDK 10 or later is used.|<<mr-jar-testing>>
-|build-test-java10|Run tests for Java 10 when `java10.home` is set and JDK 11 or later is used.|<<mr-jar-testing>>
-|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
-|build-test-java12|Run tests for Java 12 when `java12.home` is set and JDK 13 or later is used.|<<mr-jar-testing>>
-|build-test-java13|Run tests for Java 13 when `java13.home` is set and JDK 14 or later is used.|<<mr-jar-testing>>
-|build-test-java14|Run tests for Java 14 when `java14.home` is set and JDK 15 or later is used.|<<mr-jar-testing>>
-|build-test-java15|Run tests for Java 15 when `java15.home` is set and JDK 16 or later is used.|<<mr-jar-testing>>
-|build-test-java16|Run tests for Java 16 when `java16.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
+|build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |===
 
 [id='where-to-get-more-information']
@@ -287,8 +323,3 @@ jboss-parent-pom, head to the http://community.jboss.org/en/build[JBoss
 Community Build space] on the jboss.org site. Issues related to the
 jboss-parent-pom can be submitted to the
 https://issues.jboss.org/browse/JBBUILD[JBoss build jira project]
-
-[id='license']
-== License
-
-* This software is in the public domain
