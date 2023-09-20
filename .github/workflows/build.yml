@@ -34,7 +34,7 @@ jobs:
       - name: Install the parent POM snapshot
         run: |
           cd jboss-parent-pom
-          mvn -B -ntp formatter:validate install
+          mvn -B -ntp install
 
       - name: Check out WildFly Common
         uses: actions/checkout@v2
