@@ -1,0 +1,50 @@
+name: JBoss Parent CI Build
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.gitignore'
+      - 'LICENSE'
+      - 'NOTICE'
+      - 'README*'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: build
+
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v2
+        with:
+          path: jboss-parent-pom
+
+      - name: Set up the JDKs
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          architecture: x64
+          java-version: |
+            11
+            17
+
+      - name: Install the parent POM snapshot
+        run: |
+          cd jboss-parent-pom
+          mvn -B -ntp formatter:validate install
+
+      - name: Check out WildFly Common
+        uses: actions/checkout@v2
+        with:
+          repository: wildfly/wildfly-common
+          path: wildfly-common
+
+      - name: Test WildFly Common with updated parent
+        run: |
+          cd wildfly-common
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
