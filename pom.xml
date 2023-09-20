@@ -120,7 +120,7 @@
       <version.release.plugin>2.5.3</version.release.plugin>
       <version.resources.plugin>3.3.1</version.resources.plugin>
       <version.shade.plugin>3.4.1</version.shade.plugin>
-      <version.site.plugin>3.8.2</version.site.plugin>
+      <version.site.plugin>3.12.1</version.site.plugin>
       <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
       <version.source.plugin>3.1.0</version.source.plugin>
       <version.surefire.plugin>3.1.2</version.surefire.plugin>
