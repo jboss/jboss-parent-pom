@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Check out project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: jboss-parent-pom
 
@@ -38,7 +38,7 @@ jobs:
           mvn -B -ntp install
 
       - name: Check out WildFly Common
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: wildfly/wildfly-common
           path: wildfly-common
@@ -51,7 +51,7 @@ jobs:
           mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
       - name: Check out WildFly Maven Plugin
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: wildfly/wildfly-maven-plugin
           path: wildfly-maven-plugin
