@@ -310,6 +310,7 @@ They do not need to have any content (i.e. they can be zero-sized).
 |build-release-21|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
 |build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds (_deprecated_).|<<mr-jar-sun-misc>>
 |build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
+|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |===
