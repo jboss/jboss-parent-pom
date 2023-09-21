@@ -110,7 +110,7 @@
       <version.jar.plugin>3.2.2</version.jar.plugin>
       <version.javadoc.plugin>3.6.0</version.javadoc.plugin>
       <version.javancss.plugin>2.1</version.javancss.plugin>
-      <version.jxr.plugin>3.0.0</version.jxr.plugin>
+      <version.jxr.plugin>3.3.0</version.jxr.plugin>
       <version.license.plugin>1.20</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
       <version.plexus.archiver>4.8.0</version.plexus.archiver>
