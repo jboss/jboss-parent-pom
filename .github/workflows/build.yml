@@ -62,3 +62,16 @@ jobs:
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss Modules
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-modules/jboss-modules
+          path: jboss-modules
+
+      - name: Test JBoss Modules with updated parent
+        run: |
+          cd jboss-modules
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
