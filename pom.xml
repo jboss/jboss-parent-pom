@@ -146,8 +146,8 @@
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
       <!-- maven-compiler-plugin -->
-      <maven.compiler.target>1.8</maven.compiler.target>
-      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>11</maven.compiler.target>
+      <maven.compiler.source>11</maven.compiler.source>
       <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
       <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
 
@@ -179,10 +179,7 @@
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
       <version.checkstyle>10.12.3</version.checkstyle>
       <!-- exposed additional params for javadoc, such as Xlint -->
-      <javadoc.additional.params />
-
-      <!-- Special version for MR JAR jdk-misc artifact -->
-      <version.jdk-misc>3.Final</version.jdk-misc>
+      <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
     </properties>
 
     <build>
@@ -851,15 +848,6 @@
           </plugins>
         </build>
       </profile>
-      <profile>
-         <id>doclint-java8-disable</id>
-         <activation>
-           <jdk>[1.8,)</jdk>
-         </activation>
-         <properties>
-           <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
-         </properties>
-       </profile>
       <!--
           This profile can be activated to generate gpg signatures for all build
           artifacts.  This profile requires that the properties "gpg.keyname"
@@ -888,94 +876,9 @@
         </build>
       </profile>
 
-        <!-- This profile is manually activated by a property to include jdk-misc.jar in the base layer build. -->
-        <!-- Deprecated. Use a `provided`-scoped dependency instead. -->
-        <profile>
-            <id>include-jdk-misc</id>
-            <activation>
-                <file>
-                    <exists>${basedir}/build-include-jdk-misc</exists>
-                </file>
-                <jdk>[9,)</jdk>
-            </activation>
-            <dependencies>
-              <dependency>
-                <groupId>org.jboss</groupId>
-                <artifactId>jdk-misc</artifactId>
-              </dependency>
-            </dependencies>
-            <build>
-              <plugins>
-                <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-compiler-plugin</artifactId>
-                  <executions>
-                    <execution>
-                      <id>default-compile</id>
-                      <phase>compile</phase>
-                      <goals>
-                        <goal>compile</goal>
-                      </goals>
-                      <configuration>
-                        <release>8</release>
-                      </configuration>
-                    </execution>
-                  </executions>
-                </plugin>
-                <plugin>
-                  <artifactId>maven-antrun-plugin</artifactId>
-                  <executions>
-                    <execution>
-                      <id>jdk-misc-deprecation</id>
-                      <phase>validate</phase>
-                      <goals>
-                        <goal>run</goal>
-                      </goals>
-                      <configuration>
-                        <target>
-                          <echo message="Usage of the `build-include-jdk-misc` file is now deprecated; instead, add an explicit dependency on org.jboss:jdk-misc within your POM." level="warning"/>
-                        </target>
-                      </configuration>
-                    </execution>
-                  </executions>
-                </plugin>
-              </plugins>
-            </build>
-        </profile>
-
         <!-- MR JAR support begins here -->
 
         <!-- Release flags -->
-
-        <profile>
-            <id>compile-java8-release-flag</id>
-            <activation>
-                <file>
-                    <exists>${basedir}/build-release-8</exists>
-                </file>
-                <jdk>[9,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-compile</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>8</release>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
         <profile>
             <id>compile-java11-release-flag</id>
@@ -1067,175 +970,6 @@
             </build>
         </profile>
 
-        <!-- This profile is activated when Java 9 or later is used to test a project that supports Java 8 -->
-        <profile>
-            <id>java8-test</id>
-            <activation>
-                <jdk>[9,)</jdk>
-                <property>
-                    <name>java8.home</name>
-                </property>
-                <file>
-                    <exists>${basedir}/build-test-java8</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>java8-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <jvm>${java8.home}/bin/java</jvm>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>${java8.home}/lib/tools.jar</additionalClasspathElement>
-                                    </additionalClasspathElements>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- This profile is activated when Java 9 or later is used to build -->
-        <profile>
-            <id>java9-mr-build</id>
-            <activation>
-                <jdk>[9,)</jdk>
-                <file>
-                    <exists>${basedir}/src/main/java9</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>compile-java9</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>9</release>
-                                    <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java9</compileSourceRoots>
-                                    <multiReleaseOutput>true</multiReleaseOutput>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- This profile is activated when Java 10 or later is used to build -->
-        <profile>
-            <id>java10-mr-build</id>
-            <activation>
-                <jdk>[10,)</jdk>
-                <file>
-                    <exists>${basedir}/src/main/java10</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>compile-java10</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>10</release>
-                                    <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java10</compileSourceRoots>
-                                    <multiReleaseOutput>true</multiReleaseOutput>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- This profile is activated when Java 11 or later is used to build -->
-        <profile>
-            <id>java11-mr-build</id>
-            <activation>
-                <jdk>[11,)</jdk>
-                <file>
-                    <exists>${basedir}/src/main/java11</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>compile-java11</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>11</release>
-                                    <buildDirectory>${project.build.directory}</buildDirectory>
-                                    <compileSourceRoots>${project.basedir}/src/main/java11</compileSourceRoots>
-                                    <multiReleaseOutput>true</multiReleaseOutput>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <!-- This profile is activated when Java 12 or later is used to test a project that supports Java 11 -->
         <profile>
             <id>java11-test</id>
@@ -1262,53 +996,6 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java11.home}/bin/java</jvm>
-                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/11
-                                    </classesDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- This profile is activated when the baseline JDK version running tests is Java 11 -->
-        <profile>
-            <id>java11-test-classpath</id>
-            <activation>
-                <jdk>[11,12)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-test</id>
-                                <configuration>
-                                    <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11
-                                    </classesDirectory>
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.outputDirectory}
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1625,15 +1312,6 @@
                                         <additionalClasspathElement>
                                             ${project.build.directory}/classes/META-INF/versions/12
                                         </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
                                         <additionalClasspathElement>${project.build.outputDirectory}
                                         </additionalClasspathElement>
                                     </additionalClasspathElements>
@@ -1677,15 +1355,6 @@
                                         </additionalClasspathElement>
                                         <additionalClasspathElement>
                                             ${project.build.directory}/classes/META-INF/versions/12
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
                                         </additionalClasspathElement>
                                         <additionalClasspathElement>${project.build.outputDirectory}
                                         </additionalClasspathElement>
@@ -1930,15 +1599,6 @@
                                         <additionalClasspathElement>
                                             ${project.build.directory}/classes/META-INF/versions/12
                                         </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
-                                        </additionalClasspathElement>
                                         <additionalClasspathElement>${project.build.outputDirectory}
                                         </additionalClasspathElement>
                                     </additionalClasspathElements>
@@ -1994,15 +1654,6 @@
                                         </additionalClasspathElement>
                                         <additionalClasspathElement>
                                             ${project.build.directory}/classes/META-INF/versions/12
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/11
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/10
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/classes/META-INF/versions/9
                                         </additionalClasspathElement>
                                         <additionalClasspathElement>${project.build.outputDirectory}
                                         </additionalClasspathElement>
