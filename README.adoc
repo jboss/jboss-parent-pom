@@ -36,7 +36,7 @@ Start out by adding the parent configuration to your pom.
 
 The pom includes properties which allow various build configuration to
 be customized. For example, to override the default version of the
-maven-compiler-plugin, just set a property.
+`maven-compiler-plugin`, just set a property.
 
 [source,xml]
 ----
@@ -46,13 +46,13 @@ maven-compiler-plugin, just set a property.
 ----
 
 Or override the default Java compiler source and target level used in
-the build. Note the default level is 1.8.
+the build. Note the default level is 11. Also note that the preferred way to set the source/target version for compilation is to use one of the `build-release-XXX` <<build-control-files,control files>> instead, which will set the `javac` `--release` flag to the corresponding version.
 
 [source,xml]
 ----
 <properties>
-  <maven.compiler.target>1.7</maven.compiler.target>
-  <maven.compiler.source>1.7</maven.compiler.source>
+  <maven.compiler.target>17</maven.compiler.target>
+  <maven.compiler.source>17</maven.compiler.source>
 </properties>
 ----
 
@@ -62,20 +62,19 @@ set via properties.
 [source,xml]
 ----
 <properties>
-  <maven.min.version>3.0.3</maven.min.version>
-  <jdk.min.version>1.7</jdk.min.version>
+  <maven.min.version>3.9.0</maven.min.version>
+  <jdk.min.version>17</jdk.min.version>
 </properties>
 ----
 
-If jdk.min.version is not set, it defaults to version defined by
-maven.compiler.source
+If `jdk.min.version` is not set, it defaults to the version defined by the `maven.compiler.source` property.
 
 For the full list of properties, refer to the POM itself.
 
 [id='the-jboss-release-profile']
 == The JBoss Release Profile
 
-The parent POM includes a Maven profile called "jboss-release". This
+The parent POM includes a Maven profile called `jboss-release`. This
 profile contains settings for generating a full project source archive,
 javadoc jar files, and release deployment metadata. If using the Maven
 release plugin, this profile will automatically be activate during the
@@ -103,7 +102,7 @@ mvn -Pgpg-sign deploy
 ----
 
 In order for the gpg plugin to properly create a signature for each
-artifact, the properties "gpg.keyname" and "gpg.passphrase" must be
+artifact, the properties `gpg.keyname` and `gpg.passphrase` must be
 available to the current build. These properties can either be set in a
 build profile, or on the command line.
 
@@ -133,7 +132,7 @@ The multi-release JAR support works in two parts: compilation and testing.
 
 Compilation works by providing extra executions of the compiler plugin in order to build the additional JAR layers.  The
 base layer is built by the standard `default-compile` execution.  After that, Maven profiles are activated based on the
-presence of extra layer source directories (e.g. `src/main/java9`, `src/main/java10` etc.).  These profiles contain
+presence of extra layer source directories (e.g. `src/main/java12`, `src/main/java16` etc.).  These profiles contain
 additional executions of the compiler plugin which compile the sources in the layer directory, while putting the output
 of the previous step on the class path.
 
@@ -143,12 +142,7 @@ multi-release JAR layers.
 
 In order to select the correct class files for the given Java version, the `<release>` property is used.
 This prevents accidental usage of APIs which are only present in later versions than the one
-being compiled.  However there is a limitation to this strategy: Java 9 and later do not provide runtime information
-for non-standard Java 8 classes such as `sun.misc.Unsafe`.  If your project needs to compile against these classes,
-you must include one more dependency as described <<mr-jar-sun-misc,below>>.
-
-Note that by default, building Java 8 sources does not use the `<release>` property.  To enable this feature,
-create a file (which may be empty) in your project root named `build-release-8`.
+being compiled.
 
 [id='mr-jar-testing']
 ==== Testing
@@ -157,7 +151,6 @@ Testing using `maven-surefire-plugin` is supported by running the project unit t
 every supported Java version.  In order to do so, it is expected that the following system
 property or properties are set as needed:
 
-* `java8.home`: this property must be set to the location of a Java 8 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
 * `java21.home`: this property must be set to the location of a Java 21 JDK installation
@@ -178,7 +171,7 @@ To configure a multi-release JAR, you need the following pieces of information:
 [id='mr-jar-base-layer']
 ==== Step 1: Base layer version
 
-Choose your base layer version.  This can be Java 8 or anything later.  Configure the version by configuring the
+Choose your base layer version.  This can be Java 11 or anything later.  Configure the version by configuring the
 `release` property in the `default-compile` execution of `maven-compiler-plugin`:
 
 [source,xml]
@@ -189,17 +182,14 @@ Choose your base layer version.  This can be Java 8 or anything later.  Configur
     <execution>
       <id>default-compile</id>
       <configuration>
-        <release>8</release>
+        <release>17</release>
       </configuration>
     </execution>
   </executions>
 </plugin>
 ----
 
-If the `build-release-8`, `build-release-11`, `build-release-17`, or `build-release-21` file is present in the root of your project, then this step is automatically done for you. Only one such file should be present.
-
-Note that a single-layer Java 8 build does not support the `release` element because the
-corresponding `javac` option is only present in JDK 9 and later.
+If the `build-release-11`, `build-release-17`, or `build-release-21` file is present in the root of your project, then this step is automatically done for you. Only one such file should be present.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -218,11 +208,11 @@ able to compile every version of Java sources from oldest to newest.
 The sources for your base layer continue to reside in `src/main/java` and `src/test/java`.
 
 Additional layers are in directories whose names correspond to the version of Java that
-is targeted by that directory.  For example, sources which are specific to Java 9 and later
-would be in `src/main/java9`, whereas sources which are specific to Java 11 and later would
-be in `src/main/java11`.
+is targeted by that directory.  For example, sources which are specific to Java 13 and later
+would be in `src/main/java13`, whereas sources which are specific to Java 16 and later would
+be in `src/main/java16`.
 
-If you have a class that needs an alternative version for a given Java version, you only
+If you have a class that needs an alternative implementation for a given Java version, you only
 need to provide the replacement source file in the directory corresponding to the _oldest_
 version that supports the alternative source.  It is not necessary to copy identical classes into
 more than one layer; doing so will increase the size of the resultant artifact needlessly.
@@ -231,33 +221,6 @@ There are restrictions on these directories.  You may only provide sources that 
 to sources that exist in the base layer - that is, it is a violation of the MR JAR specification to provide
 sources that introduce new APIs only in later Java versions.  The JDK does enforce this at run time.
 In addition, providing additional public members in later versions is generally not recommended.
-
-[id='mr-jar-sun-misc']
-=== Missing JDK APIs
-
-If your project relies on APIs which are not in the Java SE specification (for example,
-classes such as `sun.misc` which are present in the `jdk.unsupported` module in Java 9 and
-later), and your base layer targets Java 8, you must take an additional step.
-
-Since these APIs are not included in the class database that `javac` uses to compile (even
-though they are present at run time), stubs of the extra classes must be included but only during
-compilation.
-
-This should be done by including the following dependency in your `pom.xml` file:
-
-[source,xml]
-----
-<dependency>
-    <groupId>org.jboss</groupId>
-    <artifactId>jdk-misc</artifactId>
-</dependency>
-----
-
-The added dependency will have the `provided` scope by default.
-
-Previously, this parent POM would add these classes automatically when a file in your project root named `build-include-jdk-misc` was detected.
-This mechanism is deprecated but still functions; adding this file simply adds the above dependency automatically.
-Specifying the dependency in your POM is now recommended instead.
 
 [id='mr-jar-gh-actions']
 === Using MR JAR functions with GitHub Actions
@@ -304,12 +267,9 @@ They do not need to have any content (i.e. they can be zero-sized).
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
-|build-release-8|Use the `<release>` option to set Java 8 for the base layer.|<<mr-jar-base-layer>>
 |build-release-11|Use the `<release>` option to set Java 11 for the base layer.|<<mr-jar-base-layer>>
 |build-release-17|Use the `<release>` option to set Java 17 for the base layer.|<<mr-jar-base-layer>>
 |build-release-21|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
-|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds (_deprecated_).|<<mr-jar-sun-misc>>
-|build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
