@@ -121,7 +121,7 @@
       <version.resources.plugin>3.3.1</version.resources.plugin>
       <!-- DO NOT UPGRADE SHADE PLUGIN DEPENDENCY until https://issues.apache.org/jira/browse/MSHADE-419 is resolved -->
       <!-- See also https://github.com/jboss/jboss-parent-pom/issues/210 -->
-      <version.shade.plugin>3.2.4</version.shade.plugin>
+      <version.shade.plugin>3.5.1</version.shade.plugin>
       <version.site.plugin>3.12.1</version.site.plugin>
       <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
       <version.source.plugin>3.3.0</version.source.plugin>
