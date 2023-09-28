@@ -28,7 +28,6 @@ jobs:
           distribution: temurin
           architecture: x64
           java-version: |
-            8
             11
             17
 
@@ -48,7 +47,7 @@ jobs:
           cd wildfly-common
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
       - name: Check out WildFly Maven Plugin
         uses: actions/checkout@v4
@@ -61,7 +60,7 @@ jobs:
           cd wildfly-maven-plugin
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
       - name: Check out JBoss Modules
         uses: actions/checkout@v4
@@ -74,4 +73,17 @@ jobs:
           cd jboss-modules
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava8.home=${{env.JAVA_HOME_8_X64}} -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss Marshalling
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-remoting/jboss-marshalling
+          path: jboss-marshalling
+
+      - name: Test JBoss Marshalling with updated parent
+        run: |
+          cd jboss-marshalling
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
