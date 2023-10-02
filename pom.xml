@@ -179,7 +179,7 @@
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
-      <version.checkstyle>10.12.3</version.checkstyle>
+      <version.checkstyle>10.12.4</version.checkstyle>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
     </properties>
