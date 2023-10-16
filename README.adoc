@@ -251,7 +251,7 @@ jobs:
             17
 
       - name: Build
-        run: mvn -B verify --file pom.xml -Djava11.home=${{env.JAVA_HOME_11_X64}}
+        run: mvn -B verify --file pom.xml "-Djava11.home=${{env.JAVA_HOME_11_X64}}"
 ----
 
 See also link:https://github.com/actions/setup-java#readme[the README for `actions/setup-java`].
