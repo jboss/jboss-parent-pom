@@ -87,7 +87,7 @@
       <version.archetype.plugin>3.2.1</version.archetype.plugin>
       <version.assembly.plugin>3.1.1</version.assembly.plugin>
       <version.buildhelper.plugin>3.4.0</version.buildhelper.plugin>
-      <version.buildnumber.plugin>1.4</version.buildnumber.plugin>
+      <version.buildnumber.plugin>3.2.0</version.buildnumber.plugin>
       <version.bundle.plugin>5.1.9</version.bundle.plugin>
       <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
       <version.clean.plugin>3.3.1</version.clean.plugin>
