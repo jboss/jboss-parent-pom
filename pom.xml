@@ -89,7 +89,7 @@
       <version.buildhelper.plugin>3.4.0</version.buildhelper.plugin>
       <version.buildnumber.plugin>3.2.0</version.buildnumber.plugin>
       <version.bundle.plugin>5.1.9</version.bundle.plugin>
-      <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
+      <version.checkstyle.plugin>3.3.1</version.checkstyle.plugin>
       <version.clean.plugin>3.3.1</version.clean.plugin>
       <version.clover.plugin>4.1.10.1</version.clover.plugin>
       <version.cobertura.plugin>2.7</version.cobertura.plugin>
@@ -111,7 +111,7 @@
       <version.javadoc.plugin>3.6.0</version.javadoc.plugin>
       <version.javancss.plugin>2.1</version.javancss.plugin>
       <version.jxr.plugin>3.3.1</version.jxr.plugin>
-      <version.license.plugin>2.2.0</version.license.plugin>
+      <version.license.plugin>2.3.0</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
       <version.plexus.archiver>4.8.0</version.plexus.archiver>
       <version.plugin.plugin>3.10.1</version.plugin.plugin>
@@ -121,7 +121,7 @@
       <version.resources.plugin>3.3.1</version.resources.plugin>
       <!-- DO NOT UPGRADE SHADE PLUGIN DEPENDENCY until https://issues.apache.org/jira/browse/MSHADE-419 is resolved -->
       <!-- See also https://github.com/jboss/jboss-parent-pom/issues/210 -->
-      <version.shade.plugin>3.2.4</version.shade.plugin>
+      <version.shade.plugin>3.5.1</version.shade.plugin>
       <version.site.plugin>3.12.1</version.site.plugin>
       <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
       <version.source.plugin>3.3.0</version.source.plugin>
