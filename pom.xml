@@ -113,7 +113,7 @@
       <version.jxr.plugin>3.3.1</version.jxr.plugin>
       <version.license.plugin>2.3.0</version.license.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
-      <version.plexus.archiver>4.8.0</version.plexus.archiver>
+      <version.plexus.archiver>4.9.0</version.plexus.archiver>
       <version.plugin.plugin>3.10.1</version.plugin.plugin>
       <version.pmd.plugin>3.21.2</version.pmd.plugin>
       <version.rar.plugin>3.0.0</version.rar.plugin>
