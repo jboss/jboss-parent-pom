@@ -774,17 +774,6 @@
 
     </build>
 
-    <dependencyManagement>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss</groupId>
-          <artifactId>jdk-misc</artifactId>
-          <version>${version.jdk-misc}</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-    </dependencyManagement>
-
     <profiles>
 
       <!--
