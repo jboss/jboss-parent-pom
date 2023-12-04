@@ -821,7 +821,8 @@
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-deploy-plugin</artifactId>
               <configuration>
-                <updateReleaseInfo>true</updateReleaseInfo>
+                <altReleaseDeploymentRepository>${jboss.releases.repo.id}::${jboss.releases.repo.url}</altReleaseDeploymentRepository>
+                <altSnapshotDeploymentRepository>${jboss.snapshots.repo.id}::${jboss.snapshots.repo.url}</altSnapshotDeploymentRepository>
               </configuration>
             </plugin>
             <plugin>
