@@ -87,3 +87,68 @@ jobs:
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss Logging Dev Tools
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-logging/logging-dev-tools
+          path: logging-dev-tools
+
+      - name: Prepare for testing logging projects with updated parent
+        run: |
+          cd logging-dev-tools
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss LogManager
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-logging/jboss-logmanager
+          path: jboss-logmanager
+
+      - name: Test JBoss LogManager with updated parents
+        run: |
+          cd jboss-logmanager
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss Logging
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-logging/jboss-logging
+          path: jboss-logging
+
+      - name: Test JBoss Logging with updated parents
+        run: |
+          cd jboss-logging
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out JBoss Logging Tools
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-logging/jboss-logging-tools
+          path: jboss-logging-tools
+
+      - name: Test JBoss Logging Tools with updated parents
+        run: |
+          cd jboss-logging-tools
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - name: Check out Log4j2 to JBoss LogManager bridge
+        uses: actions/checkout@v4
+        with:
+          repository: jboss-logging/log4j2-jboss-logmanager
+          path: log4j2-jboss-logmanager
+
+      - name: Test Log4j2 to JBoss LogManager bridge with updated parents
+        run: |
+          cd log4j2-jboss-logmanager
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
