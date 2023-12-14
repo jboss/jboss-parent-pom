@@ -125,11 +125,18 @@
       <version.site.plugin>3.12.1</version.site.plugin>
       <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
       <version.source.plugin>3.3.0</version.source.plugin>
-      <version.surefire.plugin>3.2.3</version.surefire.plugin>
-      <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
+      <version.surefire.plugin>${version.surefire}</version.surefire.plugin>
+      <version.surefire-report.plugin>${version.surefire}</version.surefire-report.plugin>
+      <version.failsafe.plugin>${version.surefire}</version.failsafe.plugin>
       <version.versions.plugin>2.16.2</version.versions.plugin>
       <version.war.plugin>3.4.0</version.war.plugin>
       <version.zanata.plugin>4.6.2</version.zanata.plugin>
+
+      <!-- ***************** -->
+      <!-- Other versions -->
+      <!-- ***************** -->
+      <version.checkstyle>10.12.6</version.checkstyle>
+      <version.surefire>3.2.3</version.surefire>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
@@ -179,7 +186,6 @@
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
-      <version.checkstyle>10.12.6</version.checkstyle>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
     </properties>
@@ -583,6 +589,11 @@
                 <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
               </systemPropertyVariables>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>${version.surefire-report.plugin}</version>
           </plugin>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
