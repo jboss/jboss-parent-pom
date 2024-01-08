@@ -49,6 +49,13 @@ jobs:
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
+      - name: Test WildFly Common for no regression of #253
+        run: |
+          cd wildfly-common
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
       - name: Check out WildFly Maven Plugin
         uses: actions/checkout@v4
         with:
