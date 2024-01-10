@@ -137,7 +137,7 @@
       <!-- Other versions -->
       <!-- ***************** -->
       <version.checkstyle>10.12.7</version.checkstyle>
-      <version.surefire>3.2.3</version.surefire>
+      <version.surefire>3.2.5</version.surefire>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
