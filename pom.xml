@@ -125,7 +125,7 @@
       <version.site.plugin>3.12.1</version.site.plugin>
       <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
       <!-- DO NOT UPGRADE SOURCE PLUGIN DEPENDENCY until https://issues.apache.org/jira/browse/MSOURCES-140 is resolved -->
-      <version.source.plugin>3.2.1</version.source.plugin>
+      <version.source.plugin>3.3.1</version.source.plugin>
       <version.surefire.plugin>${version.surefire}</version.surefire.plugin>
       <version.surefire-report.plugin>${version.surefire}</version.surefire-report.plugin>
       <version.failsafe.plugin>${version.surefire}</version.failsafe.plugin>
