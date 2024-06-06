@@ -89,7 +89,7 @@
       <version.buildhelper.plugin>3.6.0</version.buildhelper.plugin>
       <version.buildnumber.plugin>3.2.0</version.buildnumber.plugin>
       <version.bundle.plugin>5.1.9</version.bundle.plugin>
-      <version.checkstyle.plugin>3.3.1</version.checkstyle.plugin>
+      <version.checkstyle.plugin>3.4.0</version.checkstyle.plugin>
       <version.clean.plugin>3.3.2</version.clean.plugin>
       <version.clover.plugin>4.1.10.1</version.clover.plugin>
       <version.cobertura.plugin>2.7</version.cobertura.plugin>
