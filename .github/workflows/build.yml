@@ -51,7 +51,7 @@ jobs:
           git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
+          mvn -B -ntp install -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
 
       - name: Test WildFly Common for no regression of #253
         run: |
@@ -60,7 +60,7 @@ jobs:
           git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
+          mvn -B -ntp package install -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
 
       - name: Check out WildFly Maven Plugin
         uses: actions/checkout@v4
