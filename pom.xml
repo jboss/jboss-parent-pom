@@ -94,7 +94,7 @@
       <version.clover.plugin>4.1.10.1</version.clover.plugin>
       <version.cobertura.plugin>2.7</version.cobertura.plugin>
       <version.compiler.plugin>3.13.0</version.compiler.plugin>
-      <version.dependency.plugin>3.6.1</version.dependency.plugin>
+      <version.dependency.plugin>3.7.0</version.dependency.plugin>
       <version.deploy.plugin>3.1.2</version.deploy.plugin>
       <version.download.plugin>1.9.0</version.download.plugin>
       <version.ear.plugin>3.3.0</version.ear.plugin>
