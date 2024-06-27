@@ -123,7 +123,7 @@
       <!-- See also https://github.com/jboss/jboss-parent-pom/issues/210 -->
       <version.shade.plugin>3.2.4</version.shade.plugin>
       <version.site.plugin>3.12.1</version.site.plugin>
-      <version.sonar.plugin>3.7.0.1746</version.sonar.plugin>
+      <version.sonar.plugin>4.0.0.4121</version.sonar.plugin>
       <!-- DO NOT UPGRADE SOURCE PLUGIN DEPENDENCY until https://issues.apache.org/jira/browse/MSOURCES-140 is resolved -->
       <version.source.plugin>3.2.1</version.source.plugin>
       <version.surefire.plugin>${version.surefire}</version.surefire.plugin>
@@ -537,7 +537,7 @@
             <version>${version.site.plugin}</version>
           </plugin>
           <plugin>
-            <groupId>org.sonarscope.scanner.maven</groupId>
+            <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
             <version>${version.sonar.plugin}</version>
           </plugin>
