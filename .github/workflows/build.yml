@@ -30,6 +30,8 @@ jobs:
           java-version: |
             11
             17
+            21
+            23
 
       - name: Install the parent POM snapshot
         run: |
@@ -47,14 +49,14 @@ jobs:
           cd wildfly-common
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Test WildFly Common for no regression of #253
         run: |
           cd wildfly-common
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out WildFly Maven Plugin
         uses: actions/checkout@v4
@@ -67,7 +69,7 @@ jobs:
           cd wildfly-maven-plugin
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Modules
         uses: actions/checkout@v4
@@ -80,7 +82,7 @@ jobs:
           cd jboss-modules
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Marshalling
         uses: actions/checkout@v4
@@ -93,7 +95,7 @@ jobs:
           cd jboss-marshalling
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging Dev Tools
         uses: actions/checkout@v4
@@ -106,7 +108,7 @@ jobs:
           cd logging-dev-tools
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss LogManager
         uses: actions/checkout@v4
@@ -119,7 +121,7 @@ jobs:
           cd jboss-logmanager
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging
         uses: actions/checkout@v4
@@ -132,7 +134,7 @@ jobs:
           cd jboss-logging
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging Tools
         uses: actions/checkout@v4
@@ -145,7 +147,7 @@ jobs:
           cd jboss-logging-tools
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out Log4j2 to JBoss LogManager bridge
         uses: actions/checkout@v4
@@ -158,4 +160,4 @@ jobs:
           cd log4j2-jboss-logmanager
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
