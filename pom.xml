@@ -136,7 +136,7 @@
       <!-- ***************** -->
       <!-- Other versions -->
       <!-- ***************** -->
-      <version.checkstyle>10.19.0</version.checkstyle>
+      <version.checkstyle>10.20.0</version.checkstyle>
       <version.surefire>3.5.1</version.surefire>
 
       <!-- ***************** -->
