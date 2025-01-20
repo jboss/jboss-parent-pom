@@ -59,12 +59,14 @@ jobs:
           mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out WildFly Maven Plugin
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: wildfly/wildfly-maven-plugin
           path: wildfly-maven-plugin
 
       - name: Test WildFly Maven Plugin with updated parent
+        if: always()
         run: |
           cd wildfly-maven-plugin
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -72,12 +74,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Modules
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-modules/jboss-modules
           path: jboss-modules
 
       - name: Test JBoss Modules with updated parent
+        if: always()
         run: |
           cd jboss-modules
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -85,12 +89,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Marshalling
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-remoting/jboss-marshalling
           path: jboss-marshalling
 
       - name: Test JBoss Marshalling with updated parent
+        if: always()
         run: |
           cd jboss-marshalling
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -98,12 +104,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging Dev Tools
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-logging/logging-dev-tools
           path: logging-dev-tools
 
       - name: Prepare for testing logging projects with updated parent
+        if: always()
         run: |
           cd logging-dev-tools
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -111,12 +119,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss LogManager
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-logging/jboss-logmanager
           path: jboss-logmanager
 
       - name: Test JBoss LogManager with updated parents
+        if: always()
         run: |
           cd jboss-logmanager
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -124,12 +134,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-logging/jboss-logging
           path: jboss-logging
 
       - name: Test JBoss Logging with updated parents
+        if: always()
         run: |
           cd jboss-logging
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -137,12 +149,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging Tools
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-logging/jboss-logging-tools
           path: jboss-logging-tools
 
       - name: Test JBoss Logging Tools with updated parents
+        if: always()
         run: |
           cd jboss-logging-tools
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
@@ -150,12 +164,14 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out Log4j2 to JBoss LogManager bridge
+        if: always()
         uses: actions/checkout@v4
         with:
           repository: jboss-logging/log4j2-jboss-logmanager
           path: log4j2-jboss-logmanager
 
       - name: Test Log4j2 to JBoss LogManager bridge with updated parents
+        if: always()
         run: |
           cd log4j2-jboss-logmanager
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
