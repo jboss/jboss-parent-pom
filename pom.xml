@@ -900,9 +900,9 @@
                             </execution>
                             <execution>
                                 <id>default-testCompile</id>
-                                <phase>compile</phase>
+                                <phase>test-compile</phase>
                                 <goals>
-                                    <goal>compile</goal>
+                                    <goal>testCompile</goal>
                                 </goals>
                                 <configuration>
                                     <release>11</release>
@@ -951,9 +951,9 @@
                             </execution>
                             <execution>
                                 <id>default-testCompile</id>
-                                <phase>compile</phase>
+                                <phase>test-compile</phase>
                                 <goals>
-                                    <goal>compile</goal>
+                                    <goal>testCompile</goal>
                                 </goals>
                                 <configuration>
                                     <release>17</release>
@@ -1002,9 +1002,9 @@
                             </execution>
                             <execution>
                                 <id>default-testCompile</id>
-                                <phase>compile</phase>
+                                <phase>test-compile</phase>
                                 <goals>
-                                    <goal>compile</goal>
+                                    <goal>testCompile</goal>
                                 </goals>
                                 <configuration>
                                     <release>21</release>
