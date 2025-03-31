@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: daily
     open-pull-requests-limit: 15
+    groups:
+      surefire:
+        patterns:
+          - org.apache.maven.plugins:maven-surefire-plugin
+          - org.apache.maven.plugins:maven-failsafe-plugin
+          - org.apache.maven.plugins:maven-surefire-report-plugin
   - package-ecosystem: "github-actions"
     # Workflow files stored in the
     # default location of `.github/workflows`
