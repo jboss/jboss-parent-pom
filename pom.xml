@@ -460,7 +460,6 @@
             <version>${version.javadoc.plugin}</version>
             <configuration>
               <header><![CDATA[<b>${project.name} ${project.version}</b>]]></header>
-              <footer><![CDATA[<b>${project.name} ${project.version}</b>]]></footer>
               <archive>
                 <index>true</index>
                 <manifest>
