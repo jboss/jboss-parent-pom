@@ -31,7 +31,7 @@ jobs:
             11
             17
             21
-            23
+            24
 
       - name: Install the parent POM snapshot
         run: |
