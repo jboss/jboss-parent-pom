@@ -45,16 +45,28 @@ be customized. For example, to override the default version of the
 </properties>
 ----
 
-Or override the default Java compiler source and target level used in
-the build. Note the default level is 11. Also note that the preferred way to set the source/target version for compilation is to use one of the `build-release-XXX` <<build-control-files,control files>> instead, which will set the `javac` `--release` flag to the corresponding version.
+Or override the default Java compiler release level used in the build. This uses the `javac --release` argument to compile
+for the specified Java SE release. Note the default level is 11.
 
 [source,xml]
 ----
 <properties>
-  <maven.compiler.target>17</maven.compiler.target>
-  <maven.compiler.source>17</maven.compiler.source>
+  <maven.compiler.release>17</maven.compiler.release>
 </properties>
 ----
+
+If you need tests compiled at a different level, you can use the `maven.compiler.testRelease` property. This defaults
+to the `maven.compiler.release` property.
+
+[source,xml]
+----
+<properties>
+  <maven.compiler.testRelease>21</maven.compiler.testRelease>
+</properties>
+----
+
+NOTE: If you're compiling down to Java 1.8, you can still use the `maven.compiler.release` property. Simply set the
+value to `1.8` and it the appropriate settings will be configured.
 
 The minimum version of Java or Maven required to run a build can also be
 set via properties.
@@ -67,7 +79,7 @@ set via properties.
 </properties>
 ----
 
-If `jdk.min.version` is not set, it defaults to the version defined by the `maven.compiler.source` property.
+If `jdk.min.version` is not set, it defaults to the version defined by the `maven.compiler.release` property.
 
 For the full list of properties, refer to the POM itself.
 
@@ -171,25 +183,8 @@ To configure a multi-release JAR, you need the following pieces of information:
 [id='mr-jar-base-layer']
 ==== Step 1: Base layer version
 
-Choose your base layer version.  This can be Java 11 or anything later.  Configure the version by configuring the
-`release` property in the `default-compile` execution of `maven-compiler-plugin`:
-
-[source,xml]
-----
-<plugin>
-  <artifactId>maven-compiler-plugin</artifactId>
-  <executions>
-    <execution>
-      <id>default-compile</id>
-      <configuration>
-        <release>17</release>
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
-----
-
-If the `build-release-11`, `build-release-17`, or `build-release-21` file is present in the root of your project, then this step is automatically done for you. Only one such file should be present.
+Choose your base layer version. This can be Java 11 or anything later. Set the `maven.compiler.release` property to
+your desired version and this will configure the `maven-compiler-plugin` with the release version.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -267,9 +262,6 @@ They do not need to have any content (i.e. they can be zero-sized).
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
-|build-release-11|Use the `<release>` option to set Java 11 for the base layer.|<<mr-jar-base-layer>>
-|build-release-17|Use the `<release>` option to set Java 17 for the base layer.|<<mr-jar-base-layer>>
-|build-release-21|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>

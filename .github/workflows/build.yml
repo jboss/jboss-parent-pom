@@ -47,16 +47,20 @@ jobs:
       - name: Test WildFly Common with updated parent
         run: |
           cd wildfly-common
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
 
       - name: Test WildFly Common for no regression of #253
         run: |
           cd wildfly-common
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
 
       - name: Check out WildFly Maven Plugin
         uses: actions/checkout@v4
@@ -67,6 +71,8 @@ jobs:
       - name: Test WildFly Maven Plugin with updated parent
         run: |
           cd wildfly-maven-plugin
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -80,6 +86,8 @@ jobs:
       - name: Test JBoss Modules with updated parent
         run: |
           cd jboss-modules
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -93,6 +101,8 @@ jobs:
       - name: Test JBoss Marshalling with updated parent
         run: |
           cd jboss-marshalling
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -106,6 +116,8 @@ jobs:
       - name: Prepare for testing logging projects with updated parent
         run: |
           cd logging-dev-tools
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -119,6 +131,8 @@ jobs:
       - name: Test JBoss LogManager with updated parents
         run: |
           cd jboss-logmanager
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -132,6 +146,8 @@ jobs:
       - name: Test JBoss Logging with updated parents
         run: |
           cd jboss-logging
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -145,6 +161,8 @@ jobs:
       - name: Test JBoss Logging Tools with updated parents
         run: |
           cd jboss-logging-tools
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
@@ -158,6 +176,8 @@ jobs:
       - name: Test Log4j2 to JBoss LogManager bridge with updated parents
         run: |
           cd log4j2-jboss-logmanager
+          find . -name "build-release*" | xargs rm -rfv
+          git status
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}

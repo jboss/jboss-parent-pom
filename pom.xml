@@ -157,30 +157,23 @@
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
       <!-- maven-compiler-plugin -->
-      <maven.compiler.target>11</maven.compiler.target>
-      <maven.compiler.source>11</maven.compiler.source>
-      <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
-      <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
-
-      <!--
-          Options to override the compiler arguments directly on the compiler argument line to separate between what
-          the IDE understands as the source level and what the Maven compiler actually use.
-      -->
-      <maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
-      <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
-      <maven.compiler.argument.testTarget>${maven.compiler.testTarget}</maven.compiler.argument.testTarget>
-      <maven.compiler.argument.testSource>${maven.compiler.testSource}</maven.compiler.argument.testSource>
+      <maven.compiler.release>11</maven.compiler.release>
+      <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
+      <maven.compiler.source>${maven.compiler.release}</maven.compiler.source>
+      <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
+      <maven.compiler.testTarget>${maven.compiler.testRelease}</maven.compiler.testTarget>
+      <maven.compiler.testSource>${maven.compiler.testRelease}</maven.compiler.testSource>
 
       <!-- maven-enforcer-plugin -->
       <maven.min.version>3.6.2</maven.min.version>
-      <jdk.min.version>${maven.compiler.argument.source}</jdk.min.version>
+      <jdk.min.version>${maven.compiler.release}</jdk.min.version>
       <insecure.repositories>ERROR</insecure.repositories>
 
       <!-- maven-idea-plugin & maven-eclipse-plugin -->
       <downloadSources>true</downloadSources>
 
       <!-- maven-pmd-plugin -->
-      <targetJdk>${maven.compiler.argument.target}</targetJdk>
+      <targetJdk>${maven.compiler.release}</targetJdk>
 
       <!-- maven-release-plugin -->
       <useReleaseProfile>false</useReleaseProfile>
@@ -322,10 +315,6 @@
             <configuration>
               <showDeprecation>true</showDeprecation>
               <showWarnings>true</showWarnings>
-              <source>${maven.compiler.argument.source}</source>
-              <target>${maven.compiler.argument.target}</target>
-              <testSource>${maven.compiler.argument.testSource}</testSource>
-              <testTarget>${maven.compiler.argument.testTarget}</testTarget>
               <compilerArgs>
                 <arg>-Xlint:unchecked</arg>
               </compilerArgs>
@@ -739,6 +728,25 @@
                 </rules>
               </configuration>
             </execution>
+            <execution>
+              <id>enforce-no-release-files</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireFilesDontExist>
+                    <files>
+                      <file>${basedir}/build-release-11</file>
+                      <file>${basedir}/build-release-17</file>
+                      <file>${basedir}/build-release-21</file>
+                    </files>
+                    <message>Please remove the build-release-* file and add the maven.compiler.release property to your the properties in your pom.xml.</message>
+                  </requireFilesDontExist>
+                </rules>
+                <fail>true</fail>
+              </configuration>
+            </execution>
           </executions>
         </plugin>
 
@@ -876,146 +884,6 @@
       </profile>
 
         <!-- MR JAR support begins here -->
-
-        <!-- Release flags -->
-
-        <profile>
-            <id>compile-java11-release-flag</id>
-            <activation>
-                <file>
-                    <exists>${basedir}/build-release-11</exists>
-                </file>
-                <jdk>[11,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-compile</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>11</release>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>default-testCompile</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                    <goal>testCompile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>11</release>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <configuration>
-                            <source>11</source>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>compile-java17-release-flag</id>
-            <activation>
-                <file>
-                    <exists>${basedir}/build-release-17</exists>
-                </file>
-                <jdk>[17,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-compile</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>17</release>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>default-testCompile</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                    <goal>testCompile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>17</release>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <configuration>
-                            <source>17</source>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>compile-java21-release-flag</id>
-            <activation>
-                <file>
-                    <exists>${basedir}/build-release-21</exists>
-                </file>
-                <jdk>[21,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-compile</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>21</release>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>default-testCompile</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                    <goal>testCompile</goal>
-                                </goals>
-                                <configuration>
-                                    <release>21</release>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                      <configuration>
-                          <source>21</source>
-                      </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
         <!-- This profile is activated when Java 12 or later is used to test a project that supports Java 11 -->
         <profile>
