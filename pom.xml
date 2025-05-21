@@ -143,10 +143,9 @@
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
       <!-- ***************** -->
-      <jboss.releases.repo.id>jboss-releases-repository</jboss.releases.repo.id>
-      <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
-      <jboss.snapshots.repo.id>jboss-snapshots-repository</jboss.snapshots.repo.id>
-      <jboss.snapshots.repo.url>https://repository.jboss.org/nexus/content/repositories/snapshots/</jboss.snapshots.repo.url>
+      <nexus.serverId>jboss</nexus.serverId>
+      <nexus.repo.name>releases</nexus.repo.name>
+      <nexus.repo.url>https://repository.jboss.org/nexus3</nexus.repo.url>
 
       <!-- ************** -->
       <!-- Build settings -->
@@ -181,8 +180,13 @@
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
+      <skipReleaseAssembly>false</skipReleaseAssembly>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
+
+      <!-- maven-gpg-plugin -->
+      <!-- set this to "error" to require a GPG agent-->
+      <gpg.pinEntryMode>loopback</gpg.pinEntryMode>
     </properties>
 
     <build>
@@ -823,6 +827,7 @@
                     <goal>single</goal>
                   </goals>
                   <configuration>
+                    <skipAssembly>${skipReleaseAssembly}</skipAssembly>
                     <runOnlyAtExecutionRoot>true</runOnlyAtExecutionRoot>
                     <descriptorRefs>
                       <descriptorRef>${sourceReleaseAssemblyDescriptor}</descriptorRef>
@@ -835,10 +840,50 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-deploy-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>default-deploy</id>
+                  <phase>none</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nxrm3-maven-plugin</artifactId>
+              <extensions>true</extensions>
               <configuration>
-                <altReleaseDeploymentRepository>${jboss.releases.repo.id}::${jboss.releases.repo.url}</altReleaseDeploymentRepository>
-                <altSnapshotDeploymentRepository>${jboss.snapshots.repo.id}::${jboss.snapshots.repo.url}</altSnapshotDeploymentRepository>
+                <serverId>${nexus.serverId}</serverId>
+                <nexusUrl>${nexus.repo.url}</nexusUrl>
+                <repository>${nexus.repo.name}</repository>
               </configuration>
+              <executions>
+                <execution>
+                  <id>nexus-deploy</id>
+                  <phase>deploy</phase>
+                  <goals>
+                    <goal>deploy</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <configuration>
+                <useAgent>true</useAgent>
+                <gpgArguments>
+                  <arg>--pinentry-mode</arg>
+                  <arg>${gpg.pinEntryMode}</arg>
+                </gpgArguments>
+              </configuration>
+              <executions>
+                <execution>
+                  <id>gpg-sign</id>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -860,6 +905,10 @@
           artifacts.  This profile requires that the properties "gpg.keyname"
           and "gpg.passphrase" are available to the current build.
       -->
+      <!--
+        Note that this duplicates the execution within jboss-release;
+        because they have the same id, it will run only once if both are enabled
+      -->
       <profile>
         <id>gpg-sign</id>
         <build>
@@ -870,9 +919,14 @@
               <artifactId>maven-gpg-plugin</artifactId>
               <configuration>
                 <useAgent>true</useAgent>
+                <gpgArguments>
+                  <arg>--pinentry-mode</arg>
+                  <arg>${gpg.pinEntryMode}</arg>
+                </gpgArguments>
               </configuration>
               <executions>
                 <execution>
+                  <id>gpg-sign</id>
                   <goals>
                     <goal>sign</goal>
                   </goals>
