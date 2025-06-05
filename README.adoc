@@ -88,47 +88,99 @@ For the full list of properties, refer to the POM itself.
 
 The parent POM includes a Maven profile called `jboss-release`. This
 profile contains settings for generating a full project source archive,
-javadoc jar files, and release deployment metadata. If using the Maven
-release plugin, this profile will automatically be activate during the
+javadoc jar files, and release deployment metadata.
+
+It also includes configuration for automatically deploying to a Nexus 3 server.
+
+If using the Maven
+release plugin, this profile will automatically be activated during the
 release:perform step.
 
 If the Maven release plugin is not used during the release process, the
 profile can be manually activated from the command line during a release
 build.
 
+To authenticate to the remote Nexus server, a username and password token is generally required.
+Contact your server administrator to get this information. The correct authentication configuration is determined by the `nexus.serverId` property, which defaults to `jboss`. In your `settings.xml`, you would have a configuration like this:
+
+.Example `settings.xml` snippet for deployment authentication
+[source,xml]
+----
+<servers>
+    <!-- ... -->
+    <server>
+        <id>jboss</id> <!-- this is the nexus.serverId -->
+        <!-- these are base64-encoded tokens provided by your admin -->
+        <username>xxxxxxxx</username>
+        <password>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</password>
+    </server>
+</servers>
+----
+
+In addition, the release artifacts will be signed (see <<the-gpg-sign-profile>> for information on how to customize GPG signing).
+
+The `jboss-release` profile will by default also produce an extra top-level artifact with the suffix `-source-release`.
+This artifact will contain the complete contents of the source tree used to deploy the project.
+This behavior may be disabled by setting the `skipReleaseAssembly` property to `true`.
+
+.Usage example for the `jboss-release` profile
 [source,bash]
 ----
 mvn -Pjboss-release deploy
 ----
 
+[id='release-profile-configuration']
+=== Release profile configuration
+
+The following properties configure aspects of the release profile behavior:
+
+[cols="1m,1m,2",options="header"]
+|===
+|Property|Default|Description
+|nexus.serverId|jboss|The server ID used for deployment.
+|nexus.repo.url|https://repository.jboss.org/nexus3|The URL of the Nexus 3 server to deploy to.
+|nexus.repo.name|releases|The name of the repository to deploy to.
+|skipReleaseAssembly|false|If `true`, the `-source-release` artifact will not be created.
+|===
+
 [id='the-gpg-sign-profile']
 == The GPG Sign Profile
 
-This POM includes a Maven profile called "gpg-sign" which provides
+This POM includes a Maven profile called "gpg-sign" which provides a
 default configuration to generate GPG signatures for the build
 artifacts.
 
+*Note:* if the <<the-jboss-release-profile>> is used, then GPG signing is automatically enabled, and this profile does not need to be explicitly activated.
+
+.Example Maven command line for activating GPG signing
 [source,bash]
 ----
 mvn -Pgpg-sign deploy
 ----
 
 In order for the gpg plugin to properly create a signature for each
-artifact, the properties `gpg.keyname` and `gpg.passphrase` must be
-available to the current build. These properties can either be set in a
+artifact, the properties `gpg.keyname` and `gpg.passphrase` may be used.
+These properties can either be set in a
 build profile, or on the command line.
 
+.Example GPG key properties
 [source,xml]
 ----
-<profile>
-  <id>gpg-config</id>
-  <properties>
+<properties>
     <gpg.keyname>me@home.com</gpg.keyname>
     <!-- Don't keep passphrase in plain text! -->
     <gpg.passphrase>secret</gpg.passphrase>
-  </properties>
-</profile>
+</properties>
 ----
+
+If no `gpg.keyname` is given, then the default GPG key will be used.
+If no default GPG is configured, then the default key will be the first key found in the local secret keyring.
+
+If no `gpg.passphrase` is given, then the GPG plugin will attempt to acquire the passphrase from a GPG agent.
+If that fails, it will attempt to read the passphrase from the console.
+
+To prevent the passphrase from being read on the console,
+set the `gpg.pinEntryMode` property to `error`.
 
 [id='mr-jars']
 == Multi-Release JARs
