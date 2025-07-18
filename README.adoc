@@ -104,31 +104,39 @@ mvn -Pjboss-release deploy
 [id='the-gpg-sign-profile']
 == The GPG Sign Profile
 
-This POM includes a Maven profile called "gpg-sign" which provides
+This POM includes a Maven profile called "gpg-sign" which provides a
 default configuration to generate GPG signatures for the build
 artifacts.
 
+.Example Maven command line for activating GPG signing
 [source,bash]
 ----
 mvn -Pgpg-sign deploy
 ----
 
 In order for the gpg plugin to properly create a signature for each
-artifact, the properties `gpg.keyname` and `gpg.passphrase` must be
-available to the current build. These properties can either be set in a
+artifact, the properties `gpg.keyname` and `gpg.passphrase` may be used.
+These properties can either be set in a
 build profile, or on the command line.
 
+.Example GPG key properties
 [source,xml]
 ----
-<profile>
-  <id>gpg-config</id>
-  <properties>
+<properties>
     <gpg.keyname>me@home.com</gpg.keyname>
     <!-- Don't keep passphrase in plain text! -->
     <gpg.passphrase>secret</gpg.passphrase>
-  </properties>
-</profile>
+</properties>
 ----
+
+If no `gpg.keyname` is given, then the default GPG key will be used.
+If no default GPG is configured, then the default key will be the first key found in the local secret keyring.
+
+If no `gpg.passphrase` is given, then the GPG plugin will attempt to acquire the passphrase from a GPG agent.
+If that fails, it will attempt to read the passphrase from the console.
+
+To prevent the passphrase from being read on the console,
+set the `gpg.pinEntryMode` property to `error`.
 
 [id='mr-jars']
 == Multi-Release JARs
