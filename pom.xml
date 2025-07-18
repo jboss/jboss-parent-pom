@@ -141,12 +141,13 @@
       <version.surefire>3.5.3</version.surefire>
 
       <!-- ***************** -->
-      <!-- Repository Deployment URLs -->
+      <!-- Repository Deployment Settings -->
       <!-- ***************** -->
-      <jboss.releases.repo.id>jboss-releases-repository</jboss.releases.repo.id>
-      <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
-      <jboss.snapshots.repo.id>jboss-snapshots-repository</jboss.snapshots.repo.id>
-      <jboss.snapshots.repo.url>https://repository.jboss.org/nexus/content/repositories/snapshots/</jboss.snapshots.repo.url>
+      <nexus.serverId>jboss</nexus.serverId>
+      <nexus.repo.name>releases</nexus.repo.name>
+      <nexus.repo.url>https://repository.jboss.org/nexus/</nexus.repo.url>
+      <nexus.destination.repo.name></nexus.destination.repo.name>
+      <nexus.staging.tag></nexus.staging.tag> <!-- an empty value results in a plugin-generated staging tag -->
 
       <!-- ************** -->
       <!-- Build settings -->
@@ -181,6 +182,7 @@
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
+      <skipReleaseAssembly>false</skipReleaseAssembly>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
 
@@ -506,6 +508,11 @@
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nxrm3-maven-plugin</artifactId>
             <version>${version.nxrm3.plugin}</version>
+            <configuration>
+              <serverId>${nexus.serverId}</serverId>
+              <nexusUrl>${nexus.repo.url}</nexusUrl>
+              <repository>${nexus.repo.name}</repository>
+            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -835,6 +842,7 @@
                     <goal>single</goal>
                   </goals>
                   <configuration>
+                    <skipAssembly>${skipReleaseAssembly}</skipAssembly>
                     <runOnlyAtExecutionRoot>true</runOnlyAtExecutionRoot>
                     <descriptorRefs>
                       <descriptorRef>${sourceReleaseAssemblyDescriptor}</descriptorRef>
@@ -847,10 +855,38 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-deploy-plugin</artifactId>
-              <configuration>
-                <altReleaseDeploymentRepository>${jboss.releases.repo.id}::${jboss.releases.repo.url}</altReleaseDeploymentRepository>
-                <altSnapshotDeploymentRepository>${jboss.snapshots.repo.id}::${jboss.snapshots.repo.url}</altSnapshotDeploymentRepository>
-              </configuration>
+              <executions>
+                <execution>
+                  <id>default-deploy</id>
+                  <phase>none</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nxrm3-maven-plugin</artifactId>
+              <extensions>true</extensions>
+              <executions>
+                <execution>
+                  <id>nexus-deploy</id>
+                  <phase>deploy</phase>
+                  <goals>
+                    <goal>deploy</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>gpg-sign</id>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -867,10 +903,83 @@
           </plugins>
         </build>
       </profile>
+      <!-- Use this profile in combination with 'jboss-release' to use
+           the nxrm3-maven-plugin's 'staging-deploy' goal instead of its
+           'deploy' goal. Once the staged deployment is valdated, the
+           person or script doing the release  would move on to use
+           its 'staging-move' goal via a call to
+           'mvn nxrm3:staging-move -Pjboss-staging-move' -->
+      <profile>
+        <id>jboss-staging-deploy</id>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nxrm3-maven-plugin</artifactId>
+              <executions>
+                <!-- Disable the jboss-release profile's 'deploy' goal execution -->
+                <execution>
+                  <id>nexus-deploy</id>
+                  <phase>none</phase>
+                </execution>
+                <execution>
+                  <id>nexus-staging.deploy</id>
+                  <phase>deploy</phase>
+                  <goals>
+                    <goal>staging-deploy</goal>
+                  </goals>
+                  <configuration>
+                    <tag>${nexus.staging.tag}</tag>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+      <!-- Used in release workflows that use the 'jboss-staging-deploy' profile,
+           this profile configures the nxrm3-maven-plugin to support command
+           line execution of its 'staging-move' goal. -->
+      <profile>
+        <id>jboss-staging-move</id>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nxrm3-maven-plugin</artifactId>
+              <configuration>
+                <destinationRepository>${nexus.destination.repo.name}</destinationRepository>
+                <tag>${nexus.staging.tag}</tag>
+              </configuration>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+      <!-- Used in release workflows that use the 'jboss-staging-deploy' profile,
+           this profile configures the nxrm3-maven-plugin to support command
+           line execution of its 'staging-delete' goal. -->
+      <profile>
+        <id>jboss-staging-delete</id>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nxrm3-maven-plugin</artifactId>
+              <configuration>
+                <tag>${nexus.staging.tag}</tag>
+              </configuration>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
       <!--
           This profile can be activated to generate gpg signatures for all build
           artifacts.  This profile requires that the properties "gpg.keyname"
           and "gpg.passphrase" are available to the current build.
+      -->
+      <!--
+        Note that this duplicates the execution within jboss-release;
+        because they have the same id, it will run only once if both are enabled
       -->
       <profile>
         <id>gpg-sign</id>
