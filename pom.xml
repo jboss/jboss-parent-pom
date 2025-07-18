@@ -183,6 +183,11 @@
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
       <!-- exposed additional params for javadoc, such as Xlint -->
       <javadoc.additional.params>-Xdoclint:none</javadoc.additional.params>
+
+      <!-- maven-gpg-plugin -->
+      <!-- set this to "error" to require a GPG agent-->
+      <gpg.pinEntryMode>loopback</gpg.pinEntryMode>
+
     </properties>
 
     <build>
@@ -395,6 +400,13 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>${version.gpg.plugin}</version>
+            <configuration>
+              <useAgent>true</useAgent>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>${gpg.pinEntryMode}</arg>
+              </gpgArguments>
+            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -868,11 +880,9 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-gpg-plugin</artifactId>
-              <configuration>
-                <useAgent>true</useAgent>
-              </configuration>
               <executions>
                 <execution>
+                  <id>gpg-sign</id>
                   <goals>
                     <goal>sign</goal>
                   </goals>
