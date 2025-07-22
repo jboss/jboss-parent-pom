@@ -88,18 +88,142 @@ For the full list of properties, refer to the POM itself.
 
 The parent POM includes a Maven profile called `jboss-release`. This
 profile contains settings for generating a full project source archive,
-javadoc jar files, and release deployment metadata. If using the Maven
-release plugin, this profile will automatically be activate during the
+javadoc jar files, and release deployment metadata.
+
+It also includes configuration for automatically deploying to a Nexus 3 server.
+
+If using the Maven
+release plugin, this profile will automatically be activated during the
 release:perform step.
 
 If the Maven release plugin is not used during the release process, the
 profile can be manually activated from the command line during a release
 build.
 
+To authenticate to the remote Nexus server, a username and password token is generally required.
+Contact your server administrator to get this information. The correct authentication configuration is determined by the `nexus.serverId` property, which defaults to `jboss`. In your `settings.xml`, you would have a configuration like this:
+
+.Example `settings.xml` snippet for deployment authentication
+[source,xml]
+----
+<servers>
+    <!-- ... -->
+    <server>
+        <id>jboss</id> <!-- this is the nexus.serverId -->
+        <!-- these are base64-encoded tokens provided by your admin -->
+        <username>xxxxxxxx</username>
+        <password>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</password>
+    </server>
+</servers>
+----
+
+In addition, the release artifacts will be signed (see <<the-gpg-sign-profile>> for information on how to customize GPG signing).
+
+The `jboss-release` profile will by default also produce an extra top-level artifact with the suffix `-source-release`.
+This artifact will contain the complete contents of the source tree used to deploy the project.
+This behavior may be disabled by setting the `skipReleaseAssembly` property to `true`.
+
+.Usage example for the `jboss-release` profile
 [source,bash]
 ----
 mvn -Pjboss-release deploy
 ----
+
+[id='release-profile-configuration']
+=== Release profile configuration
+
+The following properties configure aspects of the release profile behavior:
+
+[cols="1m,1m,2",options="header"]
+|===
+|Property|Default|Description
+|nexus.serverId|jboss|The server ID used for deployment.
+|nexus.repo.url|https://repository.jboss.org/nexus|The URL of the Nexus 3 server to deploy to.
+|nexus.repo.name|releases|The name of the repository to deploy to.
+|skipReleaseAssembly|false|If `true`, the `-source-release` artifact will not be created.
+|===
+
+[id='staged-deployments']
+=== Staged releases
+
+By default, the `jboss-release` profile deploys artifacts to the configured Nexus 3 server using the `nxrm3-maven-plugin`'s `deploy` goal.
+The usual expectation when that goal is used is that the repository to which the artifacts are deployed will be their ultimate location,
+where typical Maven clients will access them. However, the `nxrm3-maven-plugin` also support stage->validate->promote workflows with
+its `staging-deploy`, `staging-move` and `staging-delete` goals.
+
+The parent POM includes three Maven profiles -- `jboss-staging-deploy`, `jboss-staging-move` and `jboss-staging-delete` -- to support use of these goals.
+
+The following property is used by all three profiles:
+
+[cols="1m,1m,2",options="header"]
+|===
+|Property|Default|Description
+|nexus.staging.tag|empty string|Tag to associate with all deployed artifacts. An empty string results in a plugin-generated tag.
+|===
+
+A typical good practice would be to set this property in a child pom to a combination of a unique-to-the-project string and the release version:
+
+.Usage example for the `nexus.staging.tag` property
+[source,xml]
+----
+<nexus.staging.tag>project-foo-${project.version}</nexus.staging.tag>
+----
+
+[id='the-jboss-staging-deploy-profile']
+==== The JBoss Staging Deploy Profile
+
+To deploy to a staging repository, use the `jboss-staging-deploy` profile in combination with the `jboss-release` profile.
+
+.Usage example for the `jboss-staging-deploy` profile
+[source,bash]
+----
+mvn -Pjboss-release -Pjboss-staging-deploy deploy
+----
+
+All deployed artifacts will have an associated tag, with the value of the `nexus.staging.tag` Maven property, or a generated value the property is not configured.
+This tag is later used to identify artifacts to move from the staging repository to their final destination, or to delete them from the staging repository.
+
+[id='the-jboss-staging-move-profile']
+==== The JBoss Staging Move Profile
+
+Once the build that used the `jboss-staging-deploy` profile is complete, the staged artifacts can be validated. If they are acceptable, they can be moved from
+the staging repository to the final repository where typical Maven clients will access them.
+
+This move is accomplished by a `mvn` execution that executes a single nxrm3-maven-plugin goal, with the parent POM's `jboss-staging-move` profile enabled to help
+configure the execution of that goal:
+
+.Usage example for the `jboss-staging-move` profile
+[source,bash]
+----
+mvn -Pjboss-staging-move nxrm3:staging-move
+----
+
+The following property is used by the `jboss-staging-move` profile:
+
+[cols="1m,2",options="header"]
+|===
+|Property|Description
+|nexus.destination.repo.name|The name of the repository to move the tagged artifacts to
+|===
+
+The `jboss-staging-move` profile also uses the `nexus.staging.tag` property described earlier to determine the tag identifying the artifacts that should be moved.
+
+[id='the-jboss-staging-delete-profile']
+==== The JBoss Staging Delete Profile
+
+If the build that used the `jboss-staging-deploy` profile did not complete successfully, or if the deployed artifacts are otherwise not suitable for promotion from 
+the staging repo, they can be deleted from the staging repository.
+
+This move is accomplished by a `mvn` execution that executes a single mxrm3-mavcen-plugin goal, with the parent POM's `jboss-staging-delete` profile enabled to help
+configure the execution of that goal:
+
+.Usage example for the `jboss-staging-delete` profile
+[source,bash]
+----
+mvn -Pjboss-staging-delete nxrm3:staging-delete
+----
+
+The `jboss-staging-delete` profile uses the `nexus.staging.tag` property described earlier to determine the tag identifying the artifacts that should be moved.
 
 [id='the-gpg-sign-profile']
 == The GPG Sign Profile
@@ -107,6 +231,8 @@ mvn -Pjboss-release deploy
 This POM includes a Maven profile called "gpg-sign" which provides a
 default configuration to generate GPG signatures for the build
 artifacts.
+
+*Note:* if the <<the-jboss-release-profile>> is used, then GPG signing is automatically enabled, and this profile does not need to be explicitly activated.
 
 .Example Maven command line for activating GPG signing
 [source,bash]
