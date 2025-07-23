@@ -513,6 +513,25 @@
               <nexusUrl>${nexus.repo.url}</nexusUrl>
               <repository>${nexus.repo.name}</repository>
             </configuration>
+            <executions>
+              <execution>
+                <!-- Configure the execution that runs when the single-goal
+                     maven invocation 'mvn nxrm3:staging-move' is run. -->
+                <id>default-staging-move</id>
+                <configuration>
+                  <destinationRepository>${nexus.destination.repo.name}</destinationRepository>
+                  <tag>${nexus.staging.tag}</tag>
+                </configuration>
+              </execution>
+              <!-- Configure the execution that runs when the single-goal
+                   maven invocation 'mvn nxrm3:staging-delete' is run. -->
+              <execution>
+                <id>default-staging-delete</id>
+                <configuration>
+                  <tag>${nexus.staging.tag}</tag>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -933,41 +952,6 @@
                   </configuration>
                 </execution>
               </executions>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
-      <!-- Used in release workflows that use the 'jboss-staging-deploy' profile,
-           this profile configures the nxrm3-maven-plugin to support command
-           line execution of its 'staging-move' goal. -->
-      <profile>
-        <id>jboss-staging-move</id>
-        <build>
-          <plugins>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nxrm3-maven-plugin</artifactId>
-              <configuration>
-                <destinationRepository>${nexus.destination.repo.name}</destinationRepository>
-                <tag>${nexus.staging.tag}</tag>
-              </configuration>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
-      <!-- Used in release workflows that use the 'jboss-staging-deploy' profile,
-           this profile configures the nxrm3-maven-plugin to support command
-           line execution of its 'staging-delete' goal. -->
-      <profile>
-        <id>jboss-staging-delete</id>
-        <build>
-          <plugins>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nxrm3-maven-plugin</artifactId>
-              <configuration>
-                <tag>${nexus.staging.tag}</tag>
-              </configuration>
             </plugin>
           </plugins>
         </build>
