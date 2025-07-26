@@ -144,9 +144,9 @@
       <!-- Repository Deployment Settings -->
       <!-- ***************** -->
       <nexus.serverId>jboss</nexus.serverId>
-      <nexus.repo.name>releases</nexus.repo.name>
-      <nexus.repo.url>https://repository.jboss.org/nexus/</nexus.repo.url>
-      <nexus.destination.repo.name></nexus.destination.repo.name>
+      <nexus.repository.release>releases</nexus.repository.release>
+      <nexus.repository.staging>${nexus.repository.release}</nexus.repository.staging><!-- Override this if deploying to an intermediate staging repository -->
+      <nexus.repository.url>https://repository.jboss.org/nexus/</nexus.repository.url>
       <nexus.staging.tag></nexus.staging.tag> <!-- an empty value results in a plugin-generated staging tag -->
 
       <!-- ************** -->
@@ -510,9 +510,24 @@
             <version>${version.nxrm3.plugin}</version>
             <configuration>
               <serverId>${nexus.serverId}</serverId>
-              <nexusUrl>${nexus.repo.url}</nexusUrl>
-              <repository>${nexus.repo.name}</repository>
+              <nexusUrl>${nexus.repository.url}</nexusUrl>
             </configuration>
+            <executions>
+              <execution>
+                <id>nexus-move</id>
+                <configuration>
+                  <repository>${nexus.repository.staging}</repository>
+                  <destinationRepository>${nexus.repository.release}</destinationRepository>
+                  <tag>${nexus.staging.tag}</tag>
+                </configuration>
+              </execution>
+              <execution>
+                <id>nexus-delete</id>
+                <configuration>
+                  <tag>${nexus.staging.tag}</tag>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -871,8 +886,12 @@
                   <id>nexus-deploy</id>
                   <phase>deploy</phase>
                   <goals>
-                    <goal>deploy</goal>
+                    <goal>staging-deploy</goal>
                   </goals>
+                  <configuration>
+                    <repository>${nexus.repository.staging}</repository>
+                    <tag>${nexus.staging.tag}</tag>
+                  </configuration>
                 </execution>
               </executions>
             </plugin>
@@ -899,75 +918,6 @@
                   </goals>
                 </execution>
               </executions>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
-      <!-- Use this profile in combination with 'jboss-release' to use
-           the nxrm3-maven-plugin's 'staging-deploy' goal instead of its
-           'deploy' goal. Once the staged deployment is valdated, the
-           person or script doing the release  would move on to use
-           its 'staging-move' goal via a call to
-           'mvn nxrm3:staging-move -Pjboss-staging-move' -->
-      <profile>
-        <id>jboss-staging-deploy</id>
-        <build>
-          <plugins>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nxrm3-maven-plugin</artifactId>
-              <executions>
-                <!-- Disable the jboss-release profile's 'deploy' goal execution -->
-                <execution>
-                  <id>nexus-deploy</id>
-                  <phase>none</phase>
-                </execution>
-                <execution>
-                  <id>nexus-staging.deploy</id>
-                  <phase>deploy</phase>
-                  <goals>
-                    <goal>staging-deploy</goal>
-                  </goals>
-                  <configuration>
-                    <tag>${nexus.staging.tag}</tag>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
-      <!-- Used in release workflows that use the 'jboss-staging-deploy' profile,
-           this profile configures the nxrm3-maven-plugin to support command
-           line execution of its 'staging-move' goal. -->
-      <profile>
-        <id>jboss-staging-move</id>
-        <build>
-          <plugins>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nxrm3-maven-plugin</artifactId>
-              <configuration>
-                <destinationRepository>${nexus.destination.repo.name}</destinationRepository>
-                <tag>${nexus.staging.tag}</tag>
-              </configuration>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
-      <!-- Used in release workflows that use the 'jboss-staging-deploy' profile,
-           this profile configures the nxrm3-maven-plugin to support command
-           line execution of its 'staging-delete' goal. -->
-      <profile>
-        <id>jboss-staging-delete</id>
-        <build>
-          <plugins>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nxrm3-maven-plugin</artifactId>
-              <configuration>
-                <tag>${nexus.staging.tag}</tag>
-              </configuration>
             </plugin>
           </plugins>
         </build>
