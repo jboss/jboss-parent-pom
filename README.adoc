@@ -166,8 +166,8 @@ A typical good practice would be to set the `nexus.staging.tag` in a child pom t
 <nexus.staging.tag>project-foo-${project.version}</nexus.staging.tag>
 ----
 
-[id='the-jboss-staging-deploy-profile']
-==== The JBoss Staging Deploy Profile
+[id='deploying-to-a-staging-repository']
+==== Deploying to a staging repository
 
 A stage->validate->promote workflow with Nexus 3 requires the availability of two repositories; a staging repository to which artifacts are deployed during execution of the `deploy` goal, and then the ultimate repository to which the artifacts can be moved.
 
