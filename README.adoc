@@ -117,7 +117,7 @@ Contact your server administrator to get this information. The correct authentic
 </servers>
 ----
 
-In addition, the release artifacts will be signed (see <<the-gpg-sign-profile>> for information on how to customize GPG signing).
+In addition, the release artifacts will be signed. (See <<the-gpg-sign-profile>> for information on how to customize GPG signing).
 
 The `jboss-release` profile will by default also produce an extra top-level artifact with the suffix `-source-release`.
 This artifact will contain the complete contents of the source tree used to deploy the project.
@@ -138,30 +138,27 @@ The following properties configure aspects of the release profile behavior:
 |===
 |Property|Default|Description
 |nexus.serverId|jboss|The server ID used for deployment.
-|nexus.repo.url|https://repository.jboss.org/nexus|The URL of the Nexus 3 server to deploy to.
-|nexus.repo.name|releases|The name of the repository to deploy to.
+|nexus.repository.url|https://repository.jboss.org/nexus|The URL of the Nexus 3 server to deploy to.
+|nexus.repository.release|releases|The name of the repository where the release artifacts will be written, either during the main build `deploy` phase or during a subsequent <<promoting-staged-artifacts,promotion of staged artifacts>>.
+|nexus.repository.staging|`${nexus.repository.release}`|The name of the repository to deploy to. Override the default value if <<staged-deployments,deploying to an intermediate staging repository>>.
+|nexus.staging.tag||Tag to associate with all deployed artifacts. An empty string results in a plugin-generated tag.
 |skipReleaseAssembly|false|If `true`, the `-source-release` artifact will not be created.
 |===
 
 [id='staged-deployments']
 === Staged releases
 
-By default, the `jboss-release` profile deploys artifacts to the configured Nexus 3 server using the `nxrm3-maven-plugin`'s `deploy` goal.
+The `jboss-release` profile deploys artifacts to the configured Nexus 3 server using the `nxrm3-maven-plugin` `deploy` goal.
 The usual expectation when that goal is used is that the repository to which the artifacts are deployed will be their ultimate location,
-where typical Maven clients will access them. However, the `nxrm3-maven-plugin` also support stage->validate->promote workflows with
-its `staging-deploy`, `staging-move` and `staging-delete` goals.
+where typical Maven clients will access them. However, the `nxrm3-maven-plugin` also supports stage->validate->promote workflows with
+its `deploy`, `staging-move` and `staging-delete` goals.
 
-The parent POM includes three Maven profiles -- `jboss-staging-deploy`, `jboss-staging-move` and `jboss-staging-delete` -- to support use of these goals.
+All deployed artifacts will have an associated tag, with the value of the `nexus.staging.tag` Maven property, or a generated value the property is not configured.
+This tag is later used to identify artifacts to move from the staging repository to their final destination, or to delete them from the staging repository.
 
-The following property is used by all three profiles:
+NOTE: This Nexus 3 tag is not the same thing as a git tag.
 
-[cols="1m,1m,2",options="header"]
-|===
-|Property|Default|Description
-|nexus.staging.tag|empty string|Tag to associate with all deployed artifacts. An empty string results in a plugin-generated tag.
-|===
-
-A typical good practice would be to set this property in a child pom to a combination of a unique-to-the-project string and the release version:
+A typical good practice would be to set the `nexus.staging.tag` in a child pom to a combination of a unique-to-the-project string and the release version:
 
 .Usage example for the `nexus.staging.tag` property
 [source,xml]
@@ -172,58 +169,49 @@ A typical good practice would be to set this property in a child pom to a combin
 [id='the-jboss-staging-deploy-profile']
 ==== The JBoss Staging Deploy Profile
 
-To deploy to a staging repository, use the `jboss-staging-deploy` profile in combination with the `jboss-release` profile.
+A stage->validate->promote workflow with Nexus 3 requires the availability of two repositories; a staging repository to which artifacts are deployed during execution of the `deploy` goal, and then the ultimate repository to which the artifacts can be moved.
 
-.Usage example for the `jboss-staging-deploy` profile
-[source,bash]
+To deploy to a staging repository, child poms must override the `nexus.repository.staging` Maven property described above and set it to the name of the staging repository.
+
+.Usage example for the `nexus.repository.staging` profile
+[source,xml]
 ----
-mvn -Pjboss-release -Pjboss-staging-deploy deploy
+<nexus.repository.staging>foo-staging</nexus.repository.staging>
 ----
 
-All deployed artifacts will have an associated tag, with the value of the `nexus.staging.tag` Maven property, or a generated value the property is not configured.
-This tag is later used to identify artifacts to move from the staging repository to their final destination, or to delete them from the staging repository.
-
-[id='the-jboss-staging-move-profile']
-==== The JBoss Staging Move Profile
+[id='promoting-staged-artifacts']
+==== Promoting staged artifacts with the `staging-move` goal
 
 Once the build that used the `jboss-staging-deploy` profile is complete, the staged artifacts can be validated. If they are acceptable, they can be moved from
 the staging repository to the final repository where typical Maven clients will access them.
 
-This move is accomplished by a `mvn` execution that executes a single nxrm3-maven-plugin goal, with the parent POM's `jboss-staging-move` profile enabled to help
-configure the execution of that goal:
+This move is accomplished by a `mvn` execution that executes a single nxrm3-maven-plugin goal, with the parent POM's `nexus-move` execution specified:
 
-.Usage example for the `jboss-staging-move` profile
+.Usage example for the `staging-move` goal
 [source,bash]
 ----
-mvn -Pjboss-staging-move nxrm3:staging-move
+mvn nxrm3:staging-move@nexus-move
 ----
 
-The following property is used by the `jboss-staging-move` profile:
+The parent POM's `nexus-move` execution configures the nxrm3-maven-plugin to move artifacts associated with the `nexus.staging.tag` from the `nexus.repository.staging` repository to the `nexus.repository.release` repository.
 
-[cols="1m,2",options="header"]
-|===
-|Property|Description
-|nexus.destination.repo.name|The name of the repository to move the tagged artifacts to
-|===
+[id='deleting-staged-artifacts']
+==== Deleting staged artifacts with the `staging-delete` goal
 
-The `jboss-staging-move` profile also uses the `nexus.staging.tag` property described earlier to determine the tag identifying the artifacts that should be moved.
-
-[id='the-jboss-staging-delete-profile']
-==== The JBoss Staging Delete Profile
-
-If the build that used the `jboss-staging-deploy` profile did not complete successfully, or if the deployed artifacts are otherwise not suitable for promotion from 
+If the build that deployed to the staging repository did not complete successfully, or if the deployed artifacts are otherwise not suitable for promotion from
 the staging repo, they can be deleted from the staging repository.
 
-This move is accomplished by a `mvn` execution that executes a single mxrm3-mavcen-plugin goal, with the parent POM's `jboss-staging-delete` profile enabled to help
-configure the execution of that goal:
+This move is accomplished by a `mvn` execution that executes a single mxrm3-maven-plugin goal, with the parent POM's `nexus-delete` execution specified:
 
 .Usage example for the `jboss-staging-delete` profile
 [source,bash]
 ----
-mvn -Pjboss-staging-delete nxrm3:staging-delete
+mvn nxrm3:staging-delete@nexus-delete
 ----
 
-The `jboss-staging-delete` profile uses the `nexus.staging.tag` property described earlier to determine the tag identifying the artifacts that should be moved.
+The parent POM's `nexus-delete` execution uses the `nexus.staging.tag` property described earlier to determine the tag identifying the artifacts that should be moved.
+
+IMPORTANT: The `staging-delete` goal is used to *delete artifacts* associated with a tag; it does not remove the tag and shouldn't be used unless deleting artifacts is the intent. Cleaning up unneeded tags is a server-side administrative function.
 
 [id='the-gpg-sign-profile']
 == The GPG Sign Profile
