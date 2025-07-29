@@ -177,8 +177,10 @@
       <targetJdk>${maven.compiler.release}</targetJdk>
 
       <!-- maven-release-plugin -->
+      <autoVersionSubmodules>true</autoVersionSubmodules>
       <releaseProfiles>jboss-release</releaseProfiles>
       <signTag>true</signTag>
+      <tagNameFormat>@{project.version}</tagNameFormat>
 
       <!-- maven-assembly-plugin -->
       <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
@@ -549,8 +551,10 @@
             <artifactId>maven-release-plugin</artifactId>
             <version>${version.release.plugin}</version>
             <configuration>
+              <autoVersionSubmodules>${autoVersionSubmodules}</autoVersionSubmodules>
               <releaseProfiles>${releaseProfiles}</releaseProfiles>
               <signTag>${signTag}</signTag>
+              <tagNameFormat>${tagNameFormat}</tagNameFormat>
             </configuration>
           </plugin>
           <plugin>
