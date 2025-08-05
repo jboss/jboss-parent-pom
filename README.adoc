@@ -185,12 +185,12 @@ To deploy to a staging repository, child poms must override the `nexus.repositor
 Once the build that used the `jboss-staging-deploy` profile is complete, the staged artifacts can be validated. If they are acceptable, they can be moved from
 the staging repository to the final repository where typical Maven clients will access them.
 
-This move is accomplished by a `mvn` execution that executes a single nxrm3-maven-plugin goal, with the parent POM's `nexus-move` execution specified:
+This move is accomplished by the nxrm3:staging-move goal of the nxrm3-maven-plugin:
 
 .Usage example for the `staging-move` goal
 [source,bash]
 ----
-mvn nxrm3:staging-move@nexus-move
+mvn nxrm3:staging-move
 ----
 
 The parent POM's `nexus-move` execution configures the nxrm3-maven-plugin to move artifacts associated with the `nexus.staging.tag` from the `nexus.repository.staging` repository to the `nexus.repository.release` repository.
@@ -201,12 +201,12 @@ The parent POM's `nexus-move` execution configures the nxrm3-maven-plugin to mov
 If the build that deployed to the staging repository did not complete successfully, or if the deployed artifacts are otherwise not suitable for promotion from
 the staging repo, they can be deleted from the staging repository.
 
-This move is accomplished by a `mvn` execution that executes a single mxrm3-maven-plugin goal, with the parent POM's `nexus-delete` execution specified:
+This move is accomplished by the nxrm3:staging-delete goal of the nxrm3-maven-plugin:
 
 .Usage example for the `jboss-staging-delete` profile
 [source,bash]
 ----
-mvn nxrm3:staging-delete@nexus-delete
+mvn nxrm3:staging-delete
 ----
 
 The parent POM's `nexus-delete` execution uses the `nexus.staging.tag` property described earlier to determine the tag identifying the artifacts that should be moved.
