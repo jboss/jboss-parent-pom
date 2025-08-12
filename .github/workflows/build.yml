@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Check out project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: jboss-parent-pom
 
@@ -39,7 +39,7 @@ jobs:
           mvn -B -ntp install
 
       - name: Check out WildFly Common
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: wildfly/wildfly-common
           path: wildfly-common
@@ -63,7 +63,7 @@ jobs:
           mvn -B -ntp package install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}} -Dmaven.compiler.release=17
 
       - name: Check out WildFly Maven Plugin
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: wildfly/wildfly-maven-plugin
           path: wildfly-maven-plugin
@@ -78,7 +78,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Modules
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-modules/jboss-modules
           path: jboss-modules
@@ -93,7 +93,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Marshalling
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-remoting/jboss-marshalling
           path: jboss-marshalling
@@ -108,7 +108,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging Dev Tools
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-logging/logging-dev-tools
           path: logging-dev-tools
@@ -123,7 +123,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss LogManager
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-logging/jboss-logmanager
           path: jboss-logmanager
@@ -138,7 +138,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-logging/jboss-logging
           path: jboss-logging
@@ -153,7 +153,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out JBoss Logging Tools
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-logging/jboss-logging-tools
           path: jboss-logging-tools
@@ -168,7 +168,7 @@ jobs:
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - name: Check out Log4j2 to JBoss LogManager bridge
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: jboss-logging/log4j2-jboss-logmanager
           path: log4j2-jboss-logmanager
