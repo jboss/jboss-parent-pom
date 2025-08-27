@@ -293,7 +293,7 @@ In order to simplify development, it is recommended to project maintainers to se
 properties in your personal Maven `settings.xml` file.
 
 Extra unit tests are run for a given platform whenever a newer version than that platform
-was used to build the project and the appropriate control file is found (see <<build-control-files>>).
+was used to build the project and the appropriate control file is not found (see <<build-control-files>>).
 
 === Configuration
 
@@ -384,9 +384,9 @@ They do not need to have any content (i.e. they can be zero-sized).
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
-|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
-|build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
-|build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
+|disable-test-java11|Disables testing for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
+|disable-test-java17|Disables testing for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
+|disable-test-java21|Disables testing for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |===
 
 [id='where-to-get-more-information']

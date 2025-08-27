@@ -955,7 +955,7 @@
                     <name>java11.home</name>
                 </property>
                 <file>
-                    <exists>${basedir}/build-test-java11</exists>
+                    <missing>${basedir}/disable-test-java11</missing>
                 </file>
             </activation>
             <build>
@@ -1253,7 +1253,7 @@
                     <name>java17.home</name>
                 </property>
                 <file>
-                    <exists>${basedir}/build-test-java17</exists>
+                    <missing>${basedir}/disable-test-java17</missing>
                 </file>
             </activation>
             <build>
@@ -1528,7 +1528,7 @@
                     <name>java21.home</name>
                 </property>
                 <file>
-                    <exists>${basedir}/build-test-java21</exists>
+                    <missing>${basedir}/disable-test-java21</missing>
                 </file>
             </activation>
             <build>
@@ -1845,7 +1845,7 @@
                     <name>java24.home</name>
                 </property>
                 <file>
-                    <exists>${basedir}/build-test-java24</exists>
+                    <missing>${basedir}/disable-test-java24</missing>
                 </file>
             </activation>
             <build>
