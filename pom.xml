@@ -979,6 +979,38 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>java11-integration-test</id>
+            <activation>
+                <jdk>[12,)</jdk>
+                <property>
+                    <name>java11.home</name>
+                </property>
+                <file>
+                    <missing>${basedir}/disable-integration-test-java11</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>java11-integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <jvm>${java11.home}/bin/java</jvm>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
         <!-- This profile is activated when Java 12 or later is used to build -->
         <profile>
@@ -1298,6 +1330,59 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>java17-integration-test</id>
+            <activation>
+                <jdk>[18,)</jdk>
+                <property>
+                    <name>java17.home</name>
+                </property>
+                <file>
+                    <missing>${basedir}/disable-integration-test-java17</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>java17-integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <jvm>${java17.home}/bin/java</jvm>
+                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/17
+                                    </classesDirectory>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/16
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/15
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/14
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/13
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/12
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.outputDirectory}
+                                        </additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
         <!-- This profile is activated when the baseline JDK version running tests is Java 17 -->
         <profile>
@@ -1542,6 +1627,71 @@
                                 <phase>test</phase>
                                 <goals>
                                     <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <jvm>${java21.home}/bin/java</jvm>
+                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/21
+                                    </classesDirectory>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/20
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/19
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/18
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/17
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/16
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/15
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/14
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/13
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/12
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.outputDirectory}
+                                        </additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>java21-integration-test</id>
+            <activation>
+                <jdk>[22,)</jdk>
+                <property>
+                    <name>java21.home</name>
+                </property>
+                <file>
+                    <missing>${basedir}/disable-integration-test-java21</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>java21-integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
                                 </goals>
                                 <configuration>
                                     <jvm>${java21.home}/bin/java</jvm>
@@ -1859,6 +2009,80 @@
                                 <phase>test</phase>
                                 <goals>
                                     <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <jvm>${java24.home}/bin/java</jvm>
+                                    <classesDirectory>${project.build.directory}/classes/META-INF/versions/24
+                                    </classesDirectory>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/23
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/22
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/21
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/20
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/19
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/18
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/17
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/16
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/15
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/14
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/13
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>
+                                            ${project.build.directory}/classes/META-INF/versions/12
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.outputDirectory}
+                                        </additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>java24-integration-test</id>
+            <activation>
+                <jdk>[25,)</jdk>
+                <property>
+                    <name>java24.home</name>
+                </property>
+                <file>
+                    <missing>${basedir}/disable-integration-test-java24</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>java24-integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
                                 </goals>
                                 <configuration>
                                     <jvm>${java24.home}/bin/java</jvm>
