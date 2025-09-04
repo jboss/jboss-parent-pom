@@ -65,8 +65,8 @@ to the `maven.compiler.release` property.
 </properties>
 ----
 
-NOTE: If you're compiling down to Java 1.8, you can still use the `maven.compiler.release` property. Simply set the
-value to `1.8` and it the appropriate settings will be configured.
+NOTE: If you're compiling down to Java 8, you can still use the `maven.compiler.release` property. Simply set the
+value to `8` and it the appropriate settings will be configured.
 
 The minimum version of Java or Maven required to run a build can also be
 set via properties.
