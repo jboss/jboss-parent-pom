@@ -112,7 +112,7 @@
       <version.javancss.plugin>2.1</version.javancss.plugin>
       <version.jxr.plugin>3.6.0</version.jxr.plugin>
       <version.license.plugin>2.6.0</version.license.plugin>
-      <version.nxrm3.plugin>1.0.11</version.nxrm3.plugin>
+      <version.nxrm3.plugin>1.0.12</version.nxrm3.plugin>
       <version.pir.plugin>2.9</version.pir.plugin><!-- maven-project-info-reports-plugins -->
       <version.plexus.archiver>4.10.1</version.plexus.archiver>
       <version.plugin.plugin>3.15.1</version.plugin.plugin>
