@@ -138,7 +138,7 @@
       <!-- Other versions -->
       <!-- ***************** -->
       <version.checkstyle>10.26.1</version.checkstyle>
-      <version.surefire>3.5.3</version.surefire>
+      <version.surefire>3.5.4</version.surefire>
 
       <!-- ***************** -->
       <!-- Repository Deployment Settings -->
