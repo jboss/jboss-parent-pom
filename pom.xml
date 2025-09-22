@@ -130,7 +130,7 @@
       <version.surefire.plugin>${version.surefire}</version.surefire.plugin>
       <version.surefire-report.plugin>${version.surefire}</version.surefire-report.plugin>
       <version.failsafe.plugin>${version.surefire}</version.failsafe.plugin>
-      <version.versions.plugin>2.19.0</version.versions.plugin>
+      <version.versions.plugin>2.19.1</version.versions.plugin>
       <version.war.plugin>3.4.0</version.war.plugin>
       <version.zanata.plugin>4.6.2</version.zanata.plugin>
 
