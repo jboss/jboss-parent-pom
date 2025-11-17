@@ -117,7 +117,7 @@
       <version.plexus.archiver>4.10.4</version.plexus.archiver>
       <version.plugin.plugin>3.15.2</version.plugin.plugin>
       <version.pmd.plugin>3.28.0</version.pmd.plugin>
-      <version.rar.plugin>3.0.0</version.rar.plugin>
+      <version.rar.plugin>3.1.0</version.rar.plugin>
       <version.release.plugin>3.2.0</version.release.plugin>
       <version.resources.plugin>3.3.1</version.resources.plugin>
       <!-- DO NOT UPGRADE SHADE PLUGIN DEPENDENCY until https://issues.apache.org/jira/browse/MSHADE-419 is resolved -->
