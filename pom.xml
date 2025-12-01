@@ -85,7 +85,7 @@
       <!-- **************** -->
       <version.antrun.plugin>3.2.0</version.antrun.plugin>
       <version.archetype.plugin>3.4.1</version.archetype.plugin>
-      <version.assembly.plugin>3.7.1</version.assembly.plugin>
+      <version.assembly.plugin>3.8.0</version.assembly.plugin>
       <version.buildhelper.plugin>3.6.1</version.buildhelper.plugin>
       <version.buildnumber.plugin>3.2.1</version.buildnumber.plugin>
       <version.bundle.plugin>6.0.0</version.bundle.plugin>
