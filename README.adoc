@@ -213,6 +213,37 @@ The parent POM's `nexus-delete` execution uses the `nexus.staging.tag` property 
 
 IMPORTANT: The `staging-delete` goal is used to *delete artifacts* associated with a tag; it does not remove the tag and shouldn't be used unless deleting artifacts is the intent. Cleaning up unneeded tags is a server-side administrative function.
 
+[id='central-release-profile']
+== The Central Release Profile
+
+In addition to the normal <<the-jboss-release-profile,JBoss release>> profile, a second release profile is also supported for deploying directly to Maven Central called `central-release`.
+
+This profile supports direct deployment to Maven Central of all artifacts.
+At present, staged releases are not supported.
+
+Activating the profile is done by executing a deployment operation like this:
+
+.Example of deploying a project to Maven Central
+[source,bash]
+----
+mvn -Pcentral-release deploy
+----
+
+The following properties are supported:
+
+.Supported properties for central deployment
+[cols="1m,1m,2",options="header"]
+|===
+|Property|Default|Description
+|central.serverId|central|The server ID used for deployment.
+|central.sonatype.url|https://central.sonatype.com|The URL of the central deployment target.
+|central.autoPublish|true|Set to `true` to automatically publish upon successful deployment.
+|central.waitUntil|validated|How long to wait after deployment before allowing the build to continue.
+|central.skipPublishing|false|Set to `true` to skip publishing.
+|central.deploymentName|`${project.artifactId}-${project.version}`|The name of the deployment.
+|===
+
+
 [id='the-gpg-sign-profile']
 == The GPG Sign Profile
 
