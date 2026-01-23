@@ -150,6 +150,7 @@
       <nexus.repository.staging>${nexus.repository.release}</nexus.repository.staging><!-- Override this if deploying to an intermediate staging repository -->
       <nexus.repository.url>https://repository.jboss.org/nexus/</nexus.repository.url>
       <nexus.staging.tag></nexus.staging.tag> <!-- an empty value results in a plugin-generated staging tag -->
+      <nexus.skipPublishing>false</nexus.skipPublishing>
 
       <!-- ***************** -->
       <!-- Repository Deployment Settings (Central) -->
@@ -534,6 +535,7 @@
               <nexusUrl>${nexus.repository.url}</nexusUrl>
               <repository>${nexus.repository.staging}</repository>
               <tag>${nexus.staging.tag}</tag>
+              <skipNexusStagingDeployMojo>${nexus.skipPublishing}</skipNexusStagingDeployMojo>
               <!-- Used by staging-move goal -->
               <destinationRepository>${nexus.repository.release}</destinationRepository>
             </configuration>

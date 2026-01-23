@@ -143,6 +143,7 @@ The following properties configure aspects of the release profile behavior:
 |nexus.repository.staging|`${nexus.repository.release}`|The name of the repository to deploy to. Override the default value if <<staged-deployments,deploying to an intermediate staging repository>>.
 |nexus.staging.tag||Tag to associate with all deployed artifacts. An empty string results in a plugin-generated tag.
 |skipReleaseAssembly|false|If `true`, the `-source-release` artifact will not be created.
+|nexus.skipPublishing|false|Set to `true` to skip publishing.
 |===
 
 [id='staged-deployments']
