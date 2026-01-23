@@ -89,6 +89,7 @@
       <version.buildhelper.plugin>3.6.1</version.buildhelper.plugin>
       <version.buildnumber.plugin>3.3.0</version.buildnumber.plugin>
       <version.bundle.plugin>6.0.0</version.bundle.plugin>
+      <version.central-publishing.plugin>0.10.0</version.central-publishing.plugin>
       <version.checkstyle.plugin>3.6.0</version.checkstyle.plugin>
       <version.clean.plugin>3.5.0</version.clean.plugin>
       <version.clover.plugin>4.1.10.1</version.clover.plugin>
@@ -142,13 +143,23 @@
       <version.surefire>3.5.4</version.surefire>
 
       <!-- ***************** -->
-      <!-- Repository Deployment Settings -->
+      <!-- Repository Deployment Settings (Nexus) -->
       <!-- ***************** -->
       <nexus.serverId>jboss</nexus.serverId>
       <nexus.repository.release>releases</nexus.repository.release>
       <nexus.repository.staging>${nexus.repository.release}</nexus.repository.staging><!-- Override this if deploying to an intermediate staging repository -->
       <nexus.repository.url>https://repository.jboss.org/nexus/</nexus.repository.url>
       <nexus.staging.tag></nexus.staging.tag> <!-- an empty value results in a plugin-generated staging tag -->
+
+      <!-- ***************** -->
+      <!-- Repository Deployment Settings (Central) -->
+      <!-- ***************** -->
+      <central.sonatype.url>https://central.sonatype.com</central.sonatype.url>
+      <central.serverId>central</central.serverId>
+      <central.autoPublish>true</central.autoPublish>
+      <central.waitUntil>validated</central.waitUntil>
+      <central.skipPublishing>false</central.skipPublishing>
+      <central.deploymentName>${project.artifactId}-${project.version}</central.deploymentName>
 
       <!-- ************** -->
       <!-- Build settings -->
@@ -447,6 +458,7 @@
             <artifactId>maven-jar-plugin</artifactId>
             <version>${version.jar.plugin}</version>
             <configuration>
+              <detectMultiReleaseJar>true</detectMultiReleaseJar>
               <archive>
                 <index>true</index>
                 <manifest>
@@ -525,6 +537,11 @@
               <!-- Used by staging-move goal -->
               <destinationRepository>${nexus.repository.release}</destinationRepository>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-maven-deployment-plugin</artifactId>
+            <version>${version.central-publishing.plugin}</version>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -829,8 +846,8 @@
     <profiles>
 
       <!--
-          The profile jboss-release must be active when a project is released.  The configuration
-          in this POM will automatically call this profile if using the maven-release-plugin.
+          The profile jboss-release must be active when a project is released to the JBoss Nexus.
+          The configuration in this POM will automatically call this profile if using the maven-release-plugin.
           If the maven-release-plugin is not used during the release, this profile must
           be manually activated.
        -->
@@ -922,12 +939,83 @@
         </build>
       </profile>
       <!--
+          This profile must be active when releasing a project to Maven Central directly.
+      -->
+      <profile>
+        <id>central-release</id>
+        <distributionManagement>
+          <snapshotRepository>
+            <id>${central.serverId}</id>
+            <url>${central.sonatype.url}</url>
+          </snapshotRepository>
+          <repository>
+            <id>${central.serverId}</id>
+            <url>${central.sonatype.url}</url>
+          </repository>
+        </distributionManagement>
+        <build>
+          <plugins>
+            <!-- Disable the classic maven-deploy-plugin -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>default-deploy</id>
+                  <phase>none</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <!-- Sign all artifacts -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>gpg-sign</id>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <!-- Build documentation -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>attach-javadocs</id>
+                  <goals>
+                    <goal>jar</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <!-- Publish to Maven Central -->
+            <plugin>
+              <groupId>org.sonatype.central</groupId>
+              <artifactId>central-publishing-maven-plugin</artifactId>
+              <version>${version.central-publishing.plugin}</version>
+              <extensions>true</extensions>
+              <configuration>
+                <publishingServerId>${central.serverId}</publishingServerId>
+                <autoPublish>${central.autoPublish}</autoPublish>
+                <waitUntil>${central.waitUntil}</waitUntil>
+                <deploymentName>${central.deploymentName}</deploymentName>
+                <skipPublishing>${central.skipPublishing}</skipPublishing>
+              </configuration>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+      <!--
           This profile can be activated to generate gpg signatures for all build
           artifacts.  This profile requires that the properties "gpg.keyname"
           and "gpg.passphrase" are available to the current build.
       -->
       <!--
-        Note that this duplicates the execution within jboss-release;
+        Note that this duplicates the execution within jboss-release and central-release;
         because they have the same id, it will run only once if both are enabled
       -->
       <profile>
@@ -1017,16 +1105,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1060,16 +1138,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -1105,16 +1173,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1148,16 +1206,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -1193,16 +1241,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1236,16 +1274,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -1380,16 +1408,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1423,16 +1441,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -1468,16 +1476,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1511,16 +1509,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -1679,16 +1667,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1722,16 +1700,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -1828,16 +1796,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -2013,16 +1971,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Multi-Release>true</Multi-Release>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
