@@ -998,7 +998,6 @@
             <plugin>
               <groupId>org.sonatype.central</groupId>
               <artifactId>central-publishing-maven-plugin</artifactId>
-              <version>${version.central-publishing.plugin}</version>
               <extensions>true</extensions>
               <configuration>
                 <publishingServerId>${central.serverId}</publishingServerId>
