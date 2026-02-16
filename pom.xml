@@ -542,7 +542,7 @@
           </plugin>
           <plugin>
             <groupId>org.sonatype.central</groupId>
-            <artifactId>central-maven-deployment-plugin</artifactId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
             <version>${version.central-publishing.plugin}</version>
           </plugin>
           <plugin>
