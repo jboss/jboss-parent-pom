@@ -139,7 +139,7 @@
       <!-- ***************** -->
       <!-- Other versions -->
       <!-- ***************** -->
-      <version.checkstyle>13.2.0</version.checkstyle>
+      <version.checkstyle>13.3.0</version.checkstyle>
       <version.surefire>3.5.5</version.surefire>
 
       <!-- ***************** -->
