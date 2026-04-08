@@ -1068,6 +1068,7 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java11.home}/bin/java</jvm>
+                                    <reportsDirectory>${project.build.directory}/surefire-reports/java11</reportsDirectory>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1306,6 +1307,7 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java17.home}/bin/java</jvm>
+                                    <reportsDirectory>${project.build.directory}/surefire-reports/java17</reportsDirectory>
                                     <classesDirectory>${project.build.directory}/classes/META-INF/versions/17
                                     </classesDirectory>
                                     <additionalClasspathElements>
@@ -1541,6 +1543,7 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java21.home}/bin/java</jvm>
+                                    <reportsDirectory>${project.build.directory}/surefire-reports/java21</reportsDirectory>
                                     <classesDirectory>${project.build.directory}/classes/META-INF/versions/21
                                     </classesDirectory>
                                     <additionalClasspathElements>
@@ -1828,6 +1831,7 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java24.home}/bin/java</jvm>
+                                    <reportsDirectory>${project.build.directory}/surefire-reports/java24</reportsDirectory>
                                     <classesDirectory>${project.build.directory}/classes/META-INF/versions/24
                                     </classesDirectory>
                                     <additionalClasspathElements>
@@ -2003,6 +2007,7 @@
                                 </goals>
                                 <configuration>
                                     <jvm>${java25.home}/bin/java</jvm>
+                                    <reportsDirectory>${project.build.directory}/surefire-reports/java25</reportsDirectory>
                                     <classesDirectory>${project.build.directory}/classes/META-INF/versions/25
                                     </classesDirectory>
                                     <additionalClasspathElements>
