@@ -3,8 +3,7 @@
 
 The parent Maven POM for JBoss community projects.
 
-https://maven-badges.herokuapp.com/maven-central/org.jboss/jboss-parent[image:https://maven-badges.herokuapp.com/maven-central/org.jboss/jboss-parent/badge.svg[Maven
-Central]]
+image:https://img.shields.io/maven-central/v/org.jboss/jboss-parent[Maven Central]
 
 [id='what-is-it']
 == What is it?
