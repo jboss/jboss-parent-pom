@@ -420,6 +420,89 @@ They do not need to have any content (i.e. they can be zero-sized).
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |===
 
+[id='releasing-this-project']
+== Releasing this project
+
+This project does not use the Maven Release Plugin.
+Instead, releases are performed manually using the steps below.
+
+In the examples that follow, the release version is `53` and the next development version is `54`.
+
+=== Prerequisites
+
+* Ensure your `settings.xml` is configured with valid credentials for the `jboss` server ID (see <<the-jboss-release-profile>>).
+* Ensure your GPG key is configured for artifact signing.
+
+=== Step 1: Update your local checkout
+
+Fetch the latest changes and fast-forward your `main` branch:
+
+[source,bash]
+----
+git fetch upstream
+git merge --ff-only upstream/main
+git log --oneline -5   # sanity-check the history
+----
+
+=== Step 2: Detach from `main`
+
+Detach HEAD so the release commit is not made directly on `main`:
+
+[source,bash]
+----
+git checkout --detach
+----
+
+=== Step 3: Set the release version
+
+[source,bash]
+----
+mvn versions:set -DnewVersion=53
+----
+
+=== Step 4: Commit and tag the release
+
+[source,bash]
+----
+git commit -am "Prep 53"
+git tag -s jboss-parent-53 -m "jboss-parent-53"
+----
+
+=== Step 5: Build and deploy
+
+Run a clean build, then deploy to the `jboss-common` repository:
+
+[source,bash]
+----
+mvn clean install
+mvn deploy -Pjboss-release -Dnexus.repository.release=jboss-common
+----
+
+=== Step 6: Advance the `main` branch to the next snapshot
+
+[source,bash]
+----
+git checkout main
+mvn versions:set -DnewVersion=54-SNAPSHOT
+git commit -am "Next is 54"
+----
+
+=== Step 7: Push
+
+Do a dry run first to verify what will be pushed:
+
+[source,bash]
+----
+git push --dry-run upstream main jboss-parent-53
+----
+
+If everything looks correct, push for real:
+
+[source,bash]
+----
+git push upstream main jboss-parent-53
+----
+
 [id='where-to-get-more-information']
 == Where to get more information?
 
