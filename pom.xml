@@ -948,7 +948,7 @@
         <distributionManagement>
           <snapshotRepository>
             <id>${central.serverId}</id>
-            <url>${central.sonatype.url}</url>
+            <url>${central.sonatype.url}/repository/maven-snapshots/</url>
           </snapshotRepository>
           <repository>
             <id>${central.serverId}</id>
