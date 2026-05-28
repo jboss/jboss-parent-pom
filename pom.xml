@@ -140,7 +140,7 @@
       <!-- Other versions -->
       <!-- ***************** -->
       <version.checkstyle>13.4.2</version.checkstyle>
-      <version.surefire>3.5.5</version.surefire>
+      <version.surefire>3.5.6</version.surefire>
 
       <!-- ***************** -->
       <!-- Repository Deployment Settings (Nexus) -->
