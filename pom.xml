@@ -160,7 +160,8 @@
       <central.autoPublish>true</central.autoPublish>
       <central.waitUntil>validated</central.waitUntil>
       <central.skipPublishing>false</central.skipPublishing>
-      <central.deploymentName>${project.artifactId}-${project.version}</central.deploymentName>
+      <!-- Name the deployment after the reactor root, not the last-built module (${project.artifactId}). -->
+      <central.deploymentName>${session.topLevelProject.artifactId}-${session.topLevelProject.version}</central.deploymentName>
 
       <!-- ************** -->
       <!-- Build settings -->
