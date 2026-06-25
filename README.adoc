@@ -319,6 +319,8 @@ property or properties are set as needed:
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
 * `java21.home`: this property must be set to the location of a Java 21 JDK installation
+* `java24.home`: this property must be set to the location of a Java 24 JDK installation
+* `java25.home`: this property must be set to the location of a Java 25 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -418,6 +420,8 @@ They do not need to have any content (i.e. they can be zero-sized).
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
+|build-test-java24|Run tests for Java 24 when `java24.home` is set and JDK 25 or later is used.|<<mr-jar-testing>>
+|build-test-java25|Run tests for Java 25 when `java25.home` is set and JDK 26 or later is used.|<<mr-jar-testing>>
 |===
 
 [id='releasing-this-project']
